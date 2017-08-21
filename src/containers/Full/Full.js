@@ -21,6 +21,8 @@ import Tabs from '../../views/Components/Tabs/';
 import FontAwesome from '../../views/Icons/FontAwesome/';
 import SimpleLineIcons from '../../views/Icons/SimpleLineIcons/';
 
+import RequireAuth from '../../components/auth/require_auth';
+
 class Full extends Component {
   render() {
     return (
@@ -33,7 +35,7 @@ class Full extends Component {
             <Container fluid>
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
-                <Route path="/mainpage" name="MainPage" component={MainPage}/>
+                <Route path="/mainpage" name="MainPage" component={RequireAuth(MainPage)}/>
                 <Route path="/components/buttons" name="Buttons" component={Buttons}/>
                 <Route path="/components/cards" name="Cards" component={Cards}/>
                 <Route path="/components/forms" name="Forms" component={Forms}/>

@@ -5,7 +5,7 @@ export default {
       url: '/mainpage',
       icon: 'icon-speedometer',
       badge: {
-        variant: 'info',
+        variant: 'danger',
         text: 'NEW'
       }
     },
