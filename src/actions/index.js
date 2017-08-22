@@ -9,8 +9,8 @@ axios.interceptors.response.use(undefined, function (error) {
   return new Promise(function(resolve, reject){
     if(error.response.status == '401' && error.config){
       axios.post(`${ROOT_URL}/app_dev.php/oauth/v2/token`, {
-          client_id: '1_1kj3hdc23skgc0kokco84sgowgc8go80wkwk8kk4s80wksso4w',
-          client_secret: '2z45ywbw6h440s4kkg44sog8kc4cwo8o4kgso4g4sg4ggs8ssk',
+          client_id: '1_a',
+          client_secret: 'b',
           grant_type: 'refresh_token',
           refresh_token: localStorage.getItem('refresh_token')
       })
@@ -33,7 +33,7 @@ axios.interceptors.response.use(undefined, function (error) {
 export function getUsers() {
   return function (dispatch) {
 
-    axios.get(`${ROOT_URL}/app_dev.php/v1/users`, {
+    axios.get(`${ROOT_URL}/app_dev.php/users`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             Accept: 'application/json'
@@ -54,8 +54,8 @@ export function signinUser({email, password}){
 
   return function(dispatch){
     axios.post(`${ROOT_URL}/app_dev.php/oauth/v2/token`, {
-        client_id: '1_1kj3hdc23skgc0kokco84sgowgc8go80wkwk8kk4s80wksso4w',
-        client_secret: '2z45ywbw6h440s4kkg44sog8kc4cwo8o4kgso4g4sg4ggs8ssk',
+        client_id: '1_a',
+        client_secret: 'b',
         grant_type: 'password',
         username: email,
         password: password
