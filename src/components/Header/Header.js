@@ -95,7 +95,7 @@ class Header extends Component {
                 <DropdownItem><i className="fa fa-file"></i> Projects<Badge color="primary">42</Badge></DropdownItem>
                 <DropdownItem divider/>
                 <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem>
-                <DropdownItem><i className="fa fa-lock"></i> Logout</DropdownItem>
+                <DropdownItem><a href="#/logout"><i className="fa fa-lock"></i> Logout</a></DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </NavItem>

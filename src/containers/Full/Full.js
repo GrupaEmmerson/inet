@@ -34,21 +34,21 @@ class Full extends Component {
             <Breadcrumb />
             <Container fluid>
               <Switch>
-                <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
                 <Route path="/mainpage" name="MainPage" component={RequireAuth(MainPage)}/>
-                <Route path="/components/buttons" name="Buttons" component={Buttons}/>
-                <Route path="/components/cards" name="Cards" component={Cards}/>
-                <Route path="/components/forms" name="Forms" component={Forms}/>
-                <Route path="/components/modals" name="Modals" component={Modals}/>
-                <Route path="/components/social-buttons" name="Social Buttons" component={SocialButtons}/>
-                <Route path="/components/switches" name="Swithces" component={Switches}/>
-                <Route path="/components/tables" name="Tables" component={Tables}/>
-                <Route path="/components/tabs" name="Tabs" component={Tabs}/>
-                <Route path="/icons/font-awesome" name="Font Awesome" component={FontAwesome}/>
-                <Route path="/icons/simple-line-icons" name="Simple Line Icons" component={SimpleLineIcons}/>
-                <Route path="/widgets" name="Widgets" component={Widgets}/>
-                <Route path="/charts" name="Charts" component={Charts}/>
-                <Redirect from="/" to="/dashboard"/>
+                <Route path="/dashboard" name="Dashboard" component={RequireAuth(Dashboard)}/>
+                <Route path="/components/buttons" name="Buttons" component={RequireAuth(Buttons)}/>
+                <Route path="/components/cards" name="Cards" component={RequireAuth(Cards)}/>
+                <Route path="/components/forms" name="Forms" component={RequireAuth(Forms)}/>
+                <Route path="/components/modals" name="Modals" component={RequireAuth(Modals)}/>
+                <Route path="/components/social-buttons" name="Social Buttons" component={RequireAuth(SocialButtons)}/>
+                <Route path="/components/switches" name="Swithces" component={RequireAuth(Switches)}/>
+                <Route path="/components/tables" name="Tables" component={RequireAuth(Tables)}/>
+                <Route path="/components/tabs" name="Tabs" component={RequireAuth(Tabs)}/>
+                <Route path="/icons/font-awesome" name="Font Awesome" component={RequireAuth(FontAwesome)}/>
+                <Route path="/icons/simple-line-icons" name="Simple Line Icons" component={RequireAuth(SimpleLineIcons)}/>
+                <Route path="/widgets" name="Widgets" component={RequireAuth(Widgets)}/>
+                <Route path="/charts" name="Charts" component={RequireAuth(Charts)}/>
+                <Redirect from="/" to="/login"/>
               </Switch>
             </Container>
           </main>

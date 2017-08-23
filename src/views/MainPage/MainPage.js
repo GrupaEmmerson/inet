@@ -11,7 +11,7 @@ class MainPage extends Component{
     showUsers(user){
 
         return(
-            <div><p>name: {user.username}<br/>email: {user.email}</p></div>
+            <div key={user.profileId}><p>name: {user.username}<br/>email: {user.email}</p></div>
         );
 
     }

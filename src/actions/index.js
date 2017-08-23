@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS } from './types';
-
+import login from '../views/Pages/Login/'
 const ROOT_URL = 'http://api.inet.dev';
 
 axios.interceptors.response.use(undefined, function (error) {
@@ -51,7 +51,6 @@ export function getUsers() {
 
 export function signinUser({email, password}){
 
-
   return function(dispatch){
     axios.post(`${ROOT_URL}/app_dev.php/oauth/v2/token`, {
         client_id: '1_a',
@@ -64,7 +63,7 @@ export function signinUser({email, password}){
       dispatch({type: AUTH_USER});
       localStorage.setItem('token', response.data.access_token);
       localStorage.setItem('refresh_token', response.data.refresh_token);
-      browserHistory.push('/users');
+      browserHistory.push('/');
     })
     .catch(() =>{
       dispatch(authError('Bad Login Info'));
@@ -82,7 +81,8 @@ export function authError(error){
 
 export function signoutUser(){
   localStorage.removeItem('token');
-  return { type: UNAUTH_USER }
+  return { type: UNAUTH_USER };
+
 }
 
 export function signupUser({email, password}){
