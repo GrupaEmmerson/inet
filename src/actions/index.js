@@ -2,7 +2,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_OFFICE_WORK } from './types';
 
-const ROOT_URL = 'http://api.inet.dev';
+const ROOT_URL = 'http://api-inet-backend.local';
 
 axios.interceptors.response.use(undefined, function (error) {
 
