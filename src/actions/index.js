@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS } from './types';
-import login from '../views/Pages/Login/'
+import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_OFFICE_WORK } from './types';
+
 const ROOT_URL = 'http://api.inet.dev';
 
 axios.interceptors.response.use(undefined, function (error) {
@@ -47,7 +47,6 @@ export function getUsers() {
         });
   }
 }
-
 
 export function signinUser({email, password}){
 
@@ -101,14 +100,33 @@ export function signupUser({email, password}){
 
 export function deleteUser({id}){
     return function(dispatch){
+
         axios.post(`${ROOT_URL}/app_dev.php/v1/delete`, {"id":id})
-            .then(response => {
-                dispatch({type: AUTH_USER });
-                localStorage.setItem('token', response.data.token);
-                browserHistory.push('/users');
-            })
-            .catch(function(error){
-                dispatch(authError(error.response.data.error));
-            });
+        .then(response => {
+            dispatch({type: AUTH_USER });
+            localStorage.setItem('token', response.data.token);
+            browserHistory.push('/users');
+        })
+        .catch(function(error){
+            dispatch(authError(error.response.data.error));
+        });
+    }
+}
+
+export function getOfficeWork() {
+    return function (dispatch) {
+
+        axios.get(`${ROOT_URL}/app_dev.php/office_work/assistant`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: 'application/json'
+            }
+        })
+        .then(response => {
+            dispatch({type: GET_OFFICE_WORK, payload: response.data});
+        })
+        .catch(error => {
+            browserHistory.push('/');
+        });
     }
 }

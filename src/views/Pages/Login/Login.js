@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from '../../../actions';
-
+import {Container, Row, Col, CardGroup, Card, CardBlock, Button, Input, InputGroup, InputGroupAddon} from "reactstrap";
 class Login extends Component{
 
     componentWillMount() {
@@ -33,20 +33,49 @@ class Login extends Component{
 
         const {handleSubmit, fields: {email, password }} = this.props;
 
-
         return (
-            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-              <fieldset className="form-group">
-                <label>Email</label>
-                <input {...email} className="form-control" />
-              </fieldset>
-              <fieldset className="form-group">
-                <label>Password</label>
-                <input {...password} type="password" className="form-control" />
-              </fieldset>
-                {this.renderAlert()}
-              <button action="submit" className="btn btn-primary">Sign in </button>
-            </form>
+            <div className="app flex-row align-items-center">
+                <Container>
+                    <Row className="justify-content-center">
+                        <Col md="8">
+                            <CardGroup className="mb-0">
+                                <Card className="p-4">
+                                    <CardBlock className="card-body">
+                                        <h1>Login</h1>
+                                        <p className="text-muted">Sign In to your account</p>
+                                        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                                            <InputGroup className="mb-3">
+                                                <InputGroupAddon><i className="icon-user"></i></InputGroupAddon>
+                                                <Input {...email} type="text" placeholder="Username"/>
+                                            </InputGroup>
+                                            <InputGroup className="mb-4">
+                                                <InputGroupAddon><i className="icon-lock"></i></InputGroupAddon>
+                                                <Input {...password} type="password" placeholder="Password"/>
+                                            </InputGroup>
+                                            <Row>
+                                                <Col xs="6">
+                                                    <Button color="primary" className="px-4" action="submit">Login</Button>
+                                                </Col>
+                                                <Col xs="6" className="text-right">
+                                                    <Button color="link" className="px-0">Forgot password?</Button>
+                                                </Col>
+                                            </Row>
+                                        </form>
+                                    </CardBlock>
+                                </Card>
+                                <Card className="text-white bg-dark py-5 d-md-down-none" style={{ width: 40 + '%' }}>
+                                    <CardBlock className="card-body text-center">
+                                        <div>
+                                            <h3>Emmerson Realty S.A.</h3>
+                                            <img src="http://www2.emmerson.pl/logo.gif" style={{ width: 100 + '%' }}/>
+                                        </div>
+                                    </CardBlock>
+                                </Card>
+                            </CardGroup>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
         );
     }
 }

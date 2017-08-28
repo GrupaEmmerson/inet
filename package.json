@@ -29,7 +29,9 @@
     "uglify-js": "^3.0.27",
     "url-loader": "^0.5.9",
     "webpack": "^3.5.3",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-dev-server": "^2.7.1",
+    "webpack-hot-middleware": "^2.18.2"
   },
   "dependencies": {
     "axios": "^0.13.1",
@@ -57,7 +59,7 @@
   },
   "scripts": {
     "dev": "webpack -d --progress --watch",
-    "start": "webpack-dev-server --env.dev --hot --progress --colors --inline --host=172.12.0.45 --port=3000",
+    "start": "webpack-dev-server --env.dev --hot --progress --colors --inline --host=0.0.0.0 --port=4000",
     "build": "webpack -p --progress",
     "clean": "rimraf ./build"
   },

@@ -11,7 +11,7 @@ import {
   NavbarBrand,
   DropdownToggle
 } from 'reactstrap';
-
+import Logo from '../../../public/img/logo.svg';
 class Header extends Component {
 
   constructor(props) {
@@ -51,34 +51,29 @@ class Header extends Component {
 
   render() {
     return (
-      <header className="app-header navbar">
+      <header className="app-header navbar navbar-dark" style={{backgroundColor: '#D82624', color: '#fff'}}>
         <NavbarToggler className="d-lg-none" onClick={this.mobileSidebarToggle}>&#9776;</NavbarToggler>
-        <NavbarBrand href="#"></NavbarBrand>
-        <NavbarToggler className="d-md-down-none" onClick={this.sidebarToggle}>&#9776;</NavbarToggler>
+        <nav>
+          <a href="#">
+            <img src={Logo} style={{ width: 200 + 'px', height: 54 + 'px'}}/>
+          </a>
+        </nav>
+        <NavbarToggler className="d-md-down-none" style={{color: '#fff'}} onClick={this.sidebarToggle}>&#9776;</NavbarToggler>
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
-            <NavLink href="#">Dashboard</NavLink>
+            <NavLink style={{color: '#fff'}} href="#">Dashboard</NavLink>
           </NavItem>
           <NavItem className="px-3">
-            <NavLink href="#">Users</NavLink>
+            <NavLink style={{color: '#fff'}} href="#">Users</NavLink>
           </NavItem>
           <NavItem className="px-3">
-            <NavLink href="#">Settings</NavLink>
+            <NavLink style={{color: '#fff'}} href="#">Settings</NavLink>
           </NavItem>
         </Nav>
-        <Nav className="ml-auto" navbar>
-          <NavItem className="d-md-down-none">
-            <NavLink href="#"><i className="icon-bell"></i><Badge pill color="danger">5</Badge></NavLink>
-          </NavItem>
-          <NavItem className="d-md-down-none">
-            <NavLink href="#"><i className="icon-list"></i></NavLink>
-          </NavItem>
-          <NavItem className="d-md-down-none">
-            <NavLink href="#"><i className="icon-location-pin"></i></NavLink>
-          </NavItem>
+        <Nav className="ml-auto" navbar >
           <NavItem>
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle className="nav-link dropdown-toggle">
+              <DropdownToggle className="nav-link dropdown-toggle" style={{color: '#fff'}}>
                 <img src={'img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
                 <span className="d-md-down-none">admin</span>
               </DropdownToggle>
@@ -95,12 +90,12 @@ class Header extends Component {
                 <DropdownItem><i className="fa fa-file"></i> Projects<Badge color="primary">42</Badge></DropdownItem>
                 <DropdownItem divider/>
                 <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem>
-                <DropdownItem><a href="#/logout"><i className="fa fa-lock"></i> Logout</a></DropdownItem>
+                <DropdownItem href="#/logout"><i className="fa fa-lock"></i> Logout</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </NavItem>
         </Nav>
-        <NavbarToggler className="d-md-down-none" type="button" onClick={this.asideToggle}>&#9776;</NavbarToggler>
+        <NavbarToggler style={{color: '#fff'}} className="d-md-down-none" type="button" onClick={this.asideToggle}>&#9776;</NavbarToggler>
       </header>
     )
   }
