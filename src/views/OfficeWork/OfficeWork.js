@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import SearchInput, {createFilter} from 'react-search-input'
 
 import {
     Badge,
@@ -29,27 +30,39 @@ import {
     InputGroupButton
 } from "reactstrap";
 
+const KEYS_TO_FILTERS = ['user.name', 'subject', 'dest.name', 'id'];
 
 class OfficeWork extends Component {
 
     componentWillMount(){
         this.props.getOfficeWork();
+
+    }
+
+    constructor () {
+        super();
+        this.state = { searchTerm: '' };
     }
 
     dataTable(office_work){
-            return(
+
+        const filteredEmails = office_work.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+
+        {filteredEmails.map(office_work => {
+            return (
                 <tr key={office_work.id}>
                     <td>{office_work.name}</td>
                     <td>{office_work.team_name}</td>
-                    <td> - </td>
-                    <td> - </td>
-                    <td> - </td>
-                    <td> - </td>
+                    <td> -</td>
+                    <td> -</td>
+                    <td> -</td>
+                    <td> -</td>
                     <td>{office_work.symbol}</td>
                     <td>{office_work.date}</td>
                     <td><a href="#" className="btn btn-primary"><span className="icon-pencil"/></a></td>
                 </tr>
-            );
+            )
+        })}
     };
 
     render() {
@@ -68,7 +81,7 @@ class OfficeWork extends Component {
                                     <InputGroupButton>
                                         <Button color="primary"><i className="fa fa-search"></i> Szukaj</Button>
                                     </InputGroupButton>
-                                    <Input type="text" id="input1-group2" name="input1-group2" placeholder="Symbol"/>
+                                    <Input type="text" id="input1-group2" name="input1-group2" placeholder="Symbol" onChange={this.searchUpdated}/>
                                 </InputGroup>
                             </FormGroup>
                         </Form>
@@ -108,6 +121,11 @@ class OfficeWork extends Component {
 
         )
     }
+
+}
+
+function searchUpdated (term) {
+    this.setState({searchTerm: term})
 }
 
 function mapStateToProps(state){
