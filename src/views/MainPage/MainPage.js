@@ -11,11 +11,17 @@ const stylemain = {textAlign: 'center'};
 const chartsOptions ={
     legend: false,
     tooltips: {
+        enabled: false,
         intersect: false,
         mode: 'dataset',
         displayColors: false,
+        callbacks: {
+            label: function(tooltipItem, data) {
+                    return data.datasets[0].data[0] + ' %';
+            }
+        }
     }
-};
+}
 const data1 = {
     labels: [
         'Zrobione',
