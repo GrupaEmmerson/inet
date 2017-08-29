@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import SearchInput, {createFilter} from 'react-search-input'
-
+let testWeakMap = new WeakMap();
 import {
     Badge,
     Row,
@@ -30,7 +30,7 @@ import {
     InputGroupButton
 } from "reactstrap";
 
-const KEYS_TO_FILTERS = ['user.name', 'subject', 'dest.name', 'id'];
+const KEYS_TO_FILTERS = ['symbol'];
 
 class OfficeWork extends Component {
 
@@ -41,47 +41,33 @@ class OfficeWork extends Component {
 
     constructor () {
         super();
-        this.state = { searchTerm: '' };
+        this._state = { searchTerm: '' };
     }
-
-    dataTable(office_work){
-
-        const filteredEmails = office_work.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
-
-        {filteredEmails.map(office_work => {
-            return (
-                <tr key={office_work.id}>
-                    <td>{office_work.name}</td>
-                    <td>{office_work.team_name}</td>
-                    <td> -</td>
-                    <td> -</td>
-                    <td> -</td>
-                    <td> -</td>
-                    <td>{office_work.symbol}</td>
-                    <td>{office_work.date}</td>
-                    <td><a href="#" className="btn btn-primary"><span className="icon-pencil"/></a></td>
-                </tr>
-            )
-        })}
-    };
+    get _state () {
+        return testWeakMap.get(this);
+    }
+    set _state (value) {
+        testWeakMap.set(this, value);
+    }
+    searchUpdated (term) {
+       this._state({ searchTerm: term });
+    }
 
     render() {
 
         if(!this.props.office_work){
             return <div>Loading Office Work...</div>
         }
-
+        console.log(this.props.office_work.filter(createFilter(this._state.searchTerm, KEYS_TO_FILTERS)));
+        const filteredEmails = this.props.office_work.filter(createFilter(this._state.searchTerm, KEYS_TO_FILTERS));
         return (
             <div className="animated fadeIn">
                 <Card>
                     <CardBlock className="card-body">
-                        <Form action="submit" >
+                        <Form>
                             <FormGroup>
                                 <InputGroup>
-                                    <InputGroupButton>
-                                        <Button color="primary"><i className="fa fa-search"></i> Szukaj</Button>
-                                    </InputGroupButton>
-                                    <Input type="text" id="input1-group2" name="input1-group2" placeholder="Symbol" onChange={this.searchUpdated}/>
+                                    <SearchInput className='search-input' onChange={this.searchUpdated} />
                                 </InputGroup>
                             </FormGroup>
                         </Form>
@@ -110,7 +96,22 @@ class OfficeWork extends Component {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    { this.props.office_work.map(this.dataTable) }
+
+                                    {filteredEmails.map(office_work => {
+                                        return (
+                                            <tr key={office_work.id}>
+                                                <td>{office_work.name}</td>
+                                                <td>{office_work.team_name}</td>
+                                                <td> -</td>
+                                                <td> -</td>
+                                                <td> -</td>
+                                                <td> -</td>
+                                                <td>{office_work.symbol}</td>
+                                                <td>{office_work.date}</td>
+                                                <td><a href="#" className="btn btn-primary"><span className="icon-pencil"/></a></td>
+                                            </tr>
+                                        )
+                                    })}
                                     </tbody>
                                 </Table>
                             </CardBlock>
@@ -122,10 +123,6 @@ class OfficeWork extends Component {
         )
     }
 
-}
-
-function searchUpdated (term) {
-    this.setState({searchTerm: term})
 }
 
 function mapStateToProps(state){
