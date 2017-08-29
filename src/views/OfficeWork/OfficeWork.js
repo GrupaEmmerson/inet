@@ -30,7 +30,7 @@ import {
     InputGroupButton
 } from "reactstrap";
 
-const KEYS_TO_FILTERS = ['symbol'];
+const KEYS_TO_FILTERS = ['symbol', 'name', 'team_name', 'date', 'id'];
 
 class OfficeWork extends Component {
 
@@ -66,9 +66,9 @@ class OfficeWork extends Component {
                     <CardBlock className="card-body">
                         <Form>
                             <FormGroup>
-                                <InputGroup>
-                                    <SearchInput className='search-input' onChange={this.searchUpdated.bind(this)} />
-                                </InputGroup>
+                                    <Col md="12">
+                                        <SearchInput inputClassName="form-control"  placeholder="Wyszukaj" onChange={this.searchUpdated.bind(this)}/>
+                                    </Col>
                             </FormGroup>
                         </Form>
                     </CardBlock>
