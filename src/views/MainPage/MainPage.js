@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import {Badge, Row, Col, TabContent, TabPane, Nav, NavItem, NavLink} from "reactstrap";
+import {Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Badge, Card, CardHeader, CardFooter, CardBlock, Label, Input} from "reactstrap";
 import classnames from "classnames";
-const stylemain = {textAlign: 'center'}
+
+const stylemain = {textAlign: 'center'};
 
 class MainPage extends Component{
 
@@ -24,6 +25,7 @@ class MainPage extends Component{
             });
         }
     }
+
     toggle1(tab) {
         if (this.state.activeTab1 !== tab) {
             this.setState({
@@ -31,21 +33,8 @@ class MainPage extends Component{
             });
         }
     }
-
-    componentWillMount(){
-        this.props.getUsers();
-    }
-
-    showUsers(user){
-
-        return(
-            <div key={user.profileId}><p>name: {user.username}<br/>email: {user.email}</p></div>
-        );
-
-    }
-
+    
     render(){
-
         if(!this.props.users){
             return (
                 <div style={stylemain}>
@@ -427,10 +416,29 @@ class MainPage extends Component{
                         </TabContent>
                     </Col>
 
+                    <Row>
+                        <Col xs="12" sm="6" >
+                            <Card className="card-accent-success">
+                                <CardHeader> Ten Miesiąc </CardHeader>
+                                <CardBlock className="card-body">
+                                    1
+                                </CardBlock>
+                            </Card>
+                        </Col>
+                        <Col xs="12" sm="6" >
+                            <Card className="card-accent-primary">
+                                <CardHeader> Poprzedni miesiąc </CardHeader>
+                                <CardBlock className="card-body">
+                                    2
+                                </CardBlock>
+
+                            </Card>
+                        </Col>
+                    </Row>
+
                 </div>
             )
         }
-
 
         return(
             <div>
