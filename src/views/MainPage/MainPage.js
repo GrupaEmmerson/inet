@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import {Badge, Row, Col, TabContent, TabPane, Nav, NavItem, NavLink} from "reactstrap";
 import classnames from "classnames";
+const stylemain = {textAlign: 'center'}
 
 class MainPage extends Component{
 
@@ -11,7 +12,8 @@ class MainPage extends Component{
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            activeTab: '1'
+            activeTab: '1',
+            activeTab1: '1'
         };
     }
 
@@ -19,6 +21,13 @@ class MainPage extends Component{
         if (this.state.activeTab !== tab) {
             this.setState({
                 activeTab: tab
+            });
+        }
+    }
+    toggle1(tab) {
+        if (this.state.activeTab1 !== tab) {
+            this.setState({
+                activeTab1: tab
             });
         }
     }
@@ -39,9 +48,9 @@ class MainPage extends Component{
 
         if(!this.props.users){
             return (
-                <div>
-                    Top Emmerson
-                    <Col xs="12" md="6" className="mb-4">
+                <div style={stylemain}>
+                    <b>Top Emmerson</b>
+                    <Col xs="12" md="12" className="mb-4">
                         <Nav tabs>
                             <NavItem>
                                 <NavLink
@@ -70,13 +79,350 @@ class MainPage extends Component{
                         </Nav>
                         <TabContent activeTab={this.state.activeTab}>
                             <TabPane tabId="1">
-                                1.
+                                <Row>
+                                    <Col xs="12" md="6">
+                                        <b>Miesiąc</b><br/>
+                                        Umowy zbycia i wynajmu
+                                        <Col xs="12" md="12" className="mb-4">
+                                            <Nav tabs>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '1' })}
+                                                        onClick={() => { this.toggle1('1'); }}
+                                                    >
+                                                        Najlepszy zespół
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '2' })}
+                                                        onClick={() => { this.toggle1('2'); }}
+                                                    >
+                                                        Najlepszy zespół - Srednia na doradce
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '3' })}
+                                                        onClick={() => { this.toggle1('3'); }}
+                                                    >
+                                                        Najlepszy doradca
+                                                    </NavLink>
+                                                </NavItem>
+                                            </Nav>
+                                            <TabContent activeTab={this.state.activeTab1}>
+                                                <TabPane tabId="1">
+                                                    1.
+                                                </TabPane>
+                                                <TabPane tabId="2">
+                                                    2.
+                                                </TabPane>
+                                                <TabPane tabId="3">
+                                                    3.
+                                                </TabPane>
+                                            </TabContent>
+                                        </Col>
+                                        Umowy Premium
+                                        <Col xs="12" md="12" className="mb-4">
+                                            <Nav tabs>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '1' })}
+                                                        onClick={() => { this.toggle1('1'); }}
+                                                    >
+                                                        Najlepszy zespół
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '2' })}
+                                                        onClick={() => { this.toggle1('2'); }}
+                                                    >
+                                                        Najlepszy zespół - Srednia na doradce
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '3' })}
+                                                        onClick={() => { this.toggle1('3'); }}
+                                                    >
+                                                        Najlepszy doradca
+                                                    </NavLink>
+                                                </NavItem>
+                                            </Nav>
+                                            <TabContent activeTab={this.state.activeTab1}>
+                                                <TabPane tabId="1">
+                                                    1.
+                                                </TabPane>
+                                                <TabPane tabId="2">
+                                                    2.
+                                                </TabPane>
+                                                <TabPane tabId="3">
+                                                    3.
+                                                </TabPane>
+                                            </TabContent>
+                                        </Col>
+                                    </Col>
+                                    <Col xs="12" md="6">
+                                        <b>Rok</b><br/>
+                                        Umowy zbycia i wynajmu
+                                        <Col xs="12" md="12" className="mb-4">
+                                            <Nav tabs>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '1' })}
+                                                        onClick={() => { this.toggle1('1'); }}
+                                                    >
+                                                        Najlepszy zespół
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '2' })}
+                                                        onClick={() => { this.toggle1('2'); }}
+                                                    >
+                                                        Najlepszy zespół - Srednia na doradce
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '3' })}
+                                                        onClick={() => { this.toggle1('3'); }}
+                                                    >
+                                                        Najlepszy doradca
+                                                    </NavLink>
+                                                </NavItem>
+                                            </Nav>
+                                            <TabContent activeTab={this.state.activeTab1}>
+                                                <TabPane tabId="1">
+                                                    1.
+                                                </TabPane>
+                                                <TabPane tabId="2">
+                                                    2.
+                                                </TabPane>
+                                                <TabPane tabId="3">
+                                                    3.
+                                                </TabPane>
+                                            </TabContent>
+                                        </Col>
+                                        Umowy Premium
+                                        <Col xs="12" md="12" className="mb-4">
+                                            <Nav tabs>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '1' })}
+                                                        onClick={() => { this.toggle1('1'); }}
+                                                    >
+                                                        Najlepszy zespół
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '2' })}
+                                                        onClick={() => { this.toggle1('2'); }}
+                                                    >
+                                                        Najlepszy zespół - Srednia na doradce
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '3' })}
+                                                        onClick={() => { this.toggle1('3'); }}
+                                                    >
+                                                        Najlepszy doradca
+                                                    </NavLink>
+                                                </NavItem>
+                                            </Nav>
+                                            <TabContent activeTab={this.state.activeTab1}>
+                                                <TabPane tabId="1">
+                                                    1.
+                                                </TabPane>
+                                                <TabPane tabId="2">
+                                                    2.
+                                                </TabPane>
+                                                <TabPane tabId="3">
+                                                    3.
+                                                </TabPane>
+                                            </TabContent>
+                                        </Col>
+                                    </Col>
+                                </Row>
                             </TabPane>
                             <TabPane tabId="2">
-                                2.
+                                <Row>
+                                    <Col xs="12" md="6">
+                                        <b>Miesiąc</b><br/>
+                                        <Col xs="12" md="12" className="mb-4">
+                                            <Nav tabs>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '1' })}
+                                                        onClick={() => { this.toggle1('1'); }}
+                                                    >
+                                                        Najlepszy zespół
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '2' })}
+                                                        onClick={() => { this.toggle1('2'); }}
+                                                    >
+                                                        Najlepszy zespół - Srednia na doradce
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '3' })}
+                                                        onClick={() => { this.toggle1('3'); }}
+                                                    >
+                                                        Najlepszy doradca
+                                                    </NavLink>
+                                                </NavItem>
+                                            </Nav>
+                                            <TabContent activeTab={this.state.activeTab1}>
+                                                <TabPane tabId="1">
+                                                    1.
+                                                </TabPane>
+                                                <TabPane tabId="2">
+                                                    2.
+                                                </TabPane>
+                                                <TabPane tabId="3">
+                                                    3.
+                                                </TabPane>
+                                            </TabContent>
+                                        </Col>
+                                    </Col>
+                                    <Col xs="12" md="6">
+                                        <b>Rok</b><br/>
+                                        <Col xs="12" md="12" className="mb-4">
+                                            <Nav tabs>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '1' })}
+                                                        onClick={() => { this.toggle1('1'); }}
+                                                    >
+                                                        Najlepszy zespół
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '2' })}
+                                                        onClick={() => { this.toggle1('2'); }}
+                                                    >
+                                                        Najlepszy zespół - Srednia na doradce
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '3' })}
+                                                        onClick={() => { this.toggle1('3'); }}
+                                                    >
+                                                        Najlepszy doradca
+                                                    </NavLink>
+                                                </NavItem>
+                                            </Nav>
+                                            <TabContent activeTab={this.state.activeTab1}>
+                                                <TabPane tabId="1">
+                                                    1.
+                                                </TabPane>
+                                                <TabPane tabId="2">
+                                                    2.
+                                                </TabPane>
+                                                <TabPane tabId="3">
+                                                    3.
+                                                </TabPane>
+                                            </TabContent>
+                                        </Col>
+                                    </Col>
+                                </Row>
                             </TabPane>
                             <TabPane tabId="3">
-                                3.
+                                <Row>
+                                    <Col xs="12" md="6">
+                                        <b>Miesiąc</b><br/>
+                                        <Col xs="12" md="12" className="mb-4">
+                                            <Nav tabs>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '1' })}
+                                                        onClick={() => { this.toggle1('1'); }}
+                                                    >
+                                                        Rynek wtórny
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '2' })}
+                                                        onClick={() => { this.toggle1('2'); }}
+                                                    >
+                                                        Rynek pierwotny
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '3' })}
+                                                        onClick={() => { this.toggle1('3'); }}
+                                                    >
+                                                        Rynek komercyjny
+                                                    </NavLink>
+                                                </NavItem>
+                                            </Nav>
+                                            <TabContent activeTab={this.state.activeTab1}>
+                                                <TabPane tabId="1">
+                                                    1.
+                                                </TabPane>
+                                                <TabPane tabId="2">
+                                                    2.
+                                                </TabPane>
+                                                <TabPane tabId="3">
+                                                    3.
+                                                </TabPane>
+                                            </TabContent>
+                                        </Col>
+                                    </Col>
+                                    <Col xs="12" md="6">
+                                        <b>Rok</b><br/>
+                                        <Col xs="12" md="12" className="mb-4">
+                                            <Nav tabs>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '1' })}
+                                                        onClick={() => { this.toggle1('1'); }}
+                                                    >
+                                                        Rynek wtórny
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '2' })}
+                                                        onClick={() => { this.toggle1('2'); }}
+                                                    >
+                                                        Rynek pierwotny
+                                                    </NavLink>
+                                                </NavItem>
+                                                <NavItem>
+                                                    <NavLink
+                                                        className={classnames({ active: this.state.activeTab1 === '3' })}
+                                                        onClick={() => { this.toggle1('3'); }}
+                                                    >
+                                                        Rynek komercyjny
+                                                    </NavLink>
+                                                </NavItem>
+                                            </Nav>
+                                            <TabContent activeTab={this.state.activeTab1}>
+                                                <TabPane tabId="1">
+                                                    1.
+                                                </TabPane>
+                                                <TabPane tabId="2">
+                                                    2.
+                                                </TabPane>
+                                                <TabPane tabId="3">
+                                                    3.
+                                                </TabPane>
+                                            </TabContent>
+                                        </Col>
+                                    </Col>
+                                </Row>
                             </TabPane>
                         </TabContent>
                     </Col>
