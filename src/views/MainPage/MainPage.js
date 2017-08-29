@@ -4,9 +4,14 @@ import * as actions from '../../actions';
 import {Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Badge, Card, CardHeader, CardFooter, CardBlock, Label, Input} from "reactstrap";
 import {Doughnut} from "react-chartjs-2";
 import classnames from "classnames";
+import Widget02 from './Widget';
 
 const zrob = 75;
 const zrob2 = 95;
+const tytol = 'Nowe wiadomości';
+const zawart = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.';
+
+
 const stylemain = {textAlign: 'center'};
 const chartsOptions ={
     legend: false,
@@ -129,9 +134,9 @@ class MainPage extends Component{
     render(){
         if(!this.props.users){
             return (
-                <div style={stylemain}>
-                    <b>Top Emmerson</b>
-                    <Col xs="12" md="12" className="mb-4">
+                <div >
+                    <b style={stylemain}>Top Emmerson</b>
+                    <Col xs="12" md="12" className="mb-4" style={stylemain}>
                         <Nav tabs>
                             <NavItem>
                                 <NavLink
@@ -508,7 +513,7 @@ class MainPage extends Component{
                         </TabContent>
                     </Col>
 
-                    <Row>
+                    <Row style={stylemain}>
                         <Col xs="12" sm="6" >
                             <Card className="card-accent-success">
                                 <CardHeader> Ten Miesiąc </CardHeader>
@@ -542,6 +547,20 @@ class MainPage extends Component{
                         </Col>
                     </Row>
 
+                    <Row>
+                        <Col xs="12" sm="6" lg="3">
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/charts"/>
+                        </Col>
+                        <Col xs="12" sm="6" lg="3">
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer/>
+                        </Col>
+                        <Col xs="12" sm="6" lg="3">
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-moon-o" color="warning" footer/>
+                        </Col>
+                        <Col xs="12" sm="6" lg="3">
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer/>
+                        </Col>
+                    </Row>
                 </div>
             )
         }
