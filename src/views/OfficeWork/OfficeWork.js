@@ -41,16 +41,16 @@ class OfficeWork extends Component {
 
     constructor () {
         super();
-        this._state = { searchTerm: '' };
+        this.state = { searchTerm: '' };
     }
-    get _state () {
+    get state () {
         return testWeakMap.get(this);
     }
-    set _state (value) {
+    set state (value) {
         testWeakMap.set(this, value);
     }
     searchUpdated (term) {
-       this._state({ searchTerm: term });
+        this.setState({ searchTerm: term });
     }
 
     render() {
@@ -58,8 +58,8 @@ class OfficeWork extends Component {
         if(!this.props.office_work){
             return <div>Loading Office Work...</div>
         }
-        console.log(this.props.office_work.filter(createFilter(this._state.searchTerm, KEYS_TO_FILTERS)));
-        const filteredEmails = this.props.office_work.filter(createFilter(this._state.searchTerm, KEYS_TO_FILTERS));
+        console.log(this.props.office_work.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS)));
+        const filteredEmails = this.props.office_work.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
         return (
             <div className="animated fadeIn">
                 <Card>
@@ -67,7 +67,7 @@ class OfficeWork extends Component {
                         <Form>
                             <FormGroup>
                                 <InputGroup>
-                                    <SearchInput className='search-input' onChange={this.searchUpdated} />
+                                    <SearchInput className='search-input' onChange={this.searchUpdated.bind(this)} />
                                 </InputGroup>
                             </FormGroup>
                         </Form>
