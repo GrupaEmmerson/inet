@@ -547,7 +547,23 @@ class MainPage extends Component{
                         </Col>
                     </Row>
 
+                    <Col xs="12" style={stylemain}>
+                        <b>Nowości</b>
+                    </Col>
+
                     <Row>
+                        <Col xs="12" sm="6">
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/charts"/>
+                        </Col>
+                        <Col xs="12" sm="6">
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer/>
+                        </Col>
+                        <Col xs="12" sm="6" lg="3">
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-moon-o" color="warning" footer/>
+                        </Col>
+                        <Col xs="12" sm="6" lg="3">
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer/>
+                        </Col>
                         <Col xs="12" sm="6" lg="3">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/charts"/>
                         </Col>
@@ -559,6 +575,12 @@ class MainPage extends Component{
                         </Col>
                         <Col xs="12" sm="6" lg="3">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer/>
+                        </Col>
+                        <Col xs="12" sm="6" lg="3">
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/charts"/>
+                        </Col>
+                        <Col xs="12" sm="6" lg="3">
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer/>
                         </Col>
                     </Row>
                 </div>
