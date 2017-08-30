@@ -11,16 +11,6 @@ export default {
       icon: 'icon-speedometer'
     },
     {
-      name: 'Galactica',
-      url: '/galactica',
-      icon: 'fa fa-google'
-    },
-    {
-      name: 'Poczta',
-      url: '#',
-      icon: 'fa fa-envelope'
-    },
-    {
       name: 'Kalendarz Szkoleń',
       url: '#',
       icon: 'fa fa-calendar'

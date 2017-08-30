@@ -61,13 +61,10 @@ class Header extends Component {
         <NavbarToggler className="d-md-down-none" style={{color: '#fff'}} onClick={this.sidebarToggle}>&#9776;</NavbarToggler>
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
-            <NavLink style={{color: '#fff'}} href="#">Dashboard</NavLink>
+            <NavLink style={{color: '#fff'}} href="https://program.emmerson.pl/index.aspx" target="_blank"><img style={{width:  25 + '%'}} src="img/icon_gal.png"/> Galactica</NavLink>
           </NavItem>
           <NavItem className="px-3">
-            <NavLink style={{color: '#fff'}} href="#">Users</NavLink>
-          </NavItem>
-          <NavItem className="px-3">
-            <NavLink style={{color: '#fff'}} href="#">Settings</NavLink>
+            <NavLink style={{color: '#fff'}} href="http://poczta.emmerson.pl/"target="_blank"><img style={{width:  35 + '%'}} src="img/poczta.png"/> Poczta</NavLink>
           </NavItem>
         </Nav>
         <Nav className="ml-auto" navbar >
