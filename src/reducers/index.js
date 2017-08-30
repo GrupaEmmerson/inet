@@ -5,7 +5,7 @@ import usersReducer from './users_reducer';
 import myDetailReducer from './my_detail_reducer';
 import userReducer from './user_reducer';
 import officeWorkReducer from './office_work_reducer';
-import newsLatestReducer from './news_Latest_reducer';
+import newsLatestReducer from './news_latest_reducer';
 
 const rootReducer = combineReducers({
   form,
