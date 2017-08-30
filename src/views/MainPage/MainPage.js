@@ -13,6 +13,13 @@ const zawart = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed di
 
 
 const stylemain = {textAlign: 'center'};
+const stylePercent = {
+    position: 'absolute',
+    left: '0',
+    top: '40%',
+    width: '100%',
+
+};
 const chartsOptions ={
     legend: false,
     tooltips: {
@@ -135,7 +142,9 @@ class MainPage extends Component{
         if(!this.props.users){
             return (
                 <div >
-                    <b style={stylemain}>Top Emmerson</b>
+                    <Col xs="12" style={stylemain} className="h1">
+                        <b>Top Emmerson</b>
+                    </Col>
                     <Col xs="12" md="12" className="mb-4" style={stylemain}>
                         <Nav tabs>
                             <NavItem>
@@ -167,7 +176,7 @@ class MainPage extends Component{
                             <TabPane tabId="1">
                                 <Row>
                                     <Col xs="12" md="6">
-                                        <b>Miesiąc</b><br/>
+                                        <b>Miesiąc</b><br/><br/>
                                         Umowy zbycia i wynajmu
                                         <Col xs="12" md="12" className="mb-4">
                                             <Nav tabs>
@@ -250,7 +259,7 @@ class MainPage extends Component{
                                         </Col>
                                     </Col>
                                     <Col xs="12" md="6">
-                                        <b>Rok</b><br/>
+                                        <b>Rok</b><br/><br/>
                                         Umowy zbycia i wynajmu
                                         <Col xs="12" md="12" className="mb-4">
                                             <Nav tabs>
@@ -337,7 +346,7 @@ class MainPage extends Component{
                             <TabPane tabId="2">
                                 <Row>
                                     <Col xs="12" md="6">
-                                        <b>Miesiąc</b><br/>
+                                        <b>Miesiąc</b><br/><br/>
                                         <Col xs="12" md="12" className="mb-4">
                                             <Nav tabs>
                                                 <NavItem>
@@ -379,7 +388,7 @@ class MainPage extends Component{
                                         </Col>
                                     </Col>
                                     <Col xs="12" md="6">
-                                        <b>Rok</b><br/>
+                                        <b>Rok</b><br/><br/>
                                         <Col xs="12" md="12" className="mb-4">
                                             <Nav tabs>
                                                 <NavItem>
@@ -425,7 +434,7 @@ class MainPage extends Component{
                             <TabPane tabId="3">
                                 <Row>
                                     <Col xs="12" md="6">
-                                        <b>Miesiąc</b><br/>
+                                        <b>Miesiąc</b><br/><br/>
                                         <Col xs="12" md="12" className="mb-4">
                                             <Nav tabs>
                                                 <NavItem>
@@ -467,7 +476,7 @@ class MainPage extends Component{
                                         </Col>
                                     </Col>
                                     <Col xs="12" md="6">
-                                        <b>Rok</b><br/>
+                                        <b>Rok</b><br/><br/>
                                         <Col xs="12" md="12" className="mb-4">
                                             <Nav tabs>
                                                 <NavItem>
@@ -520,9 +529,12 @@ class MainPage extends Component{
                                 <CardBlock className="card-body">
                                     <Row>
                                         <Col xs="12" sm="6">
+                                            <Col style={stylePercent} className="h4">{data1.datasets[0].data[0]}%</Col>
                                             <Doughnut options={chartsOptions} data={data1}/>
+
                                         </Col>
                                         <Col xs="12" sm="6">
+                                            <Col style={stylePercent} className="h4">{data2.datasets[0].data[0]}%</Col>
                                             <Doughnut options={chartsOptions} data={data2}/>
                                         </Col>
                                     </Row>
@@ -535,9 +547,11 @@ class MainPage extends Component{
                                 <CardBlock className="card-body">
                                     <Row>
                                         <Col xs="12" sm="6">
+                                            <Col style={stylePercent} className="h4">{zrob2}%</Col>
                                             <Doughnut options={chartsOptions}  data={data3}/>
                                         </Col>
                                         <Col xs="12" sm="6">
+                                            <Col style={stylePercent} className="h4">{zrob}%</Col>
                                             <Doughnut options={chartsOptions} data={data4}/>
                                         </Col>
                                     </Row>
@@ -547,40 +561,39 @@ class MainPage extends Component{
                         </Col>
                     </Row>
 
-                    <Col xs="12" style={stylemain}>
+                    <Col xs="12" className="h2" style={stylemain}>
                         <b>Nowości</b>
                     </Col>
-
                     <Row>
                         <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/charts"/>
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
                         </Col>
                         <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer/>
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer link="#/mainpage"/>
                         </Col>
                         <Col xs="12" sm="6" lg="3">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-moon-o" color="warning" footer/>
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-moon-o" color="warning" footer link="#/mainpage"/>
                         </Col>
                         <Col xs="12" sm="6" lg="3">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer/>
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer link="#/mainpage"/>
                         </Col>
                         <Col xs="12" sm="6" lg="3">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/charts"/>
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
                         </Col>
                         <Col xs="12" sm="6" lg="3">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer/>
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer link="#/mainpage"/>
                         </Col>
                         <Col xs="12" sm="6" lg="3">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-moon-o" color="warning" footer/>
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-moon-o" color="warning" footer link="#/mainpage"/>
                         </Col>
                         <Col xs="12" sm="6" lg="3">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer/>
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer link="#/mainpage"/>
                         </Col>
                         <Col xs="12" sm="6" lg="3">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/charts"/>
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
                         </Col>
                         <Col xs="12" sm="6" lg="3">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer/>
+                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer link="#/mainpage"/>
                         </Col>
                     </Row>
                 </div>
