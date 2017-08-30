@@ -12,6 +12,9 @@ import {
   DropdownToggle
 } from 'reactstrap';
 import Logo from '../../../public/img/logo.svg';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+
 class Header extends Component {
 
   constructor(props) {
@@ -19,10 +22,12 @@ class Header extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
     };
   }
-
+    componentWillMount() {
+        this.props.getLoggedUserDetail();
+    }
   toggle() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
@@ -50,6 +55,7 @@ class Header extends Component {
   }
 
   render() {
+
     return (
       <header className="app-header navbar navbar-dark" style={{backgroundColor: '#D82624', color: '#fff'}}>
         <NavbarToggler className="d-lg-none" onClick={this.mobileSidebarToggle}>&#9776;</NavbarToggler>
@@ -64,15 +70,15 @@ class Header extends Component {
             <NavLink style={{color: '#fff'}} href="https://program.emmerson.pl/index.aspx" target="_blank"><img style={{width:  25 + '%'}} src="img/icon_gal.png"/> Galactica</NavLink>
           </NavItem>
           <NavItem className="px-3">
-            <NavLink style={{color: '#fff'}} href="http://poczta.emmerson.pl/"target="_blank"><img style={{width:  35 + '%'}} src="img/poczta.png"/> Poczta</NavLink>
+            <NavLink style={{color: '#fff'}} href="http://poczta.emmerson.pl/" target="_blank"><img style={{width:  35 + '%'}} src="img/poczta.png"/> Poczta</NavLink>
           </NavItem>
         </Nav>
         <Nav className="ml-auto" navbar >
           <NavItem>
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle className="nav-link dropdown-toggle" style={{color: '#fff'}}>
-                <img src={'img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com"/>
-                <span className="d-md-down-none">admin</span>
+                <span className="d-md-down-none">{!this.props.my_detail ? '' : this.props.my_detail.name}</span>
+                <img src={!this.props.my_detail ? 'https://inet.emmerson.pl/images/icons/1.png' : 'https://inet.emmerson.pl/'+this.props.my_detail.photoUrl } className="img-avatar" alt="admin@bootstrapmaster.com"/>
               </DropdownToggle>
               <DropdownMenu right className={this.state.dropdownOpen ? 'show' : ''}>
                 <DropdownItem header tag="div" className="text-center"><strong>Account</strong></DropdownItem>
@@ -97,5 +103,14 @@ class Header extends Component {
     )
   }
 }
+function mapStateToProps(state){
+    console.log(state.my_detail);
+    return { my_detail: state.my_detail.my_detail }
+}
 
-export default Header;
+Header.contextTypes = {
+    router: function () {
+        return React.PropTypes.object.isRequired;
+    }
+};
+export default connect(mapStateToProps, actions)(Header);
