@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import {Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Badge, Card, CardHeader, CardFooter, CardBlock, Label, Input} from "reactstrap";
@@ -10,13 +11,16 @@ const zrob = 75;
 const zrob2 = 95;
 const tytol = 'Nowe wiadomości';
 const zawart = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.';
+const ROOT_URL = 'http://api-inet-backend.local';
 
+// const news = fetch ('http://localhost/app_dev.php/news/latest');
+// const news = this.proops.getNewsLatest();
 
 const stylemain = {textAlign: 'center'};
 const stylePercent = {
     position: 'absolute',
     left: '0',
-    top: '40%',
+    top: '42%',
     width: '100%',
 
 };
@@ -33,7 +37,7 @@ const chartsOptions ={
             }
         }
     }
-}
+};
 const data1 = {
     labels: [
         'Zrobione',
@@ -107,9 +111,6 @@ const data4 = {
 };
 
 
-
-
-
 class MainPage extends Component{
 
     constructor(props) {
@@ -120,6 +121,9 @@ class MainPage extends Component{
             activeTab: '1',
             activeTab1: '1'
         };
+
+        // this.proops.getNewsLatest();
+
     }
 
     toggle(tab) {
@@ -521,19 +525,20 @@ class MainPage extends Component{
                             </TabPane>
                         </TabContent>
                     </Col>
-
                     <Row style={stylemain}>
                         <Col xs="12" sm="6" >
                             <Card className="card-accent-success">
-                                <CardHeader> Ten Miesiąc </CardHeader>
+                                <CardHeader> Praca Operacyjna </CardHeader>
                                 <CardBlock className="card-body">
                                     <Row>
                                         <Col xs="12" sm="6">
+                                            <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
                                             <Col style={stylePercent} className="h4">{data1.datasets[0].data[0]}%</Col>
                                             <Doughnut options={chartsOptions} data={data1}/>
 
                                         </Col>
                                         <Col xs="12" sm="6">
+                                            <Col xs="12" style={stylemain}>Ten miesiąc</Col>
                                             <Col style={stylePercent} className="h4">{data2.datasets[0].data[0]}%</Col>
                                             <Doughnut options={chartsOptions} data={data2}/>
                                         </Col>
@@ -543,14 +548,16 @@ class MainPage extends Component{
                         </Col>
                         <Col xs="12" sm="6" >
                             <Card className="card-accent-primary">
-                                <CardHeader> Poprzedni miesiąc </CardHeader>
+                                <CardHeader> Obroty </CardHeader>
                                 <CardBlock className="card-body">
                                     <Row>
                                         <Col xs="12" sm="6">
+                                            <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
                                             <Col style={stylePercent} className="h4">{zrob2}%</Col>
                                             <Doughnut options={chartsOptions}  data={data3}/>
                                         </Col>
                                         <Col xs="12" sm="6">
+                                            <Col xs="12" style={stylemain}>Ten miesiąc</Col>
                                             <Col style={stylePercent} className="h4">{zrob}%</Col>
                                             <Doughnut options={chartsOptions} data={data4}/>
                                         </Col>
@@ -560,7 +567,6 @@ class MainPage extends Component{
                             </Card>
                         </Col>
                     </Row>
-
                     <Col xs="12" className="h2" style={stylemain}>
                         <b>Nowości</b>
                     </Col>
@@ -571,28 +577,28 @@ class MainPage extends Component{
                         <Col xs="12" sm="6">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer link="#/mainpage"/>
                         </Col>
-                        <Col xs="12" sm="6" lg="3">
+                        <Col xs="12" sm="6">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-moon-o" color="warning" footer link="#/mainpage"/>
                         </Col>
-                        <Col xs="12" sm="6" lg="3">
+                        <Col xs="12" sm="6">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer link="#/mainpage"/>
                         </Col>
-                        <Col xs="12" sm="6" lg="3">
+                        <Col xs="12" sm="6">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
                         </Col>
-                        <Col xs="12" sm="6" lg="3">
+                        <Col xs="12" sm="6">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer link="#/mainpage"/>
                         </Col>
-                        <Col xs="12" sm="6" lg="3">
+                        <Col xs="12" sm="6">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-moon-o" color="warning" footer link="#/mainpage"/>
                         </Col>
-                        <Col xs="12" sm="6" lg="3">
+                        <Col xs="12" sm="6">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer link="#/mainpage"/>
                         </Col>
-                        <Col xs="12" sm="6" lg="3">
+                        <Col xs="12" sm="6">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
                         </Col>
-                        <Col xs="12" sm="6" lg="3">
+                        <Col xs="12" sm="6">
                             <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer link="#/mainpage"/>
                         </Col>
                     </Row>
