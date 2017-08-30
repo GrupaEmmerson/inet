@@ -7,6 +7,7 @@ var app = express();
 // ************************************
 // This is the real meat of the example
 // ************************************
+
 (function() {
 
     // Step 1: Create & configure a webpack compiler
@@ -21,7 +22,7 @@ var app = express();
 
     // Step 3: Attach the hot middleware to the compiler & the server
     app.use(require("webpack-hot-middleware")(compiler, {
-        log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+        log: console.log, path: '/__webpack_hmr', heartbeat: 100000
     }));
 })();
 

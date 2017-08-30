@@ -78,7 +78,7 @@ class Header extends Component {
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle className="nav-link dropdown-toggle" style={{color: '#fff'}}>
                 <span className="d-md-down-none">{!this.props.my_detail ? '' : this.props.my_detail.name}</span>
-                <img src={!this.props.my_detail ? 'https://inet.emmerson.pl/images/icons/1.png' : 'https://inet.emmerson.pl/'+this.props.my_detail.photoUrl } className="img-avatar" alt="admin@bootstrapmaster.com"/>
+                <img src={!this.props.my_detail ? 'https://inet.emmerson.pl/images/icons/1.png' : this.props.my_detail.photoUrl ? 'https://inet.emmerson.pl/'+this.props.my_detail.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} className="img-avatar" alt=""/>
               </DropdownToggle>
               <DropdownMenu right className={this.state.dropdownOpen ? 'show' : ''}>
                 <DropdownItem header tag="div" className="text-center"><strong>Account</strong></DropdownItem>
