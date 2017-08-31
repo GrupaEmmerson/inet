@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL, GET_TOP_EMMERSON_OFFER } from './types';
+import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL, GET_NEWS_LATEST  } from './types';
 
 const ROOT_URL = 'http://api.inet.dev';
 
@@ -164,3 +164,22 @@ export function getTopEmmersonOffer() {
             });
     }
 }
+
+export function getNewsLatest() {
+    return function (dispatch) {
+
+        axios.get(`${ROOT_URL}/app_dev.php/news/latest`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: 'application/json'
+            }
+        })
+            .then(response => {
+                dispatch({type: GET_NEWS_LATEST, payload: response.data});
+            })
+            .catch(error => {
+                browserHistory.push('/');
+            });
+    }
+}
+

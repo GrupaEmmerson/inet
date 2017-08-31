@@ -8,3 +8,5 @@ export const GET_USER = 'get_user';
 export const GET_MY_DETAIL = 'get_my_detail';
 export const GET_OFFICE_WORK = 'get_office_work';
 export const GET_TOP_EMMERSON_OFFER = 'get_top_emmerson_offer';
+
+export const GET_NEWS_LATEST = 'get_news_latest';
