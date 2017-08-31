@@ -112,6 +112,10 @@ const data4 = {
 
 class MainPage extends Component{
 
+    componentWillMount(){
+        this.props.getTopEmmersonOffer();
+    }
+
     constructor(props) {
         super(props);
 
@@ -138,8 +142,30 @@ class MainPage extends Component{
         }
     }
 
+    getManager(manager){
+        return(
+            <h2>
+                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} /><br/>
+                {manager.name}
+            </h2>
+        )
+    }
+    getUser(user){
+        return(
+            <span>
+                <h1>
+                    {user.name}
+                </h1>
+                    <br/>
+                <h2>
+                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} /><br/>
+                    {user.team_name}
+                </h2>
+            </span>
+        );
+    }
     render(){
-        if(!this.props.users){
+            console.log(this.props.top_emmerson_offer);
             return (
                 <div >
                     <Col xs="12" style={stylemain} className="h1">
@@ -207,13 +233,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1}>
                                                 <TabPane tabId="1">
-                                                    1.
+                                                    { this.props.top_emmerson_offer ? <div><h1> {this.props.top_emmerson_offer.top_offer.team_name} </h1><br/>{this.props.top_emmerson_offer.top_offer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    2.
+                                                    { this.props.top_emmerson_offer ? <div><h1> {this.props.top_emmerson_offer.top_offer_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    3.
+                                                    { this.props.top_emmerson_offer ? <div>{this.props.top_emmerson_offer.top_offer_advicer.map(this.getUser)}</div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -598,19 +624,11 @@ class MainPage extends Component{
                     </Row>
                 </div>
             )
-        }
-
-        return(
-            <div>
-                <p>This is the component for the user profile.</p>
-                { this.props.users.map(this.showUsers) }
-            </div>
-        );
     }
 }
 
 function mapStateToProps(state){
-    return { users: state.users.users }
+    return { top_emmerson_offer: state.top_emmerson_offer.top_emmerson_offer }
 }
 MainPage.contextTypes = {
     router: function () {

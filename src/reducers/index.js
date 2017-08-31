@@ -5,6 +5,7 @@ import usersReducer from './users_reducer';
 import myDetailReducer from './my_detail_reducer';
 import userReducer from './user_reducer';
 import officeWorkReducer from './office_work_reducer';
+import topEmmersonOffer from './top_emmerson_offer_reducer';
 
 const rootReducer = combineReducers({
   form,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   users: usersReducer,
   user: userReducer,
   my_detail: myDetailReducer,
-  office_work: officeWorkReducer
+  office_work: officeWorkReducer,
+  top_emmerson_offer: topEmmersonOffer
 });
 
 export default rootReducer;

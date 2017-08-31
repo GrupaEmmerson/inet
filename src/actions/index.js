@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL } from './types';
+import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL, GET_TOP_EMMERSON_OFFER } from './types';
 
 const ROOT_URL = 'http://api.inet.dev';
 
@@ -144,5 +144,23 @@ export function getOfficeWork() {
         .catch(error => {
             browserHistory.push('/');
         });
+    }
+}
+
+export function getTopEmmersonOffer() {
+    return function (dispatch) {
+
+        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/office`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: 'application/json'
+            }
+        })
+            .then(response => {
+                dispatch({type: GET_TOP_EMMERSON_OFFER, payload: response.data});
+            })
+            .catch(error => {
+                browserHistory.push('/');
+            });
     }
 }
