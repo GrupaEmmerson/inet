@@ -8,9 +8,6 @@ import Widget02 from './Widget';
 
 const zrob = 75;
 const zrob2 = 95;
-const tytol = 'Nowe wiadomości';
-const zawart = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.';
-const ROOT_URL = 'http://api-inet-backend.local';
 
 const stylemain = {textAlign: 'center'};
 const stylePercent = {
@@ -110,7 +107,10 @@ const data4 = {
 class MainPage extends Component{
 
     componentWillMount(){
-        this.props.getTopEmmersonOffer();
+        this.props.getTopEmmersonMonthOffer();
+        this.props.getTopEmmersonYearOffer();
+        this.props.getTopEmmersonMonthOfferPremium();
+        this.props.getTopEmmersonYearOfferPremium();
         this.props.getNewsLatest();
     }
 
@@ -148,7 +148,29 @@ class MainPage extends Component{
             </h2>
         )
     }
+    getManagerPremium(manager){
+        return(
+            <h2>
+                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} /><br/>
+                {manager.name}
+            </h2>
+        )
+    }
     getUser(user){
+        return(
+            <span>
+                <h1>
+                    {user.name}
+                </h1>
+                    <br/>
+                <h2>
+                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} /><br/>
+                    {user.team_name}
+                </h2>
+            </span>
+        );
+    }
+    getUserPremium(user){
         return(
             <span>
                 <h1>
@@ -172,7 +194,10 @@ class MainPage extends Component{
     }
 
     render(){
-            console.log(this.props.top_emmerson_offer);
+            console.log(this.props.top_emmerson_month_offer);
+            console.log(this.props.top_emmerson_year_offer);
+            console.log(this.props.top_emmerson_month_offer_premium);
+            console.log(this.props.top_emmerson_year_offer_premium);
             return (
                 <div >
                     <Col xs="12" style={stylemain} className="h1">
@@ -240,13 +265,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_offer ? <div><h1> {this.props.top_emmerson_offer.top_offer.team_name} </h1><br/>{this.props.top_emmerson_offer.top_offer.manager.map(this.getManager)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer.team_name} </h1><br/>{this.props.top_emmerson_month_offer.top_offer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_offer ? <div><h1> {this.props.top_emmerson_offer.top_offer_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_month_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_offer ? <div>{this.props.top_emmerson_offer.top_offer_advicer.map(this.getUser)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer ? <div>{this.props.top_emmerson_month_offer.top_offer_advicer.map(this.getUser)}</div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -280,13 +305,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1}>
                                                 <TabPane tabId="1">
-                                                    1.
+                                                    { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium.team_name} </h1><br/>{this.props.top_emmerson_month_offer_premium.top_offer_premium.manager.map(this.getManagerPremium)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    2.
+                                                    { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer.manager.map(this.getManagerPremium)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    3.
+                                                    { this.props.top_emmerson_month_offer_premium ? <div>{this.props.top_emmerson_month_offer_premium.top_offer_premium_advicer.map(this.getUserPremium)}</div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -323,13 +348,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1}>
                                                 <TabPane tabId="1">
-                                                    1.
+                                                    { this.props.top_emmerson_year_offer ? <div><h1> {this.props.top_emmerson_year_offer.top_offer.team_name} </h1><br/>{this.props.top_emmerson_year_offer.top_offer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    2.
+                                                    { this.props.top_emmerson_year_offer ? <div><h1> {this.props.top_emmerson_year_offer.top_offer_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_year_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    3.
+                                                    { this.props.top_emmerson_year_offer ? <div>{this.props.top_emmerson_year_offer.top_offer_advicer.map(this.getUser)}</div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -363,13 +388,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1}>
                                                 <TabPane tabId="1">
-                                                    1.
+                                                    { this.props.top_emmerson_year_offer_premium ? <div><h1> {this.props.top_emmerson_year_offer_premium.top_offer_premium.team_name} </h1><br/>{this.props.top_emmerson_year_offer_premium.top_offer_premium.manager.map(this.getManagerPremium)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    2.
+                                                    { this.props.top_emmerson_year_offer_premium ? <div><h1> {this.props.top_emmerson_year_offer_premium.top_offer_premium_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_year_offer_premium.top_offer_premium_per_advicer.manager.map(this.getManagerPremium)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    3.
+                                                    { this.props.top_emmerson_year_offer_premium ? <div>{this.props.top_emmerson_year_offer_premium.top_offer_premium_advicer.map(this.getUserPremium)}</div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -619,7 +644,13 @@ class MainPage extends Component{
 }
 
 function mapStateToProps(state){
-    return { top_emmerson_offer: state.top_emmerson_offer.top_emmerson_offer, news_latest: state.news_latest.news_latest }
+    return {
+        top_emmerson_month_offer: state.top_emmerson_month_offer.top_emmerson_month_offer,
+        top_emmerson_year_offer: state.top_emmerson_year_offer.top_emmerson_year_offer,
+        top_emmerson_month_offer_premium: state.top_emmerson_month_offer_premium.top_emmerson_month_offer_premium,
+        top_emmerson_year_offer_premium: state.top_emmerson_year_offer_premium.top_emmerson_year_offer_premium,
+        news_latest: state.news_latest.news_latest
+    }
 }
 MainPage.contextTypes = {
     router: function () {

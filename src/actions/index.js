@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL, GET_NEWS_LATEST, GET_TOP_EMMERSON_OFFER  } from './types';
+import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL, GET_NEWS_LATEST, GET_TOP_EMMERSON_MONTH_OFFER, GET_TOP_EMMERSON_YEAR_OFFER, GET_TOP_EMMERSON_MONTH_OFFER_PREMIUM, GET_TOP_EMMERSON_YEAR_OFFER_PREMIUM } from './types';
 
-const ROOT_URL = 'http://localhost';
+const ROOT_URL = 'http://api.inet.dev';
 
 axios.interceptors.response.use(undefined, function (error) {
 
@@ -147,17 +147,71 @@ export function getOfficeWork() {
     }
 }
 
-export function getTopEmmersonOffer() {
+export function getTopEmmersonMonthOffer() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/office`, {
+        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/office/offer/month`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
             }
         })
             .then(response => {
-                dispatch({type: GET_TOP_EMMERSON_OFFER, payload: response.data});
+                dispatch({type: GET_TOP_EMMERSON_MONTH_OFFER, payload: response.data});
+            })
+            .catch(error => {
+                browserHistory.push('/');
+            });
+    }
+}
+
+export function getTopEmmersonYearOffer() {
+    return function (dispatch) {
+
+        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/office/offer/year`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: 'application/json'
+            }
+        })
+            .then(response => {
+                dispatch({type: GET_TOP_EMMERSON_YEAR_OFFER, payload: response.data});
+            })
+            .catch(error => {
+                browserHistory.push('/');
+            });
+    }
+}
+
+export function getTopEmmersonMonthOfferPremium() {
+    return function (dispatch) {
+
+        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/office/offer_premium/month`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: 'application/json'
+            }
+        })
+            .then(response => {
+                dispatch({type: GET_TOP_EMMERSON_MONTH_OFFER_PREMIUM, payload: response.data});
+            })
+            .catch(error => {
+                browserHistory.push('/');
+            });
+    }
+}
+
+export function getTopEmmersonYearOfferPremium() {
+    return function (dispatch) {
+
+        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/office/offer_premium/year`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: 'application/json'
+            }
+        })
+            .then(response => {
+                dispatch({type: GET_TOP_EMMERSON_YEAR_OFFER_PREMIUM, payload: response.data});
             })
             .catch(error => {
                 browserHistory.push('/');
