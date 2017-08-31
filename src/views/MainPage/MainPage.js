@@ -112,6 +112,8 @@ class MainPage extends Component{
         this.props.getTopEmmersonMonthOfferPremium();
         this.props.getTopEmmersonYearOfferPremium();
         this.props.getNewsLatest();
+        this.props.getTopEmmersonMonthTransactions();
+        this.props.getTopEmmersonYearTransactions();
     }
 
     constructor(props) {
@@ -156,6 +158,14 @@ class MainPage extends Component{
             </h2>
         )
     }
+    getManagerTransaction(manager){
+        return(
+            <h2>
+                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} /><br/>
+                {manager.name}
+            </h2>
+        )
+    }
     getUser(user){
         return(
             <span>
@@ -184,6 +194,20 @@ class MainPage extends Component{
             </span>
         );
     }
+    getUserTransaction(user){
+        return(
+            <span>
+                <h1>
+                    {user.name}
+                </h1>
+                    <br/>
+                <h2>
+                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} /><br/>
+                    {user.team_name}
+                </h2>
+            </span>
+        );
+    }
     getNews(news){
         const regex = /(<([^>]+)>)/ig;
         return(
@@ -198,6 +222,8 @@ class MainPage extends Component{
             console.log(this.props.top_emmerson_year_offer);
             console.log(this.props.top_emmerson_month_offer_premium);
             console.log(this.props.top_emmerson_year_offer_premium);
+            console.log(this.props.top_emmerson_month_transaction);
+            console.log(this.props.top_emmerson_year_transaction);
             return (
                 <div >
                     <Col xs="12" style={stylemain} className="h1">
@@ -434,13 +460,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1}>
                                                 <TabPane tabId="1">
-                                                    1.
+                                                    { this.props.top_emmerson_month_transaction ? <div><h1> {this.props.top_emmerson_month_transaction.top_transaction_month.team_name} </h1><br/>{this.props.top_emmerson_month_transaction.top_transaction_month.manager.map(this.getManagerTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    2.
+                                                    { this.props.top_emmerson_month_transaction ? <div><h1> {this.props.top_emmerson_month_transaction.top_transaction_month_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_month_transaction.top_transaction_month_per_advicer.manager.map(this.getManagerTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    3.
+                                                    { this.props.top_emmerson_month_transaction ? <div>{this.props.top_emmerson_month_transaction.top_transaction_month_advicer.map(this.getUserTransaction)}</div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -476,13 +502,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1}>
                                                 <TabPane tabId="1">
-                                                    1.
+                                                    { this.props.top_emmerson_year_transaction ? <div><h1> {this.props.top_emmerson_year_transaction.top_transaction_year.team_name} </h1><br/>{this.props.top_emmerson_year_transaction.top_transaction_year.manager.map(this.getManagerTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    2.
+                                                    { this.props.top_emmerson_year_transaction ? <div><h1> {this.props.top_emmerson_year_transaction.top_transaction_year_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_year_transaction.top_transaction_year_per_advicer.manager.map(this.getManagerTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    3.
+                                                    { this.props.top_emmerson_year_transaction ? <div>{this.props.top_emmerson_year_transaction.top_transaction_year_advicer.map(this.getUserTransaction)}</div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -649,6 +675,8 @@ function mapStateToProps(state){
         top_emmerson_year_offer: state.top_emmerson_year_offer.top_emmerson_year_offer,
         top_emmerson_month_offer_premium: state.top_emmerson_month_offer_premium.top_emmerson_month_offer_premium,
         top_emmerson_year_offer_premium: state.top_emmerson_year_offer_premium.top_emmerson_year_offer_premium,
+        top_emmerson_month_transaction: state.top_emmerson_month_transaction.top_emmerson_month_transaction,
+        top_emmerson_year_transaction: state.top_emmerson_year_transaction.top_emmerson_year_transaction,
         news_latest: state.news_latest.news_latest
     }
 }

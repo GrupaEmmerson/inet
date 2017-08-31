@@ -9,6 +9,8 @@ import topEmmersonMonthOffer from './top_emmerson_month_offer_reducer';
 import topEmmersonYearOffer from './top_emmerson_year_offer_reducer';
 import topEmmersonMonthOfferPremium from './top_emmerson_month_offer_premium_reducer';
 import topEmmersonYearOfferPremium from './top_emmerson_year_offer_premium_reducer';
+import topEmmersonMonthTransaction from './top_emmerson_month_transaction_reducer';
+import topEmmersonYearTransaction from './top_emmerson_year_transaction_reducer';
 import newsLatestReducer from './news_latest_reducer';
 
 const rootReducer = combineReducers({
@@ -22,6 +24,8 @@ const rootReducer = combineReducers({
   top_emmerson_year_offer: topEmmersonYearOffer,
   top_emmerson_month_offer_premium: topEmmersonMonthOfferPremium,
   top_emmerson_year_offer_premium: topEmmersonYearOfferPremium,
+  top_emmerson_month_transaction: topEmmersonMonthTransaction,
+  top_emmerson_year_transaction: topEmmersonYearTransaction,
   news_latest: newsLatestReducer
 });
 
