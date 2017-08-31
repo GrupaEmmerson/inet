@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import {Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Badge, Card, CardHeader, CardFooter, CardBlock, Label, Input} from "reactstrap";
@@ -12,9 +11,6 @@ const zrob2 = 95;
 const tytol = 'Nowe wiadomości';
 const zawart = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.';
 const ROOT_URL = 'http://api-inet-backend.local';
-
-// const news = fetch ('http://localhost/app_dev.php/news/latest');
-// const news = this.proops.getNewsLatest();
 
 const stylemain = {textAlign: 'center'};
 const stylePercent = {
@@ -115,6 +111,7 @@ class MainPage extends Component{
 
     componentWillMount(){
         this.props.getTopEmmersonOffer();
+        this.props.getNewsLatest();
     }
 
     constructor(props) {
@@ -125,9 +122,6 @@ class MainPage extends Component{
             activeTab: '1',
             activeTab1: '1'
         };
-
-        // this.proops.getNewsLatest();
-
     }
 
     toggle(tab) {
@@ -168,6 +162,15 @@ class MainPage extends Component{
             </span>
         );
     }
+    getNews(news){
+        const regex = /(<([^>]+)>)/ig;
+        return(
+            <Col xs="12" sm="6">
+                <Widget02 header={news.title} mainText={news.text.replace(regex,"").substring(0, 200) + "..."} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
+            </Col>
+        )
+    }
+
     render(){
             console.log(this.props.top_emmerson_offer);
             return (
@@ -559,14 +562,19 @@ class MainPage extends Component{
                                     <Row>
                                         <Col xs="12" sm="6">
                                             <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
-                                            <Col style={stylePercent} className="h4">{data1.datasets[0].data[0]}%</Col>
-                                            <Doughnut options={chartsOptions} data={data1}/>
-
+                                            <Col xs="12">
+                                                <Col style={stylePercent} className="h4">{data1.datasets[0].data[0]}%</Col>
+                                                <Doughnut options={chartsOptions} data={data1}/>
+                                            </Col>
+                                            <Col xs="12" style={stylemain}>na 1000</Col>
                                         </Col>
                                         <Col xs="12" sm="6">
                                             <Col xs="12" style={stylemain}>Ten miesiąc</Col>
-                                            <Col style={stylePercent} className="h4">{data2.datasets[0].data[0]}%</Col>
-                                            <Doughnut options={chartsOptions} data={data2}/>
+                                            <Col xs="12">
+                                                <Col style={stylePercent} className="h4">{data2.datasets[0].data[0]}%</Col>
+                                                <Doughnut options={chartsOptions} data={data2}/>
+                                            </Col>
+                                            <Col xs="12" style={stylemain}>na 1000</Col>
                                         </Col>
                                     </Row>
                                 </CardBlock>
@@ -579,13 +587,19 @@ class MainPage extends Component{
                                     <Row>
                                         <Col xs="12" sm="6">
                                             <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
-                                            <Col style={stylePercent} className="h4">{zrob2}%</Col>
-                                            <Doughnut options={chartsOptions}  data={data3}/>
+                                            <Col xs="12">
+                                                <Col style={stylePercent} className="h4">{zrob2}%</Col>
+                                                <Doughnut options={chartsOptions}  data={data3}/>
+                                            </Col>
+                                            <Col xs="12" style={stylemain}>na 1000</Col>
                                         </Col>
                                         <Col xs="12" sm="6">
                                             <Col xs="12" style={stylemain}>Ten miesiąc</Col>
-                                            <Col style={stylePercent} className="h4">{zrob}%</Col>
-                                            <Doughnut options={chartsOptions} data={data4}/>
+                                            <Col xs="12">
+                                                <Col style={stylePercent} className="h4">{zrob}%</Col>
+                                                <Doughnut options={chartsOptions} data={data4}/>
+                                            </Col>
+                                            <Col xs="12" style={stylemain}>na 1000</Col>
                                         </Col>
                                     </Row>
                                 </CardBlock>
@@ -597,36 +611,7 @@ class MainPage extends Component{
                         <b>Nowości</b>
                     </Col>
                     <Row>
-                        <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
-                        </Col>
-                        <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer link="#/mainpage"/>
-                        </Col>
-                        <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-moon-o" color="warning" footer link="#/mainpage"/>
-                        </Col>
-                        <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer link="#/mainpage"/>
-                        </Col>
-                        <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
-                        </Col>
-                        <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer link="#/mainpage"/>
-                        </Col>
-                        <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-moon-o" color="warning" footer link="#/mainpage"/>
-                        </Col>
-                        <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-bell" color="danger" footer link="#/mainpage"/>
-                        </Col>
-                        <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
-                        </Col>
-                        <Col xs="12" sm="6">
-                            <Widget02 header={tytol} mainText={zawart} icon="fa fa-laptop" color="info" footer link="#/mainpage"/>
-                        </Col>
+                        { this.props.news_latest ? this.props.news_latest.map(this.getNews) : ''}
                     </Row>
                 </div>
             )
@@ -634,7 +619,7 @@ class MainPage extends Component{
 }
 
 function mapStateToProps(state){
-    return { top_emmerson_offer: state.top_emmerson_offer.top_emmerson_offer }
+    return { top_emmerson_offer: state.top_emmerson_offer.top_emmerson_offer, news_latest: state.news_latest.news_latest }
 }
 MainPage.contextTypes = {
     router: function () {

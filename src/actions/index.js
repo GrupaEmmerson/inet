@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL, GET_NEWS_LATEST  } from './types';
+import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL, GET_NEWS_LATEST, GET_TOP_EMMERSON_OFFER  } from './types';
 
-const ROOT_URL = 'http://api.inet.dev';
+const ROOT_URL = 'http://localhost';
 
 axios.interceptors.response.use(undefined, function (error) {
 
