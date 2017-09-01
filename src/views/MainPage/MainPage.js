@@ -211,8 +211,8 @@ class MainPage extends Component{
     getNews(news){
         const regex = /(<([^>]+)>)/ig;
         return(
-            <Col xs="12" sm="6">
-                <Widget02 header={news.title} mainText={news.text.replace(regex,"").substring(0, 200) + "..."} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
+            <Col xs="12" sm="12" md="6">
+                <Widget02 header={news.title} mainText={news.text.replace(regex,"").substring(0, 300) + "..."} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
             </Col>
         )
     }
@@ -654,7 +654,6 @@ class MainPage extends Component{
                                         </Col>
                                     </Row>
                                 </CardBlock>
-
                             </Card>
                         </Col>
                     </Row>

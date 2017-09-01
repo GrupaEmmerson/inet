@@ -40,6 +40,8 @@ class Widget02 extends Component {
         const lead = {style: "h5 mb-0", color: color, classes: ""};
         lead.classes = classNames(lead.style, 'text-' + card.color, padding.lead);
 
+        const styleMainText = {height: '150px'};
+
         const blockIcon = function (icon) {
             const classes = classNames(icon, 'bg-' + card.color, padding.icon, "font-2xl mr-3 float-left");
             return (<i className={ classes }></i>);
@@ -61,7 +63,7 @@ class Widget02 extends Component {
                 <CardBlock className={ card.classes } {...attributes}>
                     { blockIcon(card.icon) }
                     <div className={ lead.classes }>{ header }</div>
-                    <div className="text-muted text-uppercase font-weight-bold font-xs">{ mainText }</div>
+                    <div className="text-muted text-uppercase font-weight-bold font-xs" style={styleMainText}>{ mainText }</div>
                 </CardBlock>
                 { cardFooter() }
             </Card>
