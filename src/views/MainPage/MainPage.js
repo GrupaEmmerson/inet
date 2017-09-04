@@ -114,6 +114,8 @@ class MainPage extends Component{
         this.props.getNewsLatest();
         this.props.getTopEmmersonMonthTransactions();
         this.props.getTopEmmersonYearTransactions();
+        this.props.getTopEmmersonMonthHighestProvision();
+        this.props.getTopEmmersonYearHighestProvision();
     }
 
     constructor(props) {
@@ -218,12 +220,14 @@ class MainPage extends Component{
     }
 
     render(){
-            console.log(this.props.top_emmerson_month_offer);
-            console.log(this.props.top_emmerson_year_offer);
-            console.log(this.props.top_emmerson_month_offer_premium);
-            console.log(this.props.top_emmerson_year_offer_premium);
-            console.log(this.props.top_emmerson_month_transaction);
-            console.log(this.props.top_emmerson_year_transaction);
+            // console.log(this.props.top_emmerson_month_offer);
+            // console.log(this.props.top_emmerson_year_offer);
+            // console.log(this.props.top_emmerson_month_offer_premium);
+            // console.log(this.props.top_emmerson_year_offer_premium);
+            // console.log(this.props.top_emmerson_month_transaction);
+            // console.log(this.props.top_emmerson_year_transaction);
+            console.log(this.props.top_emmerson_month_highest_provision);
+            console.log(this.props.top_emmerson_year_highest_provision);
             return (
                 <div >
                     <Col xs="12" style={stylemain} className="h1">
@@ -548,13 +552,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1}>
                                                 <TabPane tabId="1">
-                                                    1.
+                                                    { this.props.top_emmerson_month_highest_provision ? <div>{this.props.top_emmerson_month_highest_provision.highest_primary_month.map(this.getUserTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    2.
+                                                    { this.props.top_emmerson_month_highest_provision ? <div>{this.props.top_emmerson_month_highest_provision.highest_secondary_month.map(this.getUserTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    3.
+                                                    { this.props.top_emmerson_month_highest_provision ? <div>{this.props.top_emmerson_month_highest_provision.highest_commercial_month.map(this.getUserTransaction)}</div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -590,13 +594,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1}>
                                                 <TabPane tabId="1">
-                                                    1.
+                                                    { this.props.top_emmerson_year_highest_provision ? <div>{this.props.top_emmerson_year_highest_provision.highest_primary_year.map(this.getUserTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    2.
+                                                    { this.props.top_emmerson_year_highest_provision ? <div>{this.props.top_emmerson_year_highest_provision.highest_secondary_year.map(this.getUserTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    3.
+                                                    { this.props.top_emmerson_year_highest_provision ? <div>{this.props.top_emmerson_year_highest_provision.highest_commercial_year.map(this.getUserTransaction)}</div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -676,6 +680,8 @@ function mapStateToProps(state){
         top_emmerson_year_offer_premium: state.top_emmerson_year_offer_premium.top_emmerson_year_offer_premium,
         top_emmerson_month_transaction: state.top_emmerson_month_transaction.top_emmerson_month_transaction,
         top_emmerson_year_transaction: state.top_emmerson_year_transaction.top_emmerson_year_transaction,
+        top_emmerson_month_highest_provision: state.top_emmerson_month_highest_provision.top_emmerson_month_highest_provision,
+        top_emmerson_year_highest_provision: state.top_emmerson_year_highest_provision.top_emmerson_year_highest_provision,
         news_latest: state.news_latest.news_latest
     }
 }

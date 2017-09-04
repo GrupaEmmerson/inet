@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL, GET_NEWS_LATEST, GET_TOP_EMMERSON_MONTH_OFFER, GET_TOP_EMMERSON_YEAR_OFFER, GET_TOP_EMMERSON_MONTH_OFFER_PREMIUM, GET_TOP_EMMERSON_YEAR_OFFER_PREMIUM, GET_TOP_EMMERSON_YEAR_TRANSACTION, GET_TOP_EMMERSON_MONTH_TRANSACTION } from './types';
+import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL, GET_NEWS_LATEST, GET_TOP_EMMERSON_MONTH_OFFER, GET_TOP_EMMERSON_YEAR_OFFER, GET_TOP_EMMERSON_MONTH_OFFER_PREMIUM, GET_TOP_EMMERSON_YEAR_OFFER_PREMIUM, GET_TOP_EMMERSON_YEAR_TRANSACTION, GET_TOP_EMMERSON_MONTH_TRANSACTION, GET_TOP_EMMERSON_MONTH_HIGHEST_PROVISION, GET_TOP_EMMERSON_YEAR_HIGHEST_PROVISION } from './types';
 
 const ROOT_URL = 'http://localhost';
 
@@ -249,6 +249,43 @@ export function getTopEmmersonYearTransactions() {
         })
             .then(response => {
                 dispatch({type: GET_TOP_EMMERSON_YEAR_TRANSACTION, payload: response.data});
+            })
+            .catch(error => {
+                browserHistory.push('/');
+            });
+    }
+}
+
+export function getTopEmmersonMonthHighestProvision() {
+    return function (dispatch) {
+
+        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/transactions/highest_provision/month`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: 'application/json'
+            }
+        })
+            .then(response => {
+                dispatch({type: GET_TOP_EMMERSON_MONTH_HIGHEST_PROVISION, payload: response.data});
+            })
+            .catch(error => {
+                browserHistory.push('/');
+            });
+    }
+}
+
+
+export function getTopEmmersonYearHighestProvision() {
+    return function (dispatch) {
+
+        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/transactions/highest_provision/year`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: 'application/json'
+            }
+        })
+            .then(response => {
+                dispatch({type: GET_TOP_EMMERSON_YEAR_HIGHEST_PROVISION, payload: response.data});
             })
             .catch(error => {
                 browserHistory.push('/');
