@@ -173,8 +173,9 @@ class MainPage extends Component{
             <span>
                 <h1>
                     {user.name}
-                </h1>
                     <br/>
+                </h1>
+
                 <h2>
                     <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak" /><br/>
                     {user.team_name}
@@ -187,8 +188,9 @@ class MainPage extends Component{
             <span>
                 <h1>
                     {user.name}
-                </h1>
                     <br/>
+                </h1>
+
                 <h2>
                     <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak"/><br/>
                     {user.team_name}
