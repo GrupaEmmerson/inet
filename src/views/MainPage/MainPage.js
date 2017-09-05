@@ -147,7 +147,7 @@ class MainPage extends Component{
     getManager(manager){
         return(
             <h2>
-                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} /><br/>
+                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} alt="Brak" /><br/>
                 {manager.name}
             </h2>
         )
@@ -155,7 +155,7 @@ class MainPage extends Component{
     getManagerPremium(manager){
         return(
             <h2>
-                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} /><br/>
+                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} alt="Brak" /><br/>
                 {manager.name}
             </h2>
         )
@@ -163,7 +163,7 @@ class MainPage extends Component{
     getManagerTransaction(manager){
         return(
             <h2>
-                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} /><br/>
+                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} alt="Brak" /><br/>
                 {manager.name}
             </h2>
         )
@@ -176,7 +176,7 @@ class MainPage extends Component{
                 </h1>
                     <br/>
                 <h2>
-                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} /><br/>
+                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak" /><br/>
                     {user.team_name}
                 </h2>
             </span>
@@ -190,7 +190,7 @@ class MainPage extends Component{
                 </h1>
                     <br/>
                 <h2>
-                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} /><br/>
+                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak"/><br/>
                     {user.team_name}
                 </h2>
             </span>
@@ -204,7 +204,7 @@ class MainPage extends Component{
                 </h1>
                     <br/>
                 <h2>
-                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} /><br/>
+                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak" /><br/>
                     {user.team_name}
                 </h2>
             </span>
@@ -265,7 +265,7 @@ class MainPage extends Component{
                                 <Row>
                                     <Col xs="12" md="6">
                                         <b>Miesiąc</b><br/><br/>
-                                        Umowy zbycia i wynajmu
+                                        <div className="h2"> Umowy zbycia i wynajmu </div>
                                         <Col xs="12" md="12" className="mb-4">
                                             <Nav tabs>
                                                 <NavItem>
@@ -301,11 +301,11 @@ class MainPage extends Component{
                                                     { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_month_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_month_offer ? <div>{this.props.top_emmerson_month_offer.top_offer_advicer.map(this.getUser)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer_advicer.map(this.getUser)} </h1></div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
-                                        Umowy Premium
+                                        <div className="h2"> Umowy Premium </div>
                                         <Col xs="12" md="12" className="mb-4">
                                             <Nav tabs>
                                                 <NavItem>
@@ -341,14 +341,14 @@ class MainPage extends Component{
                                                     { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer.manager.map(this.getManagerPremium)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_month_offer_premium ? <div>{this.props.top_emmerson_month_offer_premium.top_offer_premium_advicer.map(this.getUserPremium)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium_advicer.map(this.getUserPremium)} </h1></div> : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
                                     </Col>
                                     <Col xs="12" md="6">
                                         <b>Rok</b><br/><br/>
-                                        Umowy zbycia i wynajmu
+                                        <div className="h2"> Umowy zbycia i wynajmu </div>
                                         <Col xs="12" md="12" className="mb-4">
                                             <Nav tabs>
                                                 <NavItem>
@@ -388,7 +388,7 @@ class MainPage extends Component{
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
-                                        Umowy Premium
+                                        <div className="h2"> Umowy Premium </div>
                                         <Col xs="12" md="12" className="mb-4">
                                             <Nav tabs>
                                                 <NavItem>
