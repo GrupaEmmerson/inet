@@ -1,18 +1,13 @@
-language: generic                                                                                                                                                                                            
-deploy:                                                                                                                                                                                                      
-  provider: gcs                                                                                                                                                                                              
-  access_key_id:                                                                                                                                                                                             
-    secure: "DtdjvzrTeu2fRPs3szHFzVK/WWFSm7DbA1pN4xYkG+uxTRsUBzdIOcFA6X8l1CxXeJssEW/lo07CfEon3h5TKJ1tDsptinWWHLKR4icUmWLwQxdiOak2doCQQKxOEG6iUYkYaebHIzL/eT2zUxv66FbIRDUte2iqB4L4L0wyICFPj/YlahFqA5VqGy9ijQ2P
-3wTKXXL8dr0j0QmOcfZ4ZxgkXYnDr74Pdusro/9mGufWw7rZkEjAXhZZtWqWzwQyqdHA+cMk+nB/5LIIkrdV1Nm4PWGHQIhJ22eWvLHZ0jzlLteeYdeXLHs5A80Lbo46mOercqFu6jnnD11MQTxnRqAISeiMm9fl9ztUOhUc2dSmBo9zrd5W66lwVo/OKOvTvEI+zHQSJSyGC
-1aDsKbUlceIK4U/Xlw8KcEHHoK6gazwi5WDKQLXvNT8OR5oV5CFlFp7nhibJZTYDm6gyA7FKMCO+oxSdpggAQqdDcwZEC9Gi81OL+oFZfjeynG0j9ux0hmTGTDQhTdY3jMS5P0ulv2g21ME5j2ebITCeGObxFJipbQ3Lg66KAiUd5F49D3CuGzYRJG4OBkU1NqY12wpI08bHc
-jawbpvMjAgnlMT/Pv/uVTKJPJVtxWBenzX+xDL3age/YHBr6B1T24y5MuSsefxhzEJujrK7kjzKGz82fg="                                                                                                                          
-  secret_access_key:                                                                                                                                                                                         
-    secure: "l8wdedxy9kvRoEdvwtytlfqYOUN3uq5XDPJBwdHIJvMsKXXl2JwLCjhygxKOn8AU05yxgoZrkPtn/AWIDZPKXvbVZt9CXNk1WlWmblxp/4N4EE5s0gWifkQxbplJ5vJ+f1HNlwG/zYzAyeVAjWk1uhH0+tF0fJWEJQ6vD7Ty09lceVY+sGHYVkVmKgUXvn9x
-ySdICzXiJgu05mxcSt3Jn+8EcrIN3v83eUh/TRGcFOsU/2uAR6TopRiid9yXuFi0bCCUZlr7HmGFSecxp5ASvagsbrZKycikm7y4Y50ZLFdJyBfXSQ0PWrdF7srrrbi/OeTVHuBY1G+4bnb1vMmqfu1lPzvZKPOTWRLRlW2BKmEDr8GZhtYgYx3itUMgH4mniO3M4eIkDGNAG
-yUruaUR3UqXRpyeDyAqHa8e5Q7EFxOGV1AYyVpIRFePNtNgzu24FyLbK3FxhjMnewezEC6H9k4H5b8gjgmb/rL/pKxxlwG2zkL56C9TckyrsKpTc+PS9Rx4VEoQR/ZVjswrshz7ga0HqBkqEYwjfk1cIbS+ho3JoRS5cNSy7V2TNalfoC5O+ZQNrxSMZB5BAYAgdas44Y9gkx
-s9afSGDe0v7Gkj+fm35q69gKJ+fZgz0tNXoWWzxZ/BpFRTMRR3nnq8/AxDdDyIRLRHtL8WnTHiuHYobJU="                                                                                                                          
-  bucket: beta2-inet.emmerson.pl                                                                                                                                                                             
-  on:                                                                                                                                                                                                        
-    repo: GrupaEmmerson/inet                                                                                                                                                                                 
-  cache_control: max-age=60                                                                                                                                                                                  
-  acl: public-read
+language: generic
+deploy:
+  provider: gcs
+  access_key_id: GOOGBITGKSTHYZST362P
+  secret_access_key:
+    secure: IzMI7LfRlYOIrUqQQ7DRduK4hUmH7Rl/xkj7zXp7NG2RUrTAc7lkVGxrYF7eXnMP5/l8atRZFH6fSu1dBDexUlwvoK9u2sbXHY44mV8nlysYn5QzCaA8p7f6RQ0z36jvokusIzsRMrvErQf/7so8MYcnhzErZ6biCNcEWWFe5uRpFWCdGh1+SytDJF8dbNAPb
+KgJs3u/locOGSQPdG8hQF6LZs7vUtUAxtVyUjmOf2gDV53TTIJ9+eWswbG5X8aMI0/W4w5n9iU2100dL3ES5jAW9XSRi2NekX/brnMd4dnK43Paq91GID1Xf9sZC0fH1osTkfFZ8BXAqsqcqrYfAqpGbfFUE6CpVjWUpcj7DDW8mVhQdARK4X9zI9pzvxGh1sQ2hZ72VNxNVh
+0tqfpFB1Jgb8v5MvugaiBMhMxGvu8ylijGPuuHepCsCSqXtN+EHBezq+P1rCuufCKERCkuEoWza94oX5fmt4zAdssA7ekktgScj99TX0LJhQKdKK7b/xdKreYzz2aOzCnSXccIatCG8Vfs6dBthu7JaldhtF7qq8282t9FfbsD7KEw7tCG71H0IFLG6HV7OdxfrradVK/L8RX
+3qVeeJ6WqrCaHEOxFFi1vuQRtPyqHAwpGOO1mNhu0T3x/PUe1NfPK8jrJLZ19kg4hylPJJcfCS95pnhc=
+  bucket: beta2-inet.emmerson.pl
+  on:
+    repo: GrupaEmmerson/inet
+  cache_control: max-age=60
