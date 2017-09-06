@@ -10,3 +10,6 @@ h39GiISJd16sjDa0OVa0Fph1CNwhLIRCRYP/BPvimG+4ts4jxZQbxxOHWObPX+dMZNR3PjaujVbo/F1I
   bucket: beta2-inet.emmerson.pl
   on:
     repo: GrupaEmmerson/inet
+  skip_cleanup: true
+  acl: public-read
+  cache_control: "max-age=60"
