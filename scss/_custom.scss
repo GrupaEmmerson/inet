@@ -1,1 +1,8 @@
 // Here you can add other styles
+.tab-pane .nav-tabs .nav-link.active,
+.tab-pane .nav-tabs .navbar .active.dropdown-toggle,
+.tab-pane .navbar .nav-tabs .active.dropdown-toggle{
+  background-color: #41af67;
+  border-bottom-color: #41af67;
+}
+

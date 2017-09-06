@@ -17,6 +17,7 @@ const stylePercent = {
     width: '100%',
 
 };
+const styleBlackText = {color: 'black'};
 const chartsOptions ={
     legend: false,
     tooltips: {
@@ -173,9 +174,9 @@ class MainPage extends Component{
             <span>
                 <h1>
                     {user.name}
-                    <br/>
-                </h1>
 
+                </h1>
+                <h6><br/></h6>
                 <h2>
                     <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak" /><br/>
                     {user.team_name}
@@ -188,9 +189,9 @@ class MainPage extends Component{
             <span>
                 <h1>
                     {user.name}
-                    <br/>
-                </h1>
 
+                </h1>
+                <h6><br/></h6>
                 <h2>
                     <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak"/><br/>
                     {user.team_name}
@@ -204,7 +205,7 @@ class MainPage extends Component{
                 <h1>
                     {user.name}
                 </h1>
-                    <br/>
+                <h6><br/></h6>
                 <h2>
                     <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak" /><br/>
                     {user.team_name}
@@ -295,12 +296,12 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1}>
+                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer.team_name} </h1><br/>{this.props.top_emmerson_month_offer.top_offer.manager.map(this.getManager)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_offer.top_offer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_month_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
                                                     { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer_advicer.map(this.getUser)} </h1></div> : ''}
@@ -308,7 +309,7 @@ class MainPage extends Component{
                                             </TabContent>
                                         </Col>
                                         <div className="h2"> Umowy Premium </div>
-                                        <Col xs="12" md="12" className="mb-4">
+                                        <Col xs="12" md="12" className="mb-4 ">
                                             <Nav tabs>
                                                 <NavItem>
                                                     <NavLink
@@ -335,12 +336,12 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1}>
+                                            <TabContent activeTab={this.state.activeTab1}  className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium.team_name} </h1><br/>{this.props.top_emmerson_month_offer_premium.top_offer_premium.manager.map(this.getManagerPremium)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_offer_premium.top_offer_premium.manager.map(this.getManagerPremium)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer.manager.map(this.getManagerPremium)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer.manager.map(this.getManagerPremium)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
                                                     { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium_advicer.map(this.getUserPremium)} </h1></div> : ''}
@@ -378,12 +379,12 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1}>
+                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_year_offer ? <div><h1> {this.props.top_emmerson_year_offer.top_offer.team_name} </h1><br/>{this.props.top_emmerson_year_offer.top_offer.manager.map(this.getManager)}</div> : ''}
+                                                    { this.props.top_emmerson_year_offer ? <div><h1> {this.props.top_emmerson_year_offer.top_offer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_offer.top_offer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_year_offer ? <div><h1> {this.props.top_emmerson_year_offer.top_offer_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_year_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
+                                                    { this.props.top_emmerson_year_offer ? <div><h1> {this.props.top_emmerson_year_offer.top_offer_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
                                                     { this.props.top_emmerson_year_offer ? <div>{this.props.top_emmerson_year_offer.top_offer_advicer.map(this.getUser)}</div> : ''}
@@ -418,12 +419,12 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1}>
+                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_year_offer_premium ? <div><h1> {this.props.top_emmerson_year_offer_premium.top_offer_premium.team_name} </h1><br/>{this.props.top_emmerson_year_offer_premium.top_offer_premium.manager.map(this.getManagerPremium)}</div> : ''}
+                                                    { this.props.top_emmerson_year_offer_premium ? <div><h1> {this.props.top_emmerson_year_offer_premium.top_offer_premium.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_offer_premium.top_offer_premium.manager.map(this.getManagerPremium)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_year_offer_premium ? <div><h1> {this.props.top_emmerson_year_offer_premium.top_offer_premium_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_year_offer_premium.top_offer_premium_per_advicer.manager.map(this.getManagerPremium)}</div> : ''}
+                                                    { this.props.top_emmerson_year_offer_premium ? <div><h1> {this.props.top_emmerson_year_offer_premium.top_offer_premium_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_offer_premium.top_offer_premium_per_advicer.manager.map(this.getManagerPremium)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
                                                     { this.props.top_emmerson_year_offer_premium ? <div>{this.props.top_emmerson_year_offer_premium.top_offer_premium_advicer.map(this.getUserPremium)}</div> : ''}
@@ -464,12 +465,12 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1}>
+                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_month_transaction ? <div><h1> {this.props.top_emmerson_month_transaction.top_transaction_month.team_name} </h1><br/>{this.props.top_emmerson_month_transaction.top_transaction_month.manager.map(this.getManagerTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_month_transaction ? <div><h1> {this.props.top_emmerson_month_transaction.top_transaction_month.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_transaction.top_transaction_month.manager.map(this.getManagerTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_month_transaction ? <div><h1> {this.props.top_emmerson_month_transaction.top_transaction_month_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_month_transaction.top_transaction_month_per_advicer.manager.map(this.getManagerTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_month_transaction ? <div><h1> {this.props.top_emmerson_month_transaction.top_transaction_month_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_transaction.top_transaction_month_per_advicer.manager.map(this.getManagerTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
                                                     { this.props.top_emmerson_month_transaction ? <div>{this.props.top_emmerson_month_transaction.top_transaction_month_advicer.map(this.getUserTransaction)}</div> : ''}
@@ -506,12 +507,12 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1}>
+                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_year_transaction ? <div><h1> {this.props.top_emmerson_year_transaction.top_transaction_year.team_name} </h1><br/>{this.props.top_emmerson_year_transaction.top_transaction_year.manager.map(this.getManagerTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_year_transaction ? <div><h1> {this.props.top_emmerson_year_transaction.top_transaction_year.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_transaction.top_transaction_year.manager.map(this.getManagerTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_year_transaction ? <div><h1> {this.props.top_emmerson_year_transaction.top_transaction_year_per_advicer.team_name} </h1><br/>{this.props.top_emmerson_year_transaction.top_transaction_year_per_advicer.manager.map(this.getManagerTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_year_transaction ? <div><h1> {this.props.top_emmerson_year_transaction.top_transaction_year_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_transaction.top_transaction_year_per_advicer.manager.map(this.getManagerTransaction)}</div> : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
                                                     { this.props.top_emmerson_year_transaction ? <div>{this.props.top_emmerson_year_transaction.top_transaction_year_advicer.map(this.getUserTransaction)}</div> : ''}
@@ -552,7 +553,7 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1}>
+                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
                                                     { this.props.top_emmerson_month_highest_provision ? <div>{this.props.top_emmerson_month_highest_provision.highest_primary_month.map(this.getUserTransaction)}</div> : ''}
                                                 </TabPane>
@@ -594,7 +595,7 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1}>
+                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
                                                     { this.props.top_emmerson_year_highest_provision ? <div>{this.props.top_emmerson_year_highest_provision.highest_primary_year.map(this.getUserTransaction)}</div> : ''}
                                                 </TabPane>
