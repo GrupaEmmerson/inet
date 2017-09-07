@@ -1,4 +1,11 @@
-language: generic
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - "8"
+install:
+    - npm install
+    - npm run build
 deploy:
   provider: gcs
   access_key_id: GOOGBITGKSTHYZST362P
