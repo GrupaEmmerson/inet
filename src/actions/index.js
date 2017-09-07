@@ -8,7 +8,7 @@ axios.interceptors.response.use(undefined, function (error) {
 
   return new Promise(function(resolve, reject){
     if(error.response.status == '401' && error.config){
-      axios.post(`${ROOT_URL}/app_dev.php/oauth/v2/token`, {
+      axios.post(`${ROOT_URL}/oauth/v2/token`, {
           client_id: '1_a',
           client_secret: 'b',
           grant_type: 'refresh_token',
@@ -33,7 +33,7 @@ axios.interceptors.response.use(undefined, function (error) {
 export function getUsers() {
   return function (dispatch) {
 
-    axios.get(`${ROOT_URL}/app_dev.php/users`, {
+    axios.get(`${ROOT_URL}/users`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             Accept: 'application/json'
@@ -50,7 +50,7 @@ export function getUsers() {
 export function getLoggedUserDetail() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/user/my_detail`, {
+        axios.get(`${ROOT_URL}/user/my_detail`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
@@ -67,7 +67,7 @@ export function getLoggedUserDetail() {
 export function signinUser({email, password}){
 
   return function(dispatch){
-    axios.post(`${ROOT_URL}/app_dev.php/oauth/v2/token`, {
+    axios.post(`${ROOT_URL}/oauth/v2/token`, {
         client_id: '1_a',
         client_secret: 'b',
         grant_type: 'password',
@@ -102,7 +102,7 @@ export function signoutUser(){
 
 export function signupUser({email, password}){
   return function(dispatch){
-    axios.post(`${ROOT_URL}/app_dev.php/v1/create`, {"user":{"username": email, "password": password, "email": email+"@emmerson.pl"}})
+    axios.post(`${ROOT_URL}/v1/create`, {"user":{"username": email, "password": password, "email": email+"@emmerson.pl"}})
     .then(response => {
       dispatch({type: AUTH_USER });
       localStorage.setItem('token', response.data.token);
@@ -117,7 +117,7 @@ export function signupUser({email, password}){
 export function deleteUser({id}){
     return function(dispatch){
 
-        axios.post(`${ROOT_URL}/app_dev.php/v1/delete`, {"id":id})
+        axios.post(`${ROOT_URL}/v1/delete`, {"id":id})
         .then(response => {
             dispatch({type: AUTH_USER });
             localStorage.setItem('token', response.data.token);
@@ -132,7 +132,7 @@ export function deleteUser({id}){
 export function getOfficeWork() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/office_work/assistant`, {
+        axios.get(`${ROOT_URL}/office_work/assistant`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
@@ -150,7 +150,7 @@ export function getOfficeWork() {
 export function getTopEmmersonMonthOffer() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/office/offer/month`, {
+        axios.get(`${ROOT_URL}/matches/top_emmerson/office/offer/month`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
@@ -168,7 +168,7 @@ export function getTopEmmersonMonthOffer() {
 export function getTopEmmersonYearOffer() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/office/offer/year`, {
+        axios.get(`${ROOT_URL}/matches/top_emmerson/office/offer/year`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
@@ -186,7 +186,7 @@ export function getTopEmmersonYearOffer() {
 export function getTopEmmersonMonthOfferPremium() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/office/offer_premium/month`, {
+        axios.get(`${ROOT_URL}/matches/top_emmerson/office/offer_premium/month`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
@@ -204,7 +204,7 @@ export function getTopEmmersonMonthOfferPremium() {
 export function getTopEmmersonYearOfferPremium() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/office/offer_premium/year`, {
+        axios.get(`${ROOT_URL}/matches/top_emmerson/office/offer_premium/year`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
@@ -222,7 +222,7 @@ export function getTopEmmersonYearOfferPremium() {
 export function getTopEmmersonMonthTransactions() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/transactions/month`, {
+        axios.get(`${ROOT_URL}/matches/top_emmerson/transactions/month`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
@@ -241,7 +241,7 @@ export function getTopEmmersonMonthTransactions() {
 export function getTopEmmersonYearTransactions() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/transactions/year`, {
+        axios.get(`${ROOT_URL}/matches/top_emmerson/transactions/year`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
@@ -259,7 +259,7 @@ export function getTopEmmersonYearTransactions() {
 export function getTopEmmersonMonthHighestProvision() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/transactions/highest_provision/month`, {
+        axios.get(`${ROOT_URL}/matches/top_emmerson/transactions/highest_provision/month`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
@@ -278,7 +278,7 @@ export function getTopEmmersonMonthHighestProvision() {
 export function getTopEmmersonYearHighestProvision() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/matches/top_emmerson/transactions/highest_provision/year`, {
+        axios.get(`${ROOT_URL}/matches/top_emmerson/transactions/highest_provision/year`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'
@@ -296,7 +296,7 @@ export function getTopEmmersonYearHighestProvision() {
 export function getNewsLatest() {
     return function (dispatch) {
 
-        axios.get(`${ROOT_URL}/app_dev.php/news/latest`, {
+        axios.get(`${ROOT_URL}/news/latest`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 Accept: 'application/json'

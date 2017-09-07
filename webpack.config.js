@@ -21,7 +21,7 @@ module.exports = {
     path: BUILD_DIR,
     filename: '[name].bundle.js'
   },
-  watch: true,
+  watch: false,
   devServer: {
     disableHostCheck: true,
     contentBase: BUILD_DIR,
