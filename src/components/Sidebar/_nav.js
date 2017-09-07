@@ -22,7 +22,7 @@ export default {
     },
     {
       name: 'Lista Pracowników',
-      url: '#',
+      url: '/workers_list',
       icon: 'fa fa-user'
     },
     {
