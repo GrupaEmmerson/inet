@@ -37,7 +37,7 @@ const KEYS_TO_FILTERS = ['id','mobilePhoneNumber','name','phoneNumber','username
 
 const stylemain = {textAlign: 'center'};
 const styleBlackText = {color: 'black'};
-const stylePhoto = {height: '146px'};
+const stylePhoto = {width: '110px'};
 
 class WorkersList extends Component{
 
@@ -59,6 +59,10 @@ class WorkersList extends Component{
     searchUpdated (term) {
         this.setState({ searchTerm: term });
     }
+    checkPhotoUrl(url){
+        if (url =='0') url='/images/icons/1.png';
+        return url
+    }
 
     render(){
         if(!this.props.users){
@@ -75,9 +79,9 @@ class WorkersList extends Component{
                         </Col>
                     </CardBlock>
                 </Card>
-                <Col xs="12">Wyświetlone 1-35 z wielu rekordów</Col>
+                <Col xs="12">Znaleziono {filteredUsers.length} z {this.props.users.length} wszystkich.</Col>
                 <Col xs="12">
-                    <Table responsive striped>
+                    <Table responsive>
                         <tbody>
                         {filteredUsers.map(users => {
                             return (
@@ -89,7 +93,7 @@ class WorkersList extends Component{
                                             </CardHeader>
                                             <CardBlock className="card-body">
                                                 <Row>
-                                                    <Col xs="12" sm="2"><img src={! users  ?  'https://inet.emmerson.pl/images/icons/1.png' : users.photoUrl ? 'https://inet.emmerson.pl/'+ users.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} style={stylePhoto} alt=""/></Col>
+                                                    <Col xs="12" sm="2"><img src={! users  ?  'https://inet.emmerson.pl/images/icons/1.png' : users.photoUrl ? 'https://inet.emmerson.pl/'+ this.checkPhotoUrl(users.photoUrl) :  'https://inet.emmerson.pl/images/icons/1.png'} style={stylePhoto} alt=""/></Col>
                                                     <Col xs="12" sm="10">
                                                         <Row>
                                                             <Col xs="12">
