@@ -223,16 +223,61 @@ class MainPage extends Component{
     }
 
     render(){
-            // console.log(this.props.top_emmerson_month_offer);
-            // console.log(this.props.top_emmerson_year_offer);
-            // console.log(this.props.top_emmerson_month_offer_premium);
-            // console.log(this.props.top_emmerson_year_offer_premium);
-            // console.log(this.props.top_emmerson_month_transaction);
-            // console.log(this.props.top_emmerson_year_transaction);
-            console.log(this.props.top_emmerson_month_highest_provision);
-            console.log(this.props.top_emmerson_year_highest_provision);
             return (
+
                 <div >
+                    <Row style={stylemain}>
+                        <Col xs="12" sm="6" >
+                            <Card className="card-accent-success">
+                                <CardHeader> Praca Operacyjna </CardHeader>
+                                <CardBlock className="card-body">
+                                    <Row>
+                                        <Col xs="12" sm="6">
+                                            <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
+                                            <Col xs="12">
+                                                <Col style={stylePercent} className="h4">{data1.datasets[0].data[0]}%</Col>
+                                                <Doughnut options={chartsOptions} data={data1}/>
+                                            </Col>
+                                            <Col xs="12" style={stylemain}>na 1000</Col>
+                                        </Col>
+                                        <Col xs="12" sm="6">
+                                            <Col xs="12" style={stylemain}>Ten miesiąc</Col>
+                                            <Col xs="12">
+                                                <Col style={stylePercent} className="h4">{data2.datasets[0].data[0]}%</Col>
+                                                <Doughnut options={chartsOptions} data={data2}/>
+                                            </Col>
+                                            <Col xs="12" style={stylemain}>na 1000</Col>
+                                        </Col>
+                                    </Row>
+                                </CardBlock>
+                            </Card>
+                        </Col>
+                        <Col xs="12" sm="6" >
+                            <Card className="card-accent-primary">
+                                <CardHeader> Obroty </CardHeader>
+                                <CardBlock className="card-body">
+                                    <Row>
+                                        <Col xs="12" sm="6">
+                                            <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
+                                            <Col xs="12">
+                                                <Col style={stylePercent} className="h4">{zrob2}%</Col>
+                                                <Doughnut options={chartsOptions}  data={data3}/>
+                                            </Col>
+                                            <Col xs="12" style={stylemain}>na 1000</Col>
+                                        </Col>
+                                        <Col xs="12" sm="6">
+                                            <Col xs="12" style={stylemain}>Ten miesiąc</Col>
+                                            <Col xs="12">
+                                                <Col style={stylePercent} className="h4">{zrob}%</Col>
+                                                <Doughnut options={chartsOptions} data={data4}/>
+                                            </Col>
+                                            <Col xs="12" style={stylemain}>na 1000</Col>
+                                        </Col>
+                                    </Row>
+                                </CardBlock>
+                            </Card>
+                        </Col>
+                    </Row>
                     <Col xs="12" style={stylemain} className="h1">
                         <b>Top Emmerson</b>
                     </Col>
@@ -612,58 +657,6 @@ class MainPage extends Component{
                             </TabPane>
                         </TabContent>
                     </Col>
-                    <Row style={stylemain}>
-                        <Col xs="12" sm="6" >
-                            <Card className="card-accent-success">
-                                <CardHeader> Praca Operacyjna </CardHeader>
-                                <CardBlock className="card-body">
-                                    <Row>
-                                        <Col xs="12" sm="6">
-                                            <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
-                                            <Col xs="12">
-                                                <Col style={stylePercent} className="h4">{data1.datasets[0].data[0]}%</Col>
-                                                <Doughnut options={chartsOptions} data={data1}/>
-                                            </Col>
-                                            <Col xs="12" style={stylemain}>na 1000</Col>
-                                        </Col>
-                                        <Col xs="12" sm="6">
-                                            <Col xs="12" style={stylemain}>Ten miesiąc</Col>
-                                            <Col xs="12">
-                                                <Col style={stylePercent} className="h4">{data2.datasets[0].data[0]}%</Col>
-                                                <Doughnut options={chartsOptions} data={data2}/>
-                                            </Col>
-                                            <Col xs="12" style={stylemain}>na 1000</Col>
-                                        </Col>
-                                    </Row>
-                                </CardBlock>
-                            </Card>
-                        </Col>
-                        <Col xs="12" sm="6" >
-                            <Card className="card-accent-primary">
-                                <CardHeader> Obroty </CardHeader>
-                                <CardBlock className="card-body">
-                                    <Row>
-                                        <Col xs="12" sm="6">
-                                            <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
-                                            <Col xs="12">
-                                                <Col style={stylePercent} className="h4">{zrob2}%</Col>
-                                                <Doughnut options={chartsOptions}  data={data3}/>
-                                            </Col>
-                                            <Col xs="12" style={stylemain}>na 1000</Col>
-                                        </Col>
-                                        <Col xs="12" sm="6">
-                                            <Col xs="12" style={stylemain}>Ten miesiąc</Col>
-                                            <Col xs="12">
-                                                <Col style={stylePercent} className="h4">{zrob}%</Col>
-                                                <Doughnut options={chartsOptions} data={data4}/>
-                                            </Col>
-                                            <Col xs="12" style={stylemain}>na 1000</Col>
-                                        </Col>
-                                    </Row>
-                                </CardBlock>
-                            </Card>
-                        </Col>
-                    </Row>
                     <Col xs="12" className="h2" style={stylemain}>
                         <b>Nowości</b>
                     </Col>

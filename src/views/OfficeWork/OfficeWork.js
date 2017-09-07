@@ -29,6 +29,7 @@ import {
     InputGroupAddon,
     InputGroupButton
 } from "reactstrap";
+import { TablePagination } from 'react-pagination-table';
 
 const KEYS_TO_FILTERS = ['symbol', 'name', 'team_name', 'date', 'id'];
 
@@ -60,6 +61,18 @@ class OfficeWork extends Component {
         }
         console.log(this.props.office_work.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS)));
         const filteredEmails = this.props.office_work.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+        const Header = [
+            "Imię i nazwisko",
+            "Zespół",
+            "Rodzaj planowanej transakcji",
+            "Zdarzenie",
+            "Umowa",
+            "Prezentacja",
+            "Symbol",
+            "Data",
+            "Edytuj"
+        ];
+        var totalCount = filteredEmails.length/10 >= 20 ? filteredEmails.length/10 : 20;
         return (
             <div className="animated fadeIn">
                 <Card>
@@ -81,52 +94,29 @@ class OfficeWork extends Component {
                                 <i className="icon-speedometer"></i> Praca Operacyjna
                             </CardHeader>
                             <CardBlock className="card-body">
-                                <Table responsive striped>
-                                    <thead>
-                                    <tr>
-                                        <th>Imię i nazwisko</th>
-                                        <th>Zespół</th>
-                                        <th>Rodzaj planowanej transakcji</th>
-                                        <th>Zdarzenie</th>
-                                        <th>Umowa</th>
-                                        <th>Prezentacja</th>
-                                        <th>Symbol</th>
-                                        <th>Data</th>
-                                        <th>Edytuj</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    {filteredEmails.map(office_work => {
-                                        return (
-                                            <tr key={office_work.id}>
-                                                <td>{office_work.name}</td>
-                                                <td>{office_work.team_name}</td>
-                                                <td> -</td>
-                                                <td> -</td>
-                                                <td> -</td>
-                                                <td> -</td>
-                                                <td>{office_work.symbol}</td>
-                                                <td>{office_work.date}</td>
-                                                <td><a href="#" className="btn btn-primary"><span className="icon-pencil"/></a></td>
-                                            </tr>
-                                        )
-                                    })}
-                                    </tbody>
-                                </Table>
+                                <TablePagination
+                                    className="table-bordered table-striped table-condensed"
+                                    headers={ Header }
+                                    data={ filteredEmails }
+                                    columns="name.team_name.kind_for_transaction.poszukiwanie.oferta.umowa_o.symbol.date.edit"
+                                    nextPageText="Następna"
+                                    prePageText="Poprzednia"
+                                    perPageItemCount={ 20 }
+                                    paginationClassName="pagination"
+                                    totalCount={ totalCount }
+                                    arrayOption={ [["size", 'all', ' ']] }
+                                />
                             </CardBlock>
                         </Card>
                     </Col>
                 </Row>
             </div>
-
         )
     }
 
 }
 
 function mapStateToProps(state){
-    console.log(state.office_work);
     return { office_work: state.office_work.office_work }
 }
 
