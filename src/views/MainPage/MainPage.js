@@ -18,6 +18,7 @@ const stylePercent = {
 
 };
 const styleBlackText = {color: 'black'};
+const stylePhoto = {height: '146px'};
 const chartsOptions ={
     legend: false,
     tooltips: {
@@ -148,7 +149,7 @@ class MainPage extends Component{
     getManager(manager){
         return(
             <h2>
-                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} alt="Brak" /><br/>
+                <img src={! manager  ?  'https://inet.emmerson.pl/images/icons/1.png' : manager.photoUrl ? 'https://inet.emmerson.pl/'+ manager.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak" style={stylePhoto} /><br/>
                 {manager.name}
             </h2>
         )
@@ -156,7 +157,7 @@ class MainPage extends Component{
     getManagerPremium(manager){
         return(
             <h2>
-                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} alt="Brak" /><br/>
+                <img src={! manager  ?  'https://inet.emmerson.pl/images/icons/1.png' : manager.photoUrl ? 'https://inet.emmerson.pl/'+ manager.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} /><br/>
                 {manager.name}
             </h2>
         )
@@ -164,7 +165,7 @@ class MainPage extends Component{
     getManagerTransaction(manager){
         return(
             <h2>
-                <img src={'https://inet.emmerson.pl/'+ manager.photoUrl} alt="Brak" /><br/>
+                <img src={! manager  ?  'https://inet.emmerson.pl/images/icons/1.png' : manager.photoUrl ? 'https://inet.emmerson.pl/'+ manager.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} /><br/>
                 {manager.name}
             </h2>
         )
@@ -178,7 +179,7 @@ class MainPage extends Component{
                 </h1>
                 <h6><br/></h6>
                 <h2>
-                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak" /><br/>
+                <img src={! user  ?  'https://inet.emmerson.pl/images/icons/1.png' : user.photoUrl ? 'https://inet.emmerson.pl/'+ user.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} /><br/>
                     {user.team_name}
                 </h2>
             </span>
@@ -193,7 +194,7 @@ class MainPage extends Component{
                 </h1>
                 <h6><br/></h6>
                 <h2>
-                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak"/><br/>
+                <img src={! user  ?  'https://inet.emmerson.pl/images/icons/1.png' : user.photoUrl ? 'https://inet.emmerson.pl/'+ user.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} /><br/>
                     {user.team_name}
                 </h2>
             </span>
@@ -207,7 +208,7 @@ class MainPage extends Component{
                 </h1>
                 <h6><br/></h6>
                 <h2>
-                    <img src={'https://inet.emmerson.pl/'+ user.photoUrl} alt="Brak" /><br/>
+                <img src={! user  ?  'https://inet.emmerson.pl/images/icons/1.png' : user.photoUrl ? 'https://inet.emmerson.pl/'+ user.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} /><br/>
                     {user.team_name}
                 </h2>
             </span>

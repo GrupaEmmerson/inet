@@ -70,6 +70,7 @@ class WorkersList extends Component{
         }
         console.log(this.props.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS)));
         const filteredUsers = this.props.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+        const filteredUsersSmall = filteredUsers.slice(0,20);
         return (
             <div className="animated fadeIn">
                 <Card className="border-success">
@@ -83,7 +84,7 @@ class WorkersList extends Component{
                 <Col xs="12">
                     <Table responsive>
                         <tbody>
-                        {filteredUsers.map(users => {
+                        {filteredUsersSmall.map(users => {
                             return (
                                 <tr key={users.id}>
                                     <td>
