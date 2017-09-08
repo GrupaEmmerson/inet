@@ -10,6 +10,7 @@ const zrob = 75;
 const zrob2 = 95;
 
 const stylemain = {textAlign: 'center'};
+const stylesecond = {textAlign: 'left', float: 'left'};
 const stylePercent = {
     position: 'absolute',
     left: '0',
@@ -18,7 +19,7 @@ const stylePercent = {
 
 };
 const styleBlackText = {color: 'black'};
-const stylePhoto = {height: '146px'};
+const stylePhoto = {height: '146px', float: 'right'};
 const chartsOptions ={
     legend: false,
     tooltips: {
@@ -145,75 +146,7 @@ class MainPage extends Component{
             });
         }
     }
-
-    getManager(manager){
-        return(
-            <h2>
-                <img src={! manager  ?  'https://inet.emmerson.pl/images/icons/1.png' : manager.photoUrl ? 'https://inet.emmerson.pl/'+ manager.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak" style={stylePhoto} /><br/>
-                {manager.name}
-            </h2>
-        )
-    }
-    getManagerPremium(manager){
-        return(
-            <h2>
-                <img src={! manager  ?  'https://inet.emmerson.pl/images/icons/1.png' : manager.photoUrl ? 'https://inet.emmerson.pl/'+ manager.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} /><br/>
-                {manager.name}
-            </h2>
-        )
-    }
-    getManagerTransaction(manager){
-        return(
-            <h2>
-                <img src={! manager  ?  'https://inet.emmerson.pl/images/icons/1.png' : manager.photoUrl ? 'https://inet.emmerson.pl/'+ manager.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} /><br/>
-                {manager.name}
-            </h2>
-        )
-    }
-    getUser(user){
-        return(
-            <span>
-                <h1>
-                    {user.name}
-
-                </h1>
-                <h6><br/></h6>
-                <h2>
-                <img src={! user  ?  'https://inet.emmerson.pl/images/icons/1.png' : user.photoUrl ? 'https://inet.emmerson.pl/'+ user.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} /><br/>
-                    {user.team_name}
-                </h2>
-            </span>
-        );
-    }
-    getUserPremium(user){
-        return(
-            <span>
-                <h1>
-                    {user.name}
-
-                </h1>
-                <h6><br/></h6>
-                <h2>
-                <img src={! user  ?  'https://inet.emmerson.pl/images/icons/1.png' : user.photoUrl ? 'https://inet.emmerson.pl/'+ user.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} /><br/>
-                    {user.team_name}
-                </h2>
-            </span>
-        );
-    }
-    getUserTransaction(user){
-        return(
-            <span>
-                <h1>
-                    {user.name}
-                </h1>
-                <h6><br/></h6>
-                <h2>
-                <img src={! user  ?  'https://inet.emmerson.pl/images/icons/1.png' : user.photoUrl ? 'https://inet.emmerson.pl/'+ user.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} /><br/>
-                    {user.team_name}
-                </h2>
-            </span>
-        );
-    }
+    
     getNews(news){
         const regex = /(<([^>]+)>)/ig;
         return(
@@ -223,9 +156,68 @@ class MainPage extends Component{
         )
     }
 
-    render(){
-            return (
+    getTopOfferAdvicer (advicer){
+        return(
+            <span>
+                <Row>
+                <Col xs="11" style={stylesecond}>
+                    <table>
+                        <tbody>
+                        <tr><td ><h5> <b>{advicer.name} </b> </h5></td></tr>
+                        <tr><td><h6>-??? </h6></td></tr>
+                        <tr><td><h6>-DZIAŁ ? </h6></td></tr>
+                        <tr><td><h6>ZESPÓŁ {advicer.team_name} </h6></td></tr>
+                        <tr><td> <br/></td></tr>
+                        <tr><td>-Emmerson Realty S.A. ?</td></tr>
+                        <tr><td>-ul. Stawki 40, 01-040 Warszawa ? </td></tr>
+                        <tr><td>-tel. kom. ???</td></tr>
+                        <tr><td>-tel. ???</td></tr>
+                        <tr><td>-e-mail: ? </td></tr>
+                        <tr><td>-www.emmerson.pl ?</td></tr>
+                        </tbody>
+                    </table>
+                </Col>
+                <Col xs="1">
+                    <img src={! advicer.photoUrl  ?  'https://inet.emmerson.pl/images/icons/1.png' : advicer.photoUrl ? 'https://inet.emmerson.pl/'+ advicer.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} />
+                </Col>
+                </Row>
 
+            </span>
+        );
+    }
+
+    getTopOfferTeam (team){
+        return(
+            <span>
+                <Row>
+                <Col xs="11" style={stylesecond}>
+                    <table>
+                        <tbody>
+                        <tr><td ><h5> <b>{team.manager[0].name} </b> </h5></td></tr>
+                        <tr><td><h6>-??? </h6></td></tr>
+                        <tr><td><h6>-DZIAŁ ? </h6></td></tr>
+                        <tr><td><h6>ZESPÓŁ {team.team_name} </h6></td></tr>
+                        <tr><td> <br/></td></tr>
+                        <tr><td>-Emmerson Realty S.A. ?</td></tr>
+                        <tr><td>-ul. Stawki 40, 01-040 Warszawa ? </td></tr>
+                        <tr><td>-tel. kom. ???</td></tr>
+                        <tr><td>-tel. ???</td></tr>
+                        <tr><td>-e-mail: ??? </td></tr>
+                        <tr><td>-www.emmerson.pl ?</td></tr>
+                        </tbody>
+                    </table>
+                </Col>
+                <Col xs="1">
+                    <img src={! team.manager[0].photoUrl  ?  'https://inet.emmerson.pl/images/icons/1.png' : team.manager[0].photoUrl ? 'https://inet.emmerson.pl/'+ team.manager[0].photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} />
+                </Col>
+                </Row>
+
+            </span>
+        );
+    }
+
+    render(){
+        return (
                 <div >
                     <Row style={stylemain}>
                         <Col xs="12" sm="6" >
@@ -344,13 +336,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_offer.top_offer.manager.map(this.getManager)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer ? this.getTopOfferTeam(this.props.top_emmerson_month_offer.top_offer) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer ? this.getTopOfferTeam(this.props.top_emmerson_month_offer.top_offer_per_advicer) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_month_offer ? <div><h1> {this.props.top_emmerson_month_offer.top_offer_advicer.map(this.getUser)} </h1></div> : ''}
+                                                    { this.props.top_emmerson_month_offer ? this.getTopOfferAdvicer(this.props.top_emmerson_month_offer.top_offer_advicer[0]) : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -384,13 +376,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1}  className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_offer_premium.top_offer_premium.manager.map(this.getManagerPremium)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer_premium ? this.getTopOfferTeam(this.props.top_emmerson_month_offer_premium.top_offer_premium) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer.manager.map(this.getManagerPremium)}</div> : ''}
+                                                    { this.props.top_emmerson_month_offer_premium ? this.getTopOfferTeam(this.props.top_emmerson_month_offer_premium.top_offer_premium_per_advicer) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_month_offer_premium ? <div><h1> {this.props.top_emmerson_month_offer_premium.top_offer_premium_advicer.map(this.getUserPremium)} </h1></div> : ''}
+                                                    { this.props.top_emmerson_month_offer_premium ? this.getTopOfferAdvicer(this.props.top_emmerson_month_offer_premium.top_offer_premium_advicer[0]) : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -427,13 +419,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_year_offer ? <div><h1> {this.props.top_emmerson_year_offer.top_offer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_offer.top_offer.manager.map(this.getManager)}</div> : ''}
+                                                    { this.props.top_emmerson_year_offer ? this.getTopOfferTeam(this.props.top_emmerson_year_offer.top_offer) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_year_offer ? <div><h1> {this.props.top_emmerson_year_offer.top_offer_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_offer.top_offer_per_advicer.manager.map(this.getManager)}</div> : ''}
+                                                    { this.props.top_emmerson_year_offer ? this.getTopOfferTeam(this.props.top_emmerson_year_offer.top_offer_per_advicer) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_year_offer ? <div>{this.props.top_emmerson_year_offer.top_offer_advicer.map(this.getUser)}</div> : ''}
+                                                    { this.props.top_emmerson_year_offer ? this.getTopOfferAdvicer(this.props.top_emmerson_year_offer.top_offer_advicer[0]) : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -467,13 +459,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_year_offer_premium ? <div><h1> {this.props.top_emmerson_year_offer_premium.top_offer_premium.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_offer_premium.top_offer_premium.manager.map(this.getManagerPremium)}</div> : ''}
+                                                    { this.props.top_emmerson_year_offer_premium ? this.getTopOfferTeam(this.props.top_emmerson_year_offer_premium.top_offer_premium) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_year_offer_premium ? <div><h1> {this.props.top_emmerson_year_offer_premium.top_offer_premium_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_offer_premium.top_offer_premium_per_advicer.manager.map(this.getManagerPremium)}</div> : ''}
+                                                    { this.props.top_emmerson_year_offer_premium ? this.getTopOfferTeam(this.props.top_emmerson_year_offer_premium.top_offer_premium_per_advicer) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_year_offer_premium ? <div>{this.props.top_emmerson_year_offer_premium.top_offer_premium_advicer.map(this.getUserPremium)}</div> : ''}
+                                                    { this.props.top_emmerson_year_offer_premium ? this.getTopOfferAdvicer(this.props.top_emmerson_year_offer_premium.top_offer_premium_advicer[0]) : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -513,13 +505,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_month_transaction ? <div><h1> {this.props.top_emmerson_month_transaction.top_transaction_month.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_transaction.top_transaction_month.manager.map(this.getManagerTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_month_transaction ? this.getTopOfferTeam(this.props.top_emmerson_month_transaction.top_transaction_month) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_month_transaction ? <div><h1> {this.props.top_emmerson_month_transaction.top_transaction_month_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_month_transaction.top_transaction_month_per_advicer.manager.map(this.getManagerTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_month_transaction ? this.getTopOfferTeam(this.props.top_emmerson_month_transaction.top_transaction_month_per_advicer) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_month_transaction ? <div>{this.props.top_emmerson_month_transaction.top_transaction_month_advicer.map(this.getUserTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_month_transaction ? this.getTopOfferAdvicer(this.props.top_emmerson_month_transaction.top_transaction_month_advicer[0]) : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -555,13 +547,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_year_transaction ? <div><h1> {this.props.top_emmerson_year_transaction.top_transaction_year.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_transaction.top_transaction_year.manager.map(this.getManagerTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_year_transaction ? this.getTopOfferTeam(this.props.top_emmerson_year_transaction.top_transaction_year) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_year_transaction ? <div><h1> {this.props.top_emmerson_year_transaction.top_transaction_year_per_advicer.team_name} </h1><h6><br/></h6>{this.props.top_emmerson_year_transaction.top_transaction_year_per_advicer.manager.map(this.getManagerTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_year_transaction ? this.getTopOfferTeam(this.props.top_emmerson_year_transaction.top_transaction_year_per_advicer) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_year_transaction ? <div>{this.props.top_emmerson_year_transaction.top_transaction_year_advicer.map(this.getUserTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_year_transaction ? this.getTopOfferAdvicer(this.props.top_emmerson_year_transaction.top_transaction_year_advicer[0]) : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -601,13 +593,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_month_highest_provision ? <div>{this.props.top_emmerson_month_highest_provision.highest_primary_month.map(this.getUserTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_month_highest_provision ? this.getTopOfferAdvicer(this.props.top_emmerson_month_highest_provision.highest_primary_month[0]) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_month_highest_provision ? <div>{this.props.top_emmerson_month_highest_provision.highest_secondary_month.map(this.getUserTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_month_highest_provision ? this.getTopOfferAdvicer(this.props.top_emmerson_month_highest_provision.highest_secondary_month[0]) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_month_highest_provision ? <div>{this.props.top_emmerson_month_highest_provision.highest_commercial_month.map(this.getUserTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_month_highest_provision ? this.getTopOfferAdvicer(this.props.top_emmerson_month_highest_provision.highest_commercial_month[0]) : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>
@@ -643,13 +635,13 @@ class MainPage extends Component{
                                             </Nav>
                                             <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
                                                 <TabPane tabId="1">
-                                                    { this.props.top_emmerson_year_highest_provision ? <div>{this.props.top_emmerson_year_highest_provision.highest_primary_year.map(this.getUserTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_year_highest_provision ? this.getTopOfferAdvicer(this.props.top_emmerson_year_highest_provision.highest_primary_year[0]) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="2">
-                                                    { this.props.top_emmerson_year_highest_provision ? <div>{this.props.top_emmerson_year_highest_provision.highest_secondary_year.map(this.getUserTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_year_highest_provision ? this.getTopOfferAdvicer(this.props.top_emmerson_year_highest_provision.highest_primary_year[0]) : ''}
                                                 </TabPane>
                                                 <TabPane tabId="3">
-                                                    { this.props.top_emmerson_year_highest_provision ? <div>{this.props.top_emmerson_year_highest_provision.highest_commercial_year.map(this.getUserTransaction)}</div> : ''}
+                                                    { this.props.top_emmerson_year_highest_provision ? this.getTopOfferAdvicer(this.props.top_emmerson_year_highest_provision.highest_primary_year[0]) : ''}
                                                 </TabPane>
                                             </TabContent>
                                         </Col>

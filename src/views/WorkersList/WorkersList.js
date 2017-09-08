@@ -64,6 +64,37 @@ class WorkersList extends Component{
         return url
     }
 
+    getUserJob(x){
+        return(
+            <span>
+                <Row>
+                    <Col xs="12">
+                        <Row>
+                            <Col xs="12" lg="6">
+                                <Row>
+                                    <Col xs="5">Stanowisko:</Col><Col xs="7">{x.jobTitle}</Col>
+                                    <Col xs="5">Firma:</Col><Col xs="7">{x.companyName}</Col>
+                                    <Col xs="5">Dział:</Col><Col xs="7">-</Col>
+                                    <Col xs="5">Oddział:</Col><Col xs="7">{x.branchName}</Col>
+                                    <Col xs="5">Zespół:</Col><Col xs="7">{x.teamName}</Col>
+                                </Row>
+                            </Col>
+                            <Col xs="12" lg="6">
+                                <Row>
+                                    {/*<Col xs="5">Tel. komórkowy:</Col><Col xs="7">{users.mobilePhoneNumber}</Col>*/}
+                                    {/*<Col xs="5">Tel. wewnętrzny:</Col><Col xs="7">{users.internalPhoneNumber}</Col>*/}
+                                    <Col xs="5">E-mail:</Col><Col xs="7">{x.email}</Col>
+                                    {/*<Col xs="5">Tel. stacjonarny:</Col><Col xs="7">{users.phoneNumber} </Col>*/}
+                                </Row>
+                            </Col>
+                        </Row>
+                        <Card className="card-accent-secondary" />
+                    </Col>
+                </Row>
+            </span>
+        );
+    }
+
     render(){
         if(!this.props.users){
             return <div>Loading...</div>
@@ -96,30 +127,7 @@ class WorkersList extends Component{
                                                 <Row>
                                                     <Col xs="12" sm="2"><img src={! users  ?  'https://inet.emmerson.pl/images/icons/1.png' : users.photoUrl ? 'https://inet.emmerson.pl/'+ this.checkPhotoUrl(users.photoUrl) :  'https://inet.emmerson.pl/images/icons/1.png'} style={stylePhoto} alt=""/></Col>
                                                     <Col xs="12" sm="10">
-                                                        <Row>
-                                                            <Col xs="12">
-                                                                <Row>
-                                                                    <Col xs="12" lg="6">
-                                                                        <Row>
-                                                                            <Col xs="5">Stanowisko:</Col><Col xs="7">{users.name}</Col>
-                                                                            <Col xs="5">Firma:</Col><Col xs="7">-</Col>
-                                                                            <Col xs="5">Dział:</Col><Col xs="7">-</Col>
-                                                                            <Col xs="5">Oddział:</Col><Col xs="7">-</Col>
-                                                                            <Col xs="5">Zespół:</Col><Col xs="7">-</Col>
-                                                                        </Row>
-                                                                    </Col>
-                                                                    <Col xs="12" lg="6">
-                                                                        <Row>
-                                                                            <Col xs="6">Telefon komórkowy:</Col><Col xs="6">{users.mobilePhoneNumber}</Col>
-                                                                            <Col xs="6">Telefon wewnętrzny:</Col><Col xs="6">{users.internalPhoneNumber}</Col>
-                                                                            <Col xs="6">E-mail:</Col><Col xs="6">-</Col>
-                                                                            <Col xs="6">Telefon stacjonarny:</Col><Col xs="6">{users.phoneNumber} </Col>
-                                                                        </Row>
-                                                                    </Col>
-                                                                </Row>
-                                                            </Col>
-                                                        </Row>
-                                                        <Card className="card-accent-secondary" />
+                                                        { users.profiles ? users.profiles.map(this.getUserJob) : ''}
                                                     </Col>
                                                 </Row>
                                             </CardBlock>
