@@ -9,8 +9,8 @@ import Widget02 from './Widget';
 const zrob = 75;
 const zrob2 = 95;
 
-const stylemain = {textAlign: 'center'};
-const stylesecond = {textAlign: 'left', float: 'left'};
+const stylemain = {textAlign: 'center', fontFamily: 'Verdana, Arial,  sans-serif'};
+const stylesecond = {textAlign: 'left', float: 'left', lineHeight: '1.15'};
 const stylePercent = {
     position: 'absolute',
     left: '0',
@@ -20,6 +20,9 @@ const stylePercent = {
 };
 const styleBlackText = {color: 'black'};
 const stylePhoto = {height: '146px', float: 'right'};
+const styleRedText = {color: 'red'};
+const styleTopTitle = {fontSize: '23'};
+const styleTopSecendary = {fontSize: '13'};
 const chartsOptions ={
     legend: false,
     tooltips: {
@@ -146,7 +149,7 @@ class MainPage extends Component{
             });
         }
     }
-    
+
     getNews(news){
         const regex = /(<([^>]+)>)/ig;
         return(
@@ -161,19 +164,20 @@ class MainPage extends Component{
             <span>
                 <Row>
                 <Col xs="11" style={stylesecond}>
+                    <h1><br/></h1>
                     <table>
                         <tbody>
-                        <tr><td ><h5> <b>{advicer.name} </b> </h5></td></tr>
-                        <tr><td><h6>-??? </h6></td></tr>
-                        <tr><td><h6>-DZIAŁ ? </h6></td></tr>
-                        <tr><td><h6>ZESPÓŁ {advicer.team_name} </h6></td></tr>
+                        <tr><td ><span style={styleTopTitle}><b>{advicer.name} </b></span></td></tr>
+                        <tr><td><span style={styleTopSecendary}><b>ZESPÓŁ {advicer.team_name} </b></span></td></tr>
+                        <tr><td><span style={styleTopSecendary}><b>-DZIAŁ ? </b></span></td></tr>
+                        <tr><td><span style={styleTopSecendary}><b>-STANOWISKO ??? </b></span></td></tr>
                         <tr><td> <br/></td></tr>
-                        <tr><td>-Emmerson Realty S.A. ?</td></tr>
-                        <tr><td>-ul. Stawki 40, 01-040 Warszawa ? </td></tr>
-                        <tr><td>-tel. kom. ???</td></tr>
-                        <tr><td>-tel. ???</td></tr>
-                        <tr><td>-e-mail: ? </td></tr>
-                        <tr><td>-www.emmerson.pl ?</td></tr>
+                        <tr><td>-Emmerson Realty S.A. ? <br/>
+                        -ul. Stawki 40, 01-040 Warszawa ? <br/>
+                        -tel. kom. ??? <br/>
+                        -tel. ??? <br/>
+                        -e-mail: ??? <br/>
+                        <span style={styleRedText}><b>www.emmerson.pl</b></span></td></tr>
                         </tbody>
                     </table>
                 </Col>
@@ -181,7 +185,6 @@ class MainPage extends Component{
                     <img src={! advicer.photoUrl  ?  'https://inet.emmerson.pl/images/icons/1.png' : advicer.photoUrl ? 'https://inet.emmerson.pl/'+ advicer.photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} />
                 </Col>
                 </Row>
-
             </span>
         );
     }
@@ -191,19 +194,19 @@ class MainPage extends Component{
             <span>
                 <Row>
                 <Col xs="11" style={stylesecond}>
+                    <h1><br/></h1>
                     <table>
                         <tbody>
-                        <tr><td ><h5> <b>{team.manager[0].name} </b> </h5></td></tr>
-                        <tr><td><h6>-??? </h6></td></tr>
-                        <tr><td><h6>-DZIAŁ ? </h6></td></tr>
-                        <tr><td><h6>ZESPÓŁ {team.team_name} </h6></td></tr>
+                        <tr><td ><span style={styleTopTitle}> <b>{team.manager[0].name} </b> </span></td></tr>
+                        <tr><td><span style={styleTopSecendary}><b>ZESPÓŁ {team.team_name} </b></span></td></tr>
+                        <tr><td><span style={styleTopSecendary}><b>-DZIAŁ ? </b></span></td></tr>
                         <tr><td> <br/></td></tr>
-                        <tr><td>-Emmerson Realty S.A. ?</td></tr>
-                        <tr><td>-ul. Stawki 40, 01-040 Warszawa ? </td></tr>
-                        <tr><td>-tel. kom. ???</td></tr>
-                        <tr><td>-tel. ???</td></tr>
-                        <tr><td>-e-mail: ??? </td></tr>
-                        <tr><td>-www.emmerson.pl ?</td></tr>
+                        <tr><td>-Emmerson Realty S.A. ? <br/>
+                        -ul. Stawki 40, 01-040 Warszawa ? <br/>
+                        -tel. kom. ??? <br/>
+                        -tel. ??? <br/>
+                        -e-mail: ??? <br/>
+                            <span style={styleRedText}><b>www.emmerson.pl</b></span></td></tr>
                         </tbody>
                     </table>
                 </Col>
@@ -211,7 +214,6 @@ class MainPage extends Component{
                     <img src={! team.manager[0].photoUrl  ?  'https://inet.emmerson.pl/images/icons/1.png' : team.manager[0].photoUrl ? 'https://inet.emmerson.pl/'+ team.manager[0].photoUrl :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} />
                 </Col>
                 </Row>
-
             </span>
         );
     }
@@ -334,7 +336,7 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
+                                            <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                                 <TabPane tabId="1">
                                                     { this.props.top_emmerson_month_offer ? this.getTopOfferTeam(this.props.top_emmerson_month_offer.top_offer) : ''}
                                                 </TabPane>
@@ -374,7 +376,7 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1}  className="bg-success" style={styleBlackText}>
+                                            <TabContent activeTab={this.state.activeTab1}  className="border-danger" style={styleBlackText}>
                                                 <TabPane tabId="1">
                                                     { this.props.top_emmerson_month_offer_premium ? this.getTopOfferTeam(this.props.top_emmerson_month_offer_premium.top_offer_premium) : ''}
                                                 </TabPane>
@@ -417,7 +419,7 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
+                                            <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                                 <TabPane tabId="1">
                                                     { this.props.top_emmerson_year_offer ? this.getTopOfferTeam(this.props.top_emmerson_year_offer.top_offer) : ''}
                                                 </TabPane>
@@ -457,7 +459,7 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
+                                            <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                                 <TabPane tabId="1">
                                                     { this.props.top_emmerson_year_offer_premium ? this.getTopOfferTeam(this.props.top_emmerson_year_offer_premium.top_offer_premium) : ''}
                                                 </TabPane>
@@ -503,7 +505,7 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
+                                            <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                                 <TabPane tabId="1">
                                                     { this.props.top_emmerson_month_transaction ? this.getTopOfferTeam(this.props.top_emmerson_month_transaction.top_transaction_month) : ''}
                                                 </TabPane>
@@ -545,7 +547,7 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
+                                            <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                                 <TabPane tabId="1">
                                                     { this.props.top_emmerson_year_transaction ? this.getTopOfferTeam(this.props.top_emmerson_year_transaction.top_transaction_year) : ''}
                                                 </TabPane>
@@ -591,7 +593,7 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
+                                            <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                                 <TabPane tabId="1">
                                                     { this.props.top_emmerson_month_highest_provision ? this.getTopOfferAdvicer(this.props.top_emmerson_month_highest_provision.highest_primary_month[0]) : ''}
                                                 </TabPane>
@@ -633,7 +635,7 @@ class MainPage extends Component{
                                                     </NavLink>
                                                 </NavItem>
                                             </Nav>
-                                            <TabContent activeTab={this.state.activeTab1} className="bg-success" style={styleBlackText}>
+                                            <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                                 <TabPane tabId="1">
                                                     { this.props.top_emmerson_year_highest_provision ? this.getTopOfferAdvicer(this.props.top_emmerson_year_highest_provision.highest_primary_year[0]) : ''}
                                                 </TabPane>
