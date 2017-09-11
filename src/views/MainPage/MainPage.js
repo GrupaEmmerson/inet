@@ -154,12 +154,13 @@ class MainPage extends Component{
         const regex = /(<([^>]+)>)/ig;
         return(
             <Col xs="12" sm="12" md="6">
-                <Widget02 header={news.title} mainText={news.text.replace(regex,"").substring(0, 300) + "..."} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
+                <Widget02 header={news.title} mainText={news.text.replace(regex,"").replace(/&oacute;/ig,"ó").replace(/&ndash;/ig,"-").replace(/&nbsp;/ig,"").substring(0, 300) + "..."} icon="fa fa-cogs" color="primary" footer link="#/mainpage"/>
             </Col>
         )
     }
 
     getTopOfferAdvicer (advicer){
+        console.log(this.props.news_latest);
         return(
             <span>
                 <Row>
@@ -200,6 +201,7 @@ class MainPage extends Component{
                         <tr><td ><span style={styleTopTitle}> <b>{team.manager[0].name} </b> </span></td></tr>
                         <tr><td><span style={styleTopSecendary}><b>ZESPÓŁ {team.team_name} </b></span></td></tr>
                         <tr><td><span style={styleTopSecendary}><b>-DZIAŁ ? </b></span></td></tr>
+                        <tr><td><span style={styleTopSecendary}><b>-STANOWISKO ??? </b></span></td></tr>
                         <tr><td> <br/></td></tr>
                         <tr><td>-Emmerson Realty S.A. ? <br/>
                         -ul. Stawki 40, 01-040 Warszawa ? <br/>
