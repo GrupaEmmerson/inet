@@ -16,3 +16,4 @@ export const GET_TOP_EMMERSON_YEAR_TRANSACTION = 'get_top_emmerson_year_transact
 export const GET_TOP_EMMERSON_MONTH_HIGHEST_PROVISION = 'get_top_emmerson_month_highest_provision';
 export const GET_TOP_EMMERSON_YEAR_HIGHEST_PROVISION = 'get_top_emmerson_year_highest_provision';
 export const GET_NEWS_LATEST = 'get_news_latest';
+export const GET_HELPDESK_CASES = 'get_helpdesk_cases';

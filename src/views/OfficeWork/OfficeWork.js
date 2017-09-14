@@ -72,7 +72,7 @@ class OfficeWork extends Component {
             "Data",
             "Edytuj"
         ];
-        var totalCount = filteredEmails.length/10 >= 20 ? filteredEmails.length/10 : 20;
+        var totalCount = filteredEmails.length/10 <= 20 ? filteredEmails.length/10 : filteredEmails.length/20;
         return (
             <div className="animated fadeIn">
                 <Card>

@@ -5,9 +5,12 @@ import {Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Badge, Card, CardH
 import {Doughnut} from "react-chartjs-2";
 import classnames from "classnames";
 import Widget02 from './Widget';
+import AdvicerWork from './AdvicerWork';
 
-const zrob = 75;
-const zrob2 = 95;
+var transakcje = 0;
+var transakcje_plan = 0;
+var transakcje2 = 0;
+var transakcje_plan2 = 0;
 
 const stylemain = {textAlign: 'center', fontFamily: 'Verdana, Arial,  sans-serif'};
 const stylesecond = {textAlign: 'left', float: 'left', lineHeight: '1.15'};
@@ -37,77 +40,7 @@ const chartsOptions ={
         }
     }
 };
-const data1 = {
-    labels: [
-        'Zrobione',
-        ''
-    ],
-    datasets: [{
-        data: [zrob, 100-zrob],
-        backgroundColor: [
-            '#4dbd74',
-            '#cccccc'
-        ],
-        hoverBackgroundColor: [
-            '#4dbd74',
-            '#cccccc'
-        ]
-    }]
-};
 
-const data2 = {
-    labels: [
-        'Zrobione',
-        ''
-    ],
-    datasets: [{
-        data: [zrob2, 100-zrob2],
-        backgroundColor: [
-            '#4dbd74',
-            '#cccccc'
-        ],
-        hoverBackgroundColor: [
-            '#4dbd74',
-            '#cccccc'
-        ]
-    }]
-};
-
-const data3 = {
-    labels: [
-        'Zrobione',
-        ''
-    ],
-    datasets: [{
-        data: [zrob2, 100-zrob2],
-        backgroundColor: [
-            '#20a8d8',
-            '#cccccc'
-        ],
-        hoverBackgroundColor: [
-            '#20a8d8',
-            '#cccccc'
-        ]
-    }]
-};
-
-const data4 = {
-    labels: [
-        'Zrobione',
-        ''
-    ],
-    datasets: [{
-        data: [zrob, 100-zrob],
-        backgroundColor: [
-            '#20a8d8',
-            '#cccccc'
-        ],
-        hoverBackgroundColor: [
-            '#20a8d8',
-            '#cccccc'
-        ]
-    }]
-};
 
 
 class MainPage extends Component{
@@ -122,6 +55,7 @@ class MainPage extends Component{
         this.props.getTopEmmersonYearTransactions();
         this.props.getTopEmmersonMonthHighestProvision();
         this.props.getTopEmmersonYearHighestProvision();
+        this.props.getLoggedUserDetail();
     }
 
     constructor(props) {
@@ -160,7 +94,6 @@ class MainPage extends Component{
     }
 
     getTopOfferAdvicer (advicer){
-        console.log(this.props.news_latest);
         return(
             <span>
                 <Row>
@@ -221,60 +154,10 @@ class MainPage extends Component{
     }
 
     render(){
+
         return (
                 <div >
-                    <Row style={stylemain}>
-                        <Col xs="12" sm="6" >
-                            <Card className="card-accent-success">
-                                <CardHeader> Praca Operacyjna </CardHeader>
-                                <CardBlock className="card-body">
-                                    <Row>
-                                        <Col xs="12" sm="6">
-                                            <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
-                                            <Col xs="12">
-                                                <Col style={stylePercent} className="h4">{data1.datasets[0].data[0]}%</Col>
-                                                <Doughnut options={chartsOptions} data={data1}/>
-                                            </Col>
-                                            <Col xs="12" style={stylemain}>na 1000</Col>
-                                        </Col>
-                                        <Col xs="12" sm="6">
-                                            <Col xs="12" style={stylemain}>Ten miesiąc</Col>
-                                            <Col xs="12">
-                                                <Col style={stylePercent} className="h4">{data2.datasets[0].data[0]}%</Col>
-                                                <Doughnut options={chartsOptions} data={data2}/>
-                                            </Col>
-                                            <Col xs="12" style={stylemain}>na 1000</Col>
-                                        </Col>
-                                    </Row>
-                                </CardBlock>
-                            </Card>
-                        </Col>
-                        <Col xs="12" sm="6" >
-                            <Card className="card-accent-primary">
-                                <CardHeader> Obroty </CardHeader>
-                                <CardBlock className="card-body">
-                                    <Row>
-                                        <Col xs="12" sm="6">
-                                            <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
-                                            <Col xs="12">
-                                                <Col style={stylePercent} className="h4">{zrob2}%</Col>
-                                                <Doughnut options={chartsOptions}  data={data3}/>
-                                            </Col>
-                                            <Col xs="12" style={stylemain}>na 1000</Col>
-                                        </Col>
-                                        <Col xs="12" sm="6">
-                                            <Col xs="12" style={stylemain}>Ten miesiąc</Col>
-                                            <Col xs="12">
-                                                <Col style={stylePercent} className="h4">{zrob}%</Col>
-                                                <Doughnut options={chartsOptions} data={data4}/>
-                                            </Col>
-                                            <Col xs="12" style={stylemain}>na 1000</Col>
-                                        </Col>
-                                    </Row>
-                                </CardBlock>
-                            </Card>
-                        </Col>
-                    </Row>
+                    <AdvicerWork />
                     <Col xs="12" style={stylemain} className="h1">
                         <b>Top Emmerson</b>
                     </Col>
@@ -675,7 +558,8 @@ function mapStateToProps(state){
         top_emmerson_year_transaction: state.top_emmerson_year_transaction.top_emmerson_year_transaction,
         top_emmerson_month_highest_provision: state.top_emmerson_month_highest_provision.top_emmerson_month_highest_provision,
         top_emmerson_year_highest_provision: state.top_emmerson_year_highest_provision.top_emmerson_year_highest_provision,
-        news_latest: state.news_latest.news_latest
+        news_latest: state.news_latest.news_latest,
+        my_detail: state.my_detail.my_detail
     }
 }
 MainPage.contextTypes = {

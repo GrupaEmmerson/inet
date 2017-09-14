@@ -55,7 +55,7 @@ class Header extends Component {
   }
 
   render() {
-
+    console.log(this.props.my_detail);
     return (
       <header className="app-header navbar navbar-dark" style={{backgroundColor: '#D82624', color: '#fff'}}>
         <NavbarToggler className="d-lg-none" onClick={this.mobileSidebarToggle}>&#9776;</NavbarToggler>
@@ -104,7 +104,6 @@ class Header extends Component {
   }
 }
 function mapStateToProps(state){
-    console.log(state.my_detail);
     return { my_detail: state.my_detail.my_detail }
 }
 

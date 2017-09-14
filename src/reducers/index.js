@@ -14,6 +14,7 @@ import topEmmersonYearTransaction from './top_emmerson_year_transaction_reducer'
 import topEmmersonMonthHighestProvision from './top_emmerson_month_highest_provision_reducer';
 import topEmmersonYearHighestProvision from './top_emmerson_year_highest_provision_reducer';
 import newsLatestReducer from './news_latest_reducer';
+import helpdeskCases from './helpdesk_cases_reducer';
 
 const rootReducer = combineReducers({
   form,
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
   top_emmerson_year_transaction: topEmmersonYearTransaction,
   top_emmerson_month_highest_provision: topEmmersonMonthHighestProvision,
   top_emmerson_year_highest_provision: topEmmersonYearHighestProvision,
-  news_latest: newsLatestReducer
+  news_latest: newsLatestReducer,
+  helpdesk_cases: helpdeskCases
 });
 
 export default rootReducer;
