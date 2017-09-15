@@ -9,6 +9,7 @@ import Footer from '../../components/Footer/';
 import MainPage from '../../views/MainPage/';
 import OfficeWork from '../../views/OfficeWork/';
 import WorkersList from '../../views/WorkersList/';
+import Helpdesk from '../../views/HelpdeskFilingCase/';
 
 import RequireAuth from '../../components/auth/require_auth';
 
@@ -26,6 +27,7 @@ class Full extends Component {
                 <Route path="/mainpage" name="MainPage" component={RequireAuth(MainPage)}/>
                 <Route path="/office_work" name="Praca Operacyjna" component={RequireAuth(OfficeWork)}/>
                 <Route path="/workers_list" name="Lista Pracowników" component={RequireAuth(WorkersList)}/>
+                <Route path="/helpdesk" name="Lista Pracowników" component={RequireAuth(Helpdesk)}/>
                 <Redirect from="/" to="/login"/>
               </Switch>
             </Container>

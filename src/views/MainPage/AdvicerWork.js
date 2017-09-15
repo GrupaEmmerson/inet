@@ -47,17 +47,28 @@ class AdvicerWork extends Component {
 
         var transakcje = this.props.my_detail ? this.props.my_detail.transaction_last_month : 0;
         var transakcje_plan = this.props.my_detail ? this.props.my_detail.plan_na_poprzedni_mc : 0;
+
+        var office2 = this.props.my_detail ? this.props.my_detail.office_work_this_month : 0;
+        var office_plan2 = this.props.my_detail ? this.props.my_detail.office_plan_this_month : 0;
+
+        var office = this.props.my_detail ? this.props.my_detail.office_work_last_month : 0;
+        var office_plan = this.props.my_detail ? this.props.my_detail.office_plan_last_month : 0;
+
         var proc_last_month_transaction = this.props.my_detail ? this.props.my_detail.percent_last_month_transaction : 0;
         var proc_this_month_transaction = this.props.my_detail ? this.props.my_detail.percent_this_month_transaction : 0;
-        var data_last_month = proc_last_month_transaction < 100 ? [transakcje, transakcje_plan] : [proc_this_month_transaction];
-        var data_this_month = proc_this_month_transaction < 100 ? [transakcje2, transakcje_plan2] : [proc_this_month_transaction];
+        var proc_last_month_office = this.props.my_detail ? this.props.my_detail.percent_last_month_office : 0;
+        var proc_this_month_office = this.props.my_detail ? this.props.my_detail.percent_this_month_office : 0;
+        var transaction_data_last_month = proc_last_month_transaction < 100 ? [transakcje, transakcje_plan] : [proc_this_month_transaction];
+        var transaction_data_this_month = proc_this_month_transaction < 100 ? [transakcje2, transakcje_plan2] : [proc_this_month_transaction];
+        var office_data_last_month = proc_last_month_office < 100 ? [office, office_plan] : [proc_last_month_office];
+        var office_data_this_month = proc_this_month_office < 100 ? [office2, office_plan2] : [proc_this_month_office];
         var data1 = {
             labels: [
                 'Zrobione',
                 ''
             ],
             datasets: [{
-                data: data_last_month,
+                data: office_data_last_month,
                 backgroundColor: [
                     '#4dbd74',
                     '#cccccc'
@@ -75,7 +86,7 @@ class AdvicerWork extends Component {
                 ''
             ],
             datasets: [{
-                data: data_this_month,
+                data: office_data_this_month,
                 backgroundColor: [
                     '#4dbd74',
                     '#cccccc'
@@ -93,7 +104,7 @@ class AdvicerWork extends Component {
                 ''
             ],
             datasets: [{
-                data: data_last_month,
+                data: transaction_data_last_month,
                 backgroundColor: [
                     '#20a8d8',
                     '#cccccc'
@@ -111,7 +122,7 @@ class AdvicerWork extends Component {
                 ''
             ],
             datasets: [{
-                data: data_this_month,
+                data: transaction_data_this_month,
                 backgroundColor: [
                     '#20a8d8',
                     '#cccccc'
@@ -133,7 +144,7 @@ class AdvicerWork extends Component {
                                 <Col xs="12" sm="6">
                                     <Col xs="12" style={stylemain}>Poprzedni miesiąc</Col>
                                     <Col xs="12">
-                                        <Col style={stylePercent} className="h4">{proc_last_month_transaction}%</Col>
+                                        <Col style={stylePercent} className="h4">{proc_last_month_office}%</Col>
                                         <Doughnut options={chartsOptions} data={data1}/>
                                     </Col>
                                     <Col xs="12" style={stylemain}>na 1000</Col>
@@ -141,7 +152,7 @@ class AdvicerWork extends Component {
                                 <Col xs="12" sm="6">
                                     <Col xs="12" style={stylemain}>Ten miesiąc</Col>
                                     <Col xs="12">
-                                        <Col style={stylePercent} className="h4">{proc_this_month_transaction}%</Col>
+                                        <Col style={stylePercent} className="h4">{proc_this_month_office}%</Col>
                                         <Doughnut options={chartsOptions} data={data2}/>
                                     </Col>
                                     <Col xs="12" style={stylemain}>na 1000</Col>
@@ -150,6 +161,7 @@ class AdvicerWork extends Component {
                         </CardBlock>
                     </Card>
                 </Col>
+
                 <Col xs="12" sm="6">
                     <Card className="card-accent-primary">
                         <CardHeader> Obroty </CardHeader>
