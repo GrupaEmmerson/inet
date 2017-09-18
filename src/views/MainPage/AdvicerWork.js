@@ -4,11 +4,6 @@ import * as actions from '../../actions';
 import {Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Badge, Card, CardHeader, CardFooter, CardBlock, Label, Input} from "reactstrap";
 import {Doughnut} from "react-chartjs-2";
 
-var transakcje = 0;
-var transakcje_plan = 0;
-var transakcje2 = 0;
-var transakcje_plan2 = 0;
-
 const stylemain = {textAlign: 'center', fontFamily: 'Verdana, Arial,  sans-serif'};
 const stylePercent = {
     position: 'absolute',
