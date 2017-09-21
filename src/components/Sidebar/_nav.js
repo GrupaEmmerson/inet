@@ -8,7 +8,19 @@ export default {
     {
       name: 'Praca Operacyjna',
       url: '/office_work',
-      icon: 'icon-speedometer'
+      icon: 'icon-speedometer',
+        children: [
+            {
+                name: 'Lista',
+                url: '/office_work/detail',
+                icon: 'fa fa-list',
+            },
+            {
+                name: 'Wprowadzanie',
+                url: '/office_work/create',
+                icon: 'fa fa-plus',
+            }
+        ]
     },
     {
       name: 'Kalendarz Szkoleń',

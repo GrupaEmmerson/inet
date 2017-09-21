@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE, GET_USERS, GET_USER, GET_OFFICE_WORK, GET_MY_DETAIL,
-    GET_NEWS_LATEST, GET_HELPDESK_CASES, GET_USER_CARD } from './types';
+import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, GET_USERS, GET_OFFICE_WORK, GET_MY_DETAIL,
+    GET_NEWS_LATEST, GET_HELPDESK_CASES, GET_USER_CARD, GET_POSZUKIWANIE_OFERTA } from './types';
 import {API_URL} from '../Config/';
 const ROOT_URL = API_URL;
 const topEmm = {};
@@ -150,6 +150,42 @@ export function getOfficeWork() {
     }
 }
 
+export function getPoszukiwanieOferta() {
+    return function (dispatch) {
+
+        axios.get(`${ROOT_URL}/office_work/assistant/choice`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: 'application/json'
+            }
+        })
+        .then(response => {
+            dispatch({type: GET_POSZUKIWANIE_OFERTA, payload: response.data});
+        })
+        .catch(error => {
+            browserHistory.push('/');
+        });
+    }
+}
+
+export function getUsersGroupByTeams() {
+    return function (dispatch) {
+
+        axios.get(`${ROOT_URL}/users/group_by_teams`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: 'application/json'
+            }
+        })
+        .then(response => {
+            dispatch({type: GET_USERS, payload: response.data});
+        })
+        .catch(error => {
+            browserHistory.push('/');
+        });
+    }
+}
+
 export function getNewsLatest() {
     return function (dispatch) {
 
@@ -179,6 +215,9 @@ export function getHelpdeskCaseAndCategory() {
         })
             .then(response => {
                 dispatch({type: GET_HELPDESK_CASES, payload: response.data});
+            })
+            .then(response => {
+                dispatch({type: GET_NEWS_LATEST, payload: response.data});
             })
             .catch(error => {
                 browserHistory.push('/');
@@ -246,7 +285,8 @@ export function getUserCard() {
                 }
             )
             .catch(error => {
-                browserHistory.push('/');
-            })
+                browserHistory.push('/')
+            });
     }
 }
+

@@ -8,6 +8,7 @@ import officeWorkReducer from './office_work_reducer';
 import newsLatestReducer from './news_latest_reducer';
 import userCardReducer from './user_card_reducer';
 import helpdeskCases from './helpdesk_cases_reducer';
+import offerSearch from './offier_search_reducer';
 
 const rootReducer = combineReducers({
   form,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   helpdesk_cases: helpdeskCases,
   news_latest: newsLatestReducer,
   user_card: userCardReducer,
+  offer_search: offerSearch,
 
 });
 

@@ -10,3 +10,4 @@ export const GET_OFFICE_WORK = 'get_office_work';
 export const GET_NEWS_LATEST = 'get_news_latest';
 export const GET_USER_CARD = 'get_users_card';
 export const GET_HELPDESK_CASES = 'get_helpdesk_cases';
+export const GET_POSZUKIWANIE_OFERTA = 'get_offer_search';
