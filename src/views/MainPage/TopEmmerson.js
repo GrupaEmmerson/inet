@@ -18,6 +18,12 @@ class TopEmmerson extends Component {
         this.props.getUserCard();
     }
 
+    componentWillUpdate(state){
+        if(!state.user_card){
+            this.props.getUserCard();
+        }
+    }
+
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
@@ -104,7 +110,12 @@ class TopEmmerson extends Component {
     }
 
     render() {
-        // console.log(this.props.user_card);
+        if(!this.props.user_card){
+            return(
+                <div>Loading...</div>
+            );
+        }
+        console.log(this.props.user_card);
 
         return (
             <Row style={stylemain}>
@@ -170,13 +181,13 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[12].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[12].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[14].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[14].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[13].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[13].businessCard)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -210,13 +221,13 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1}  className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[15].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[15].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[17].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[17].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[16].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[16].businessCard)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -253,13 +264,13 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[18].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[18].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[20].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[20].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[19].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[19].businessCard)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -293,13 +304,13 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[21].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[21].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[23].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[23].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[22].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[22].businessCard)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -339,13 +350,13 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[6].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[6].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[8].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[8].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[7].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[7].businessCard)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -381,13 +392,13 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[9].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[9].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.props.user_card ? this.getTopOfferTeam(this.props.user_card[11].businessCard) : ''}
+                                                { this.getTopOfferTeam(this.props.user_card[11].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[10].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[10].businessCard)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -427,13 +438,13 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[1].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[1].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[2].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[2].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[0].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[0].businessCard)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -469,13 +480,13 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[4].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[4].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[5].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[5].businessCard)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.props.user_card ? this.getTopOfferAdvicer(this.props.user_card[3].businessCard) : ''}
+                                                { this.getTopOfferAdvicer(this.props.user_card[3].businessCard)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>

@@ -4,9 +4,14 @@ import * as actions from '../../actions';
 import { Badge, Row, Col, Card, CardHeader, CardBlock, Table, Pagination, PaginationItem,
     PaginationLink, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, CardFooter,
     Form, FormGroup, FormText, Label, Input, InputGroup, InputGroupAddon, InputGroupButton } from "reactstrap";
-import SearchInput, {createFilter} from 'react-search-input'
+import SearchInput, {createFilter} from 'react-search-input';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 let testWeakMap = new WeakMap();
 const KEYS_TO_FILTERS = ['name', 'team_name', 'id'];
+const KEYS_TO_FILTERSC_PLANNED = ['planned_id', 'name'];
+const KEYS_TO_FILTERSC_EVENT = ['event_id', 'name'];
 
 class OfficeWorkCreate extends Component {
 
@@ -17,111 +22,137 @@ class OfficeWorkCreate extends Component {
 
     constructor () {
         super();
-        this.state = { searchTerm: '', searchPlannedTransactionChoice: '', searchEventChoice: ''};
+        this.renderEventOptions = this.renderEventOptions.bind(this);
+        this.renderTransactionOptions = this.renderTransactionOptions.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.state = { searchTerm: '', plannedTransactionChoices: '0', plannedTransactionChoice: '0', choiceTransaction: '0', startDate: moment()};
     }
+
     get state () {
         return testWeakMap.get(this);
     }
+
     set state (value) {
         testWeakMap.set(this, value);
+    }
+
+    handleChange(date) {
+        this.setState({
+            startDate: date
+        });
     }
 
     searchUpdated (term) {
         this.setState({ searchTerm: term });
     }
 
-    plannedTransaction(term) {
-        this.fetchPlannedTransactionSearch(term.target.value);
+    PlannedTransactionChoice(term) {
+
+        if(parseInt(term.target.value) !== this.state.plannedTransactionChoices){
+            this.setState({ choiceTransaction: '0'});
+            this.setState({ plannedTransactionChoice: '0'});
+            this.setState({ plannedTransactionChoices: term.target.value });
+        }else{
+            this.setState({ plannedTransactionChoices: term.target.value });
+        }
+
     }
 
-    event(term){
-        this.fetchEventSearch(term.target.value)
+    eventTransactionChoice(termP) {
+
+        this.setState({ choiceTransaction: termP.target.value });
+        this.setState({ plannedTransactionChoice: termP.target.value });
+
     }
 
-    fetchPlannedTransactionSearch(plan){
-            const filtered_data = this.props.offer_search.offer_search.planowana_transakcja.filter( e =>
-                {
-                    return (
-                        e.id ===  parseInt(plan)
-                    );
-                }
-            );
-            this.setState({ searchPlannedTransactionChoice: filtered_data });
-    }
-
-    fetchEventSearch(plan){
-        const filtered_data = this.props.offer_search.offer_search.zdarzenie.filter( e =>
-            {
-                return (
-                    e.id ===  parseInt(plan)
-                );
-            }
+    optionsResult(e)
+    {
+        return(
+            <option value={e.id}>{e.name}</option>
         );
-        this.setState({ searchEventChoice: filtered_data });
     }
 
-    plannedTransactionChoiceInput(){
-        if(!this.state.searchPlannedTransactionChoice){
+    renderTransactionOptions(result){
+        if(!result){
             return(<div> </div>);
         }
-        return(
-            <Col xs="4">{this.state.searchPlannedTransactionChoice.map(this.renderPlannedTransactionInput)}</Col>
-        );
-    }
 
-    eventChoiceInput(){
-        if(!this.state.searchEventChoice){
-            return(<div> </div>);
-        }
-        console.log(this.state.searchEventChoice);
         return(
-            <Col xs="4">{this.state.searchEventChoice.map(this.renderEventInput)}</Col>
-        );
-    }
-
-    static renderEventInput(formChoice){
-        return(
-            <FormGroup>
-                <Input type="select" name="oferta_poszukiwanie" id="offer_search">
-                    {formChoice.value.map
-                    (e =>
-                        {
-                            return(
-                                <option value={e.id}>{e.name}</option>
-                            );
-                        }
-                    )
-                    }
-                </Input>
-            </FormGroup>
-        );
-    }
-
-    static renderPlannedTransactionInput(formChoice){
-        return(
+            <Col xs="3">
                 <FormGroup>
-                    <Input type="select" name="oferta_poszukiwanie" id="offer_search" onChange={this.event.bind(this)}>
-                        {formChoice.value.map
-                            (e =>
-                                {
-                                    return(
-                                        <option value={e.id}>{e.name}</option>
-                                    );
-                                }
-                            )
-                        }
+                    <Input type="select" className="form-control"  placeholder="Wyszukaj" size="9" value={this.state.plannedTransactionChoice} onChange={this.eventTransactionChoice.bind(this)}>
+                        {result.value.map(this.optionsResult)}
                     </Input>
                 </FormGroup>
+            </Col>
         );
+
     }
 
+    renderEventOptions(result){
+        if(!result){
+            return(<div> </div>);
+        }
+        return(
+            <Col xs="3">
+                <FormGroup>
+                    <Input type="select" className="form-control" placeholder="Wyszukaj" size="9">
+                        {result.value.map(this.optionsResult.bind(this))}
+                    </Input>
+                </FormGroup>
+            </Col>
+        );
 
+    }
+
+    countInput(e){
+
+        if(e !== 2){
+            return(<div> </div>);
+        }
+        else
+        {
+            return(
+                <Col xs="3">
+                    <FormGroup row>
+                        <Col md="12">
+                            <InputGroup>
+                                <InputGroupAddon>Ilość prezentacji</InputGroupAddon>
+                                <Input type="select" className="form-control" >
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </Input>
+                            </InputGroup>
+                        </Col>
+                    </FormGroup>
+                </Col>
+            );
+        }
+
+    }
+    
     render() {
         if(!this.props.users){
             return <div>Loading...</div>
         }
+
         const formResult = this.props.users.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
-        console.log(this.props.users);
+        const formResultTransaction = this.props.offer_search.offer_search.planowana_transakcja.filter(createFilter(this.state.plannedTransactionChoices, KEYS_TO_FILTERSC_PLANNED));
+        const formResultEvent = this.props.offer_search.offer_search.zdarzenie.filter(createFilter(this.state.choiceTransaction, KEYS_TO_FILTERSC_EVENT));
+
+        console.log(this.state.plannedTransactionChoice);
+        console.log(this.state.choiceTransaction);
+        console.log(formResultTransaction);
+        console.log(formResultEvent);
         return (
             <div className="animated fadeIn">
                 <Col xs="12" sm="12">
@@ -166,9 +197,9 @@ class OfficeWorkCreate extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xs="4">
+                                <Col xs="3">
                                     <FormGroup>
-                                        <Input type="select" name="planowana_transakcja" id="planowana_transakcja" onChange={this.plannedTransaction.bind(this)}>
+                                        <Input type="select" className="form-control"  placeholder="Wyszukaj" size="9" onChange={this.PlannedTransactionChoice.bind(this)}>
                                             <option value="0">Wybierz rodzaj</option>
                                             <option value="1">Kupno</option>
                                             <option value="2">Sprzedaż</option>
@@ -177,11 +208,26 @@ class OfficeWorkCreate extends Component {
                                         </Input>
                                     </FormGroup>
                                 </Col>
-                                {this.plannedTransactionChoiceInput()}
+                                {formResultTransaction.map(this.renderTransactionOptions)}
+
+                                {formResultEvent.map(this.renderEventOptions)}
                             </Row>
-                            <row>
-                                {this.eventChoiceInput()}
-                            </row>
+                            <Row>
+                                <Col xs="3">
+                                    <DatePicker
+                                        className='form-control'
+                                        placeholderText="Podaj datę"
+                                        selected={this.state.startDate}
+                                        onChange={this.handleChange}
+                                    />
+                                </Col>
+                                <Col xs="3">
+                                    <FormGroup>
+                                        <Input type="text" className="form-control"  placeholder="Symbol" />
+                                    </FormGroup>
+                                </Col>
+                                {this.countInput(this.state.choiceTransaction)}
+                            </Row>
                         </CardBlock>
                     </Card>
                 </Col>
@@ -202,4 +248,5 @@ OfficeWorkCreate.contextTypes = {
         return React.PropTypes.object.isRequired;
     }
 };
+
 export default connect(mapStateToProps, actions)(OfficeWorkCreate);

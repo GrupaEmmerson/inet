@@ -12,12 +12,12 @@ export default {
         children: [
             {
                 name: 'Lista',
-                url: '/office_work/detail',
+                url: '/office_work_detail',
                 icon: 'fa fa-list',
             },
             {
                 name: 'Wprowadzanie',
-                url: '/office_work/create',
+                url: '/office_work_create',
                 icon: 'fa fa-plus',
             }
         ]

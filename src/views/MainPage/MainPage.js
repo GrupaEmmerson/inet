@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import {Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Badge, Card, CardHeader, CardFooter, CardBlock, Label, Input} from "reactstrap";
-import classnames from "classnames";
 import Widget02 from './Widget';
 import AdvicerWork from './AdvicerWork';
-import TopEmmerson from './TopEmmerson';
 
-const stylemain = {textAlign: 'center', fontFamily: 'Verdana, Arial,  sans-serif'};
+ import TopEmmerson from './TopEmmerson';
+
+const styleMain = {textAlign: 'center', fontFamily: 'Verdana, Arial,  sans-serif'};
 
 class MainPage extends Component{
 
     componentWillMount(){
         this.props.getNewsLatest();
         this.props.getLoggedUserDetail();
-        this.props.getUserCard();
     }
 
     getNews(news){
@@ -27,16 +26,19 @@ class MainPage extends Component{
     }
 
     render(){
-        // console.log(this.props.top_emmerson_month_offer);
-        // console.log(this.props.user_card);
+        if(!this.props.news_latest){
+            return(
+                <div>Loading...</div>
+            );
+        }
         return (
                 <div >
                     <AdvicerWork />
-                    <Col xs="12" style={stylemain} className="h1">
+                    <Col xs="12" style={styleMain} className="h1">
                         <b>Top Emmerson</b>
                     </Col>
                     <TopEmmerson />
-                    <Col xs="12" className="h2" style={stylemain}>
+                    <Col xs="12" className="h2" style={styleMain}>
                         <b>Nowości</b>
                     </Col>
                     <Row>
@@ -50,7 +52,6 @@ class MainPage extends Component{
 function mapStateToProps(state){
     return {
         news_latest: state.news_latest.news_latest,
-        user_card: state.user_card.user_card,
         my_detail: state.my_detail.my_detail,
     }
 }

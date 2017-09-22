@@ -26,8 +26,8 @@ class Full extends Component {
             <Container fluid>
               <Switch>
                 <Route path="/mainpage" name="MainPage" component={RequireAuth(MainPage)}/>
-                <Route path="/office_work/detail" name="Praca Operacyjna Lista" component={RequireAuth(OfficeWork)}/>
-                <Route path="/office_work/create" name="Praca Operacyjna Wprowadzanie" component={RequireAuth(OfficeWorkCreate)}/>
+                <Route path="/office_work_detail" name="Praca Operacyjna Lista" component={RequireAuth(OfficeWork)}/>
+                <Route path="/office_work_create" name="Praca Operacyjna Wprowadzanie" component={RequireAuth(OfficeWorkCreate)}/>
                 <Route path="/workers_list" name="Lista Pracowników" component={RequireAuth(WorkersList)}/>
                 <Route path="/helpdesk" name="Lista Pracowników" component={RequireAuth(Helpdesk)}/>
                 <Redirect from="/" to="/login"/>
