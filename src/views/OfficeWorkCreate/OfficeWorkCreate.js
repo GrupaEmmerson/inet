@@ -110,8 +110,7 @@ class OfficeWorkCreate extends Component {
         if(e !== 2){
             return(<div> </div>);
         }
-        else
-        {
+        else{
             return(
                 <Col xs="3">
                     <FormGroup row>
@@ -137,7 +136,6 @@ class OfficeWorkCreate extends Component {
                 </Col>
             );
         }
-
     }
 
     render() {
