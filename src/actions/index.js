@@ -4,7 +4,7 @@ import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, GET_USERS, GET_OFFICE_WORK, GET_MY_D
     GET_NEWS_LATEST, GET_HELPDESK_CASES, GET_USER_CARD, GET_POSZUKIWANIE_OFERTA } from './types';
 import {API_URL} from '../Config/';
 const ROOT_URL = API_URL;
-const topEmm = {};
+const topEmm = [];
 let idContener = {}, firstIdCointainer = {};
 
 axios.interceptors.response.use(undefined, function (error) {
@@ -233,10 +233,8 @@ function findCard(id, number) {
             }
         })
             .then(response => {
-                // console.log(response.data);
                 topEmm[number] = response.data;
             });
-
 }
 
 export function getUserCard() {
@@ -250,7 +248,6 @@ export function getUserCard() {
             .then(
                 response => {
                 firstIdCointainer = response.data;
-                // console.log(firstIdCointainer);
                     findCard(firstIdCointainer.top_emmerson[0].highest_commercial_month.id, 0 );
                     findCard(firstIdCointainer.top_emmerson[0].highest_primary_month.id, 1 );
                     findCard(firstIdCointainer.top_emmerson[0].highest_secondary_month.id, 2 );
@@ -275,12 +272,10 @@ export function getUserCard() {
                     findCard(firstIdCointainer.top_emmerson[7].top_offer_premium_year.id, 21 );
                     findCard(firstIdCointainer.top_emmerson[7].top_offer_premium_advicer_year.id , 22 );
                     findCard(firstIdCointainer.top_emmerson[7].top_offer_premium_per_advicer_year.id , 23 );
-                    // console.log(topEmm);
             }
             )
             .then(
                 function (){
-                    // console.log(topEmm);
                     dispatch({type: GET_USER_CARD, payload: topEmm});
                 }
             )

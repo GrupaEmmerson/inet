@@ -11,9 +11,10 @@ const styleMain = {textAlign: 'center', fontFamily: 'Verdana, Arial,  sans-serif
 
 class MainPage extends Component{
 
-    componentWillMount(){
+    componentDidMount(){
         this.props.getNewsLatest();
         this.props.getLoggedUserDetail();
+        this.props.getUserCard();
     }
 
     getNews(news){
@@ -37,12 +38,12 @@ class MainPage extends Component{
                     <Col xs="12" style={styleMain} className="h1">
                         <b>Top Emmerson</b>
                     </Col>
-                    <TopEmmerson />
+                    <TopEmmerson user_card={ this.props.user_card } />
                     <Col xs="12" className="h2" style={styleMain}>
                         <b>Nowości</b>
                     </Col>
                     <Row>
-                        { this.props.news_latest ? this.props.news_latest.map(this.getNews) : ''}
+                        { this.props.news_latest.map(this.getNews) }
                     </Row>
                 </div>
             )
@@ -53,6 +54,7 @@ function mapStateToProps(state){
     return {
         news_latest: state.news_latest.news_latest,
         my_detail: state.my_detail.my_detail,
+        user_card: state.user_card.user_card,
     }
 }
 MainPage.contextTypes = {
