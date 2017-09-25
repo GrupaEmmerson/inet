@@ -55,7 +55,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.props.my_detail);
     return (
       <header className="app-header navbar navbar-dark" style={{backgroundColor: '#D82624', color: '#fff'}}>
         <NavbarToggler className="d-lg-none" onClick={this.mobileSidebarToggle}>&#9776;</NavbarToggler>
