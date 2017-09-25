@@ -15,7 +15,6 @@ const KEYS_TO_FILTERSC_PLANNED = ['planned_id', 'name'];
 const KEYS_TO_FILTERSC_EVENT = ['event_id', 'name'];
 const KEYS_TO_FILTERS_COUNT = ['count_id'];
 const KEYS_TO_FILTERS_OFFER = ['offer_id'];
-import LoadingBar from 'react-redux-loading-bar'
 
 class OfficeWorkCreate extends Component {
 
@@ -201,7 +200,6 @@ class OfficeWorkCreate extends Component {
         return (
 
             <div className="animated fadeIn">
-                <LoadingBar style={{ backgroundColor: 'blue', height: '5px' }} showFastActions />
                 <Col xs="12" sm="12">
                     <Card>
                         <CardHeader>
