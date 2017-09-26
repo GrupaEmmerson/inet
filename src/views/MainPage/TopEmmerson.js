@@ -53,10 +53,10 @@ class TopEmmerson extends Component {
 
     getTopOfferAdvicer (advicer, key){
 
-        if(!advicer){
-            return(<div> </div>);
-        }
         const advicerBusinessCard = advicer[key].businessCard;
+        if(!advicer){
+            return(<div>Loading...</div>);
+        }
         return(
             <span>
                 <Row>
@@ -87,11 +87,11 @@ class TopEmmerson extends Component {
     }
 
     getTopOfferTeam (advicer, key){
-        if(!advicer){
-            return(<div> </div>);
-        }
+
         const advicerBusinessCard = advicer[key].businessCard;
-        
+        if(!advicer){
+            return(<div>Loading...</div>);
+        }
         return(
             <span>
                 <Row>
@@ -124,12 +124,8 @@ class TopEmmerson extends Component {
     render() {
         const {user_card} = this.props;
         if(!user_card){
-            return(<div>Loading...</div>)
+            return(<div>Loading...</div>);
         }
-        if(24 !== user_card.length){
-            return(<div> </div>);
-        }
-
         return (
             <Row style={stylemain}>
                 <Col xs="12" md="12" className="mb-4" style={stylemain}>
