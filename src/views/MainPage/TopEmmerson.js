@@ -95,7 +95,7 @@ class TopEmmerson extends Component {
         return(
             <span>
                 <Row>
-                <Col xs="11" style={stylesecond}>
+                <Col  style={stylesecond}>
                     <h1><br/></h1>
                     <table>
                         <tbody>
@@ -113,7 +113,7 @@ class TopEmmerson extends Component {
                         </tbody>
                     </table>
                 </Col>
-                <Col xs="1">
+                <Col>
                     <img src={! advicerBusinessCard.photo  ?  'https://inet.emmerson.pl/images/icons/1.png' : advicerBusinessCard.photo ? 'https://inet.emmerson.pl/'+ advicerBusinessCard.photo :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} />
                 </Col>
                 </Row>

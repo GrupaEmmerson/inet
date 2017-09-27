@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import {Row, Col} from "reactstrap";
-import Widget02 from './Widget';
+import Widget from './Widget';
 import AdvicerWork from './AdvicerWork';
 import TopEmmerson from './TopEmmerson';
 
@@ -16,19 +16,28 @@ class MainPage extends Component{
         this.props.getNewsLatest();
         this.props.getLoggedUserDetail();
     }
-    
+
+    passId(id){
+        window.MyNewsId = id;
+    };
+
     getNews(news){
         const regex = /(<([^>]+)>)/ig;
         return(
             <Col xs="12" sm="12" md="6">
-                <Widget02 header={news.title} mainText={news.text.replace(regex,"")
-                    .replace(/&oacute;/ig,"ó")
-                    .replace(/&ndash;/ig,"-")
-                    .replace(/&nbsp;/ig,"")
-                    .substring(0, 300) + "..."}
-                          icon="fa fa-cogs"
-                          color="primary"
-                          footer link="#/mainpage"/>
+                <Widget header={news.title}
+                        value={news.id}
+                        id={news.id}
+                        mainText={news.text.replace(regex,"")
+                            .replace(/&oacute;/ig,"ó")
+                            .replace(/&ndash;/ig,"-")
+                            .replace(/&nbsp;/ig,"")
+                            .substring(0, 300) + "..."}
+                        icon="fa fa-cogs"
+                        color="primary"
+                        footer link="#/news"
+                        onClick={() => this.passId(news.id)}
+                />
             </Col>
         )
     }
@@ -59,7 +68,7 @@ class MainPage extends Component{
                         <b>Nowości</b>
                     </Col>
                     <Row>
-                        { this.props.news_latest.news.map(this.getNews) }
+                        { this.props.news_latest.news.map(this.getNews.bind(this)) }
                     </Row>
                 </div>
             )
