@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import {Row, Col, TabContent, TabPane, Nav, NavItem, NavLink, Badge, Card, CardHeader, CardFooter, CardBlock, Label, Input} from "reactstrap";
+import {Row, Col} from "reactstrap";
 import Widget02 from './Widget';
 import AdvicerWork from './AdvicerWork';
 import TopEmmerson from './TopEmmerson';
@@ -11,10 +11,10 @@ const styleMain = {textAlign: 'center', fontFamily: 'Verdana, Arial,  sans-serif
 
 class MainPage extends Component{
 
-    componentDidMount(){
+    componentWillMount(){
+        this.props.getUserCard();
         this.props.getNewsLatest();
         this.props.getLoggedUserDetail();
-        this.props.getUserCard();
     }
     
     getNews(news){
@@ -62,7 +62,6 @@ class MainPage extends Component{
             )
     }
 }
-
 function mapStateToProps(state){
     return {
         news_latest: state.news_latest.news_latest,

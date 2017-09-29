@@ -5,7 +5,7 @@ import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, GET_USERS, GET_OFFICE_WORK, GET_MY_D
 import {API_URL} from '../Config/';
 const ROOT_URL = API_URL;
 const topEmm = [];
-let idContener = {}, firstIdCointainer = {};
+let firstIdCointainer = [];
 
 axios.interceptors.response.use(undefined, function (error) {
 
@@ -99,6 +99,8 @@ export function authError(error){
 
 export function signoutUser(){
   localStorage.removeItem('token');
+  localStorage.removeItem('refresh_token');
+  localStorage.clear();
   return { type: UNAUTH_USER };
 
 }
@@ -215,9 +217,6 @@ export function getHelpdeskCaseAndCategory() {
         })
             .then(response => {
                 dispatch({type: GET_HELPDESK_CASES, payload: response.data});
-            })
-            .then(response => {
-                dispatch({type: GET_NEWS_LATEST, payload: response.data});
             })
             .catch(error => {
                 browserHistory.push('/');

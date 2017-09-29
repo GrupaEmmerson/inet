@@ -29,13 +29,22 @@ class OfficeWorkCreate extends Component {
         this.renderTransactionOptions = this.renderTransactionOptions.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.searchUpdated = this.searchUpdated.bind(this);
+        this.searchUpdatedTeams = this.searchUpdatedTeams.bind(this);
         this.searchUpdatedChoice = this.searchUpdatedChoice.bind(this);
         this.eventTransactionChoice = this.eventTransactionChoice.bind(this);
         this.optionsResult = this.optionsResult.bind(this);
         this.PlannedTransactionChoice = this.PlannedTransactionChoice.bind(this);
         this.countInput = this.countInput.bind(this);
         this.offerInput = this.offerInput.bind(this);
-        this.state = { searchTerm: '', plannedTransactionChoices: '0', plannedTransactionChoice: '0', choiceTransaction: '0', countChoice: '0', offerChoice: '0', startDate: moment()};
+        this.state = {
+            searchTerm: '',
+            plannedTransactionChoices: '0',
+            plannedTransactionValue: '0',
+            eventTransactionChoice: '0',
+            countChoice: '0',
+            offerChoice: '0',
+            startDate: moment()
+        };
     }
 
     get state () {
@@ -56,9 +65,7 @@ class OfficeWorkCreate extends Component {
         this.setState({ searchTerm: term });
     }
 
-    searchUpdatedChoice (term)
-    {
-
+    searchUpdatedTeams (term) {
         if(term)
         {
             const str1 = this.state.searchTerm;
@@ -72,9 +79,26 @@ class OfficeWorkCreate extends Component {
         }
     }
 
+    searchUpdatedChoice (term){
+        if(term)
+        {
+            const str1 = this.state.searchTerm;
+            const str2 = ' ';
+            const str3 = str1.concat(str2);
+            const str4 = str3.concat(term.target.value);
+            const str5 = ' ';
+
+            this.setState({ searchTerm: str4.concat(str5) });
+        }
+        else
+        {
+            this.setState({ searchTerm: term.target.value });
+        }
+    }
+
     PlannedTransactionChoice(term) {
-        this.setState({ choiceTransaction: '0'});
-        this.setState({ plannedTransactionChoice: '0'});
+        this.setState({ eventTransactionChoice: '0'});
+        this.setState({ plannedTransactionValue: '0'});
         this.setState({ countChoice: '0'});
         this.setState({ offerChoice: '0'});
         this.setState({ plannedTransactionChoices: term.target.value });
@@ -82,10 +106,10 @@ class OfficeWorkCreate extends Component {
 
     eventTransactionChoice(termP) {
 
-        this.setState({ choiceTransaction: termP.target.value });
+        this.setState({ eventTransactionChoice: termP.target.value });
         this.setState({ countChoice: termP.target.value });
         this.setState({ offerChoice: termP.target.value });
-        this.setState({ plannedTransactionChoice: termP.target.value });
+        this.setState({ plannedTransactionValue: termP.target.value });
 
     }
 
@@ -104,7 +128,7 @@ class OfficeWorkCreate extends Component {
         return(
             <Col xs="3">
                 <FormGroup>
-                    <select className="form-control"  placeholder="Wyszukaj" size="9" value={this.state.plannedTransactionChoice} onChange={this.eventTransactionChoice}>
+                    <select className="form-control" name={result.field_name} placeholder="Wyszukaj" size="9" value={this.state.plannedTransactionValue} onChange={this.eventTransactionChoice}>
                         {result.value.map(this.optionsResult)}
                     </select>
                 </FormGroup>
@@ -120,7 +144,7 @@ class OfficeWorkCreate extends Component {
         return(
             <Col xs="3">
                 <FormGroup>
-                    <select className="form-control" placeholder="Wyszukaj" size="9">
+                    <select className="form-control" placeholder="Wyszukaj" size="9" name={result.field_name} >
                         {result.value.map(this.optionsResult)}
                     </select>
                 </FormGroup>
@@ -137,7 +161,7 @@ class OfficeWorkCreate extends Component {
                             <Col md="12">
                                 <InputGroup>
                                     <InputGroupAddon>Ilość prezentacji</InputGroupAddon>
-                                    <Input type="select" className="form-control" disabled>
+                                    <Input type="select" className="form-control" name={result.field_name} disabled>
                                         <option value="0">0</option>
                                     </Input>
                                 </InputGroup>
@@ -153,7 +177,7 @@ class OfficeWorkCreate extends Component {
                         <Col md="12">
                             <InputGroup>
                                 <InputGroupAddon>Ilość prezentacji</InputGroupAddon>
-                                <Input type="select" className="form-control"  >
+                                <Input type="select" className="form-control" name={result.field_name}>
                                     {result.value.map(e => {
                                         return(
                                             <option value={e.id}>{e.id}</option>
@@ -176,7 +200,7 @@ class OfficeWorkCreate extends Component {
                 <FormGroup row>
                     <Col md="12">
                         <InputGroup>
-                            <Input type="text" className="form-control" placeholder="Prowizja" />
+                            <Input type="text" className="form-control" placeholder="Prowizja" name={result.field_name} />
                             <InputGroupAddon>%</InputGroupAddon>
                         </InputGroup>
                     </Col>
@@ -192,10 +216,10 @@ class OfficeWorkCreate extends Component {
 
         const formResultUsers = this.props.users.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
         const formResultTeams = this.props.users.teams.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS_TEAMS));
-        const formResultTransaction = this.props.offer_search.offer_search.planowana_transakcja.filter(createFilter(this.state.plannedTransactionChoices, KEYS_TO_FILTERSC_PLANNED));
-        const formResultEvent = this.props.offer_search.offer_search.zdarzenie.filter(createFilter(this.state.choiceTransaction, KEYS_TO_FILTERSC_EVENT));
+        const formResultTransaction = this.props.offer_search.offer_search.planned_transaction.filter(createFilter(this.state.plannedTransactionChoices, KEYS_TO_FILTERSC_PLANNED));
+        const formResultEvent = this.props.offer_search.offer_search.event.filter(createFilter(this.state.eventTransactionChoice, KEYS_TO_FILTERSC_EVENT));
         const formResultCount = this.props.offer_search.offer_search.counting.filter(createFilter(this.state.countChoice, KEYS_TO_FILTERS_COUNT));
-        const formResultOffer = this.props.offer_search.offer_search.umowa.filter(createFilter(this.state.offerChoice, KEYS_TO_FILTERS_OFFER));
+        const formResultOffer = this.props.offer_search.offer_search.provision.filter(createFilter(this.state.offerChoice, KEYS_TO_FILTERS_OFFER));
 
         return (
 
@@ -229,7 +253,7 @@ class OfficeWorkCreate extends Component {
                                 </Col>
                                 <Col xs="6">
                                     <FormGroup>
-                                        <Input type="select" name="team" id="team">
+                                        <Input type="select" name="zespol" id="team" onChange={this.searchUpdatedTeams}>
                                             {formResultTeams.map(e => {
                                                         return(
                                                             <option value={e.team_id}>{e.team_name}</option>
@@ -244,8 +268,8 @@ class OfficeWorkCreate extends Component {
                             <Row>
                                 <Col xs="3">
                                     <FormGroup>
-                                        <select className="form-control" placeholder="Wyszukaj" size="9" onChange={this.PlannedTransactionChoice}>
-                                            <option value="0">Wybierz rodzaj</option>
+                                        <select className="form-control" name="planowana_transakcja" placeholder="Wyszukaj" size="9" onChange={this.PlannedTransactionChoice}>
+                                            <option value="0">Wybierz Rodzaj</option>
                                             <option value="1">Kupno</option>
                                             <option value="2">Sprzedaż</option>
                                             <option value="3">Najem</option>
@@ -264,14 +288,16 @@ class OfficeWorkCreate extends Component {
                                         placeholderText="Podaj datę"
                                         selected={this.state.startDate}
                                         onChange={this.handleChange}
+                                        name="date"
                                     />
                                 </Col>
                                 <Col xs="3">
                                     <FormGroup>
-                                        <Input type="text" className="form-control"  placeholder="Symbol" />
+                                        <Input type="text" className="form-control" name="symbol"  placeholder="Symbol" />
                                     </FormGroup>
                                 </Col>
                                 {formResultCount.map(this.countInput)}
+
                                 {formResultOffer.map(this.offerInput)}
                             </Row>
                         </CardBlock>
