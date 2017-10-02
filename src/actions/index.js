@@ -284,3 +284,39 @@ export function getUserCard() {
     }
 }
 
+
+export function createOfficeWork(
+        user,
+        team,
+        planned_transaction,
+        event,
+        offer,
+        presentation,
+        symbol,
+        provision,
+        date,
+        count
+){
+    return function(dispatch){
+        axios.post(`${ROOT_URL}/office_work/assistant/create`, {"office_work":{
+            "user": parseInt(user),
+            "team": parseInt(team),
+            "plannedTransaction": parseInt(planned_transaction),
+            "event": parseInt(event),
+            "offer": parseInt(offer),
+            "presentation": parseInt(presentation),
+            "symbol": symbol,
+            "provision": parseInt(provision),
+            "data": date.format('YYYY-MM-DD'),
+            "count": parseInt(count)
+        }})
+            .then(response => {
+                dispatch({type: AUTH_USER });
+                localStorage.setItem('token', response.data.token);
+                browserHistory.push('/office_work_create');
+            })
+            .catch(function(error){
+                dispatch(authError(error.response.data.error));
+            });
+    }
+}
