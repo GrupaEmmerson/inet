@@ -1,1 +1,1 @@
-export const API_URL = 'http://api.inet.dev';
+export const API_URL = 'https://inet-backend.emmerson.pl';
