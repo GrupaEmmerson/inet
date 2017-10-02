@@ -301,22 +301,7 @@ class OfficeWorkCreate extends Component {
         const formResultCount = this.props.offer_search.offer_search.counting.filter(createFilter(this.state.countChoice, KEYS_TO_FILTERS_COUNT));
         const formResultOffer = this.props.offer_search.offer_search.provision.filter(createFilter(this.state.offerChoice, KEYS_TO_FILTERS_OFFER));
 
-        const {handleSubmit, fields:
-            {
-                user,
-                team,
-                planned_transaction,
-                event,
-                offer,
-                presentation,
-                symbol,
-                provision,
-                date,
-                count
-            }
-        } = this.props;
-
-
+        const {handleSubmit} = this.props;
 
         return (
 
@@ -338,7 +323,7 @@ class OfficeWorkCreate extends Component {
                                 <Row>
                                     <Col xs="6">
                                         <FormGroup>
-                                            <Input type="select" name="user" id="user" value={this.state.userValue} onChange={this.searchUpdatedChoice}>
+                                            <Input type="select" name="user" id="user" value={this.state.userValue} onChange={this.searchUpdatedChoice} required>
                                                 {formResultUsers.map(e => {
                                                             return(
                                                                 <option value={e.id}>{e.name}</option>
@@ -352,7 +337,7 @@ class OfficeWorkCreate extends Component {
                                     </Col>
                                     <Col xs="6">
                                         <FormGroup>
-                                            <Input type="select" name="team" id="team" value={this.state.teamValue} onChange={this.searchUpdatedTeams}>
+                                            <Input type="select" name="team" id="team" value={this.state.teamValue} onChange={this.searchUpdatedTeams} required>
                                                 {formResultTeams.map(e => {
                                                         return(
                                                                 <option value={e.team_id}>{e.team_name}</option>

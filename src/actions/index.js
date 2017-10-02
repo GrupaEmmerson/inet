@@ -283,7 +283,9 @@ export function getUserCard() {
             });
     }
 }
-
+function commaToDot(stringNumber) {
+    return stringNumber.split(",").join(".");
+}
 
 export function createOfficeWork(
         user,
@@ -306,14 +308,16 @@ export function createOfficeWork(
             "offer": parseInt(offer),
             "presentation": parseInt(presentation),
             "symbol": symbol,
-            "provision": parseInt(provision),
+            "provision": parseFloat(commaToDot(provision)),
             "data": date.format('YYYY-MM-DD'),
             "count": parseInt(count)
         }})
             .then(response => {
-                dispatch({type: AUTH_USER });
-                localStorage.setItem('token', response.data.token);
-                browserHistory.push('/office_work_create');
+                if(response.status === 201){
+
+                    browserHistory.push('/office_work_create');
+
+                }
             })
             .catch(function(error){
                 dispatch(authError(error.response.data.error));
