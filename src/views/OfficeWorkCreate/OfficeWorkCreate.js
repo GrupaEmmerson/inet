@@ -140,15 +140,6 @@ class OfficeWorkCreate extends Component {
         if(!this.props.users){
             return <div>Loading...</div>
         }
-        console.log(this.props);
-        console.log(this.state);
-
-        const formResultUsers = this.props.users.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
-        const formResultTeams = this.props.users.teams.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS_TEAMS));
-        const formResultTransaction = this.props.offer_search.offer_search.planned_transaction.filter(createFilter(this.state.plannedTransactionChoices, KEYS_TO_FILTERSC_PLANNED));
-        const formResultEvent = this.props.offer_search.offer_search.event.filter(createFilter(this.state.eventTransactionChoice, KEYS_TO_FILTERSC_EVENT));
-        const formResultCount = this.props.offer_search.offer_search.counting.filter(createFilter(this.state.countChoice, KEYS_TO_FILTERS_COUNT));
-        const formResultOffer = this.props.offer_search.offer_search.provision.filter(createFilter(this.state.offerChoice, KEYS_TO_FILTERS_OFFER));
 
         const {
             handleSubmit,
@@ -165,6 +156,14 @@ class OfficeWorkCreate extends Component {
                 count
             }
         } = this.props;
+
+        const formResultUsers = this.props.users.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+        const formResultTeams = this.props.users.teams.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS_TEAMS));
+        const formResultTransaction = this.props.offer_search.offer_search.planned_transaction.filter(createFilter(this.state.plannedTransactionChoices, KEYS_TO_FILTERSC_PLANNED));
+        const formResultEvent = this.props.offer_search.offer_search.event.filter(createFilter(this.state.eventTransactionChoice, KEYS_TO_FILTERSC_EVENT));
+        const formResultCount = this.props.offer_search.offer_search.counting.filter(createFilter(this.state.countChoice, KEYS_TO_FILTERS_COUNT));
+        const formResultOffer = this.props.offer_search.offer_search.provision.filter(createFilter(this.state.offerChoice, KEYS_TO_FILTERS_OFFER));
+
         const renderDateTimePicker = ({ input: { onChange, value, className, placeholderText }, showTime }) =>
             <DatePicker
                 className={className}
@@ -358,6 +357,11 @@ function mapStateToProps(state){
         offer_search: state.offer_search.offer_search
     }
 }
+OfficeWorkCreate.contextTypes = {
+    router: function () {
+        return React.PropTypes.object.isRequired;
+    }
+};
 
 OfficeWorkCreate = connect(
     mapStateToProps,

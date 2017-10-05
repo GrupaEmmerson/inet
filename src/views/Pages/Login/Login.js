@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../../actions';
+import { connect } from 'react-redux';
 import {Container, Row, Col, CardGroup, Card, CardBlock, Button, Input, InputGroup, InputGroupAddon} from "reactstrap";
 class Login extends Component{
 
     componentWillMount() {
         if (this.props.authenticated) {
+            console.log(this.history);
             this.context.router.history.push('/mainpage');
         }
     }
@@ -97,14 +99,17 @@ class Login extends Component{
 function mapStateToProps(state){
     return { errorMessage: state.auth.error, authenticated: state.auth.authenticated };
 }
+
 Login.contextTypes = {
     router: function () {
         return React.PropTypes.object.isRequired;
     }
 };
 
+Login = connect(mapStateToProps, actions)(Login);
+
 export default reduxForm({
     form: 'signin',
     fields: ['email', 'password']
-}, mapStateToProps, actions)(Login);
+})(Login);
 

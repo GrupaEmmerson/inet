@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter, Route, Switch} from 'react-router-dom';
-import {createBrowserHistory} from 'history';
+import { HashRouter, Route, Switch} from 'react-router-dom';
+import { createBrowserHistory as historyBrowser} from 'history';
 
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
@@ -34,7 +34,7 @@ if(token){
     //we need to update application state
     store.dispatch({type: AUTH_USER });
 }
-const history = createBrowserHistory();
+const history = historyBrowser();
 
 ReactDOM.render((
     <Provider store={store}>
