@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../../actions';
 import {Container, Row, Col, CardGroup, Card, CardBlock, Button, Input, InputGroup, InputGroupAddon} from "reactstrap";
 class Login extends Component{
@@ -9,15 +9,16 @@ class Login extends Component{
             this.context.router.history.push('/mainpage');
         }
     }
+
     componentWillUpdate(nextProps) {
         if (nextProps.authenticated) {
             this.context.router.history.push('/mainpage');
         }
     }
-    handleFormSubmit({email, password}){
-        this.props.signinUser({email, password});
-    }
 
+    handleFormSubmit({email, password}){
+        this.props.dispatch(actions.signinUser({email, password}));
+    }
 
     renderAlert(){
         if(this.props.errorMessage){
@@ -46,12 +47,25 @@ class Login extends Component{
                                         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                                             <InputGroup className="mb-3">
                                                 <InputGroupAddon><i className="icon-user"></i></InputGroupAddon>
-                                                <Input {...email} type="text" placeholder="Username"/>
+                                                <Field
+                                                    className="form-control"
+                                                    name="email"
+                                                    component="input"
+                                                    type="text"
+                                                    placeholder="Login"
+                                                />
                                             </InputGroup>
                                             <InputGroup className="mb-4">
                                                 <InputGroupAddon><i className="icon-lock"></i></InputGroupAddon>
-                                                <Input {...password} type="password" placeholder="Password"/>
+                                                <Field
+                                                    className="form-control"
+                                                    name="password"
+                                                    component="input"
+                                                    type="password"
+                                                    placeholder="Hasło"
+                                                />
                                             </InputGroup>
+                                            {this.renderAlert()}
                                             <Row>
                                                 <Col xs="6">
                                                     <Button color="primary" className="px-4" action="submit">Login</Button>
@@ -88,6 +102,7 @@ Login.contextTypes = {
         return React.PropTypes.object.isRequired;
     }
 };
+
 export default reduxForm({
     form: 'signin',
     fields: ['email', 'password']

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field, change as changeFieldValue } from 'redux-form';
 import * as actions from '../../actions';
+import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBlock, Form, FormGroup, Input, InputGroup, InputGroupAddon, Button } from "reactstrap";
 import SearchInput, {createFilter} from 'react-search-input';
 import DatePicker from 'react-datepicker';
@@ -14,17 +15,12 @@ const KEYS_TO_FILTERSC_EVENT = ['event_id', 'name'];
 const KEYS_TO_FILTERS_COUNT = ['count_id'];
 const KEYS_TO_FILTERS_OFFER = ['offer_id'];
 
+
 class OfficeWorkCreate extends Component {
 
-    componentWillMount(){
-        this.props.getUsersGroupByTeams();
-        this.props.getPoszukiwanieOferta();
-    }
-
     constructor () {
+
         super();
-        this.renderEventOptions = this.renderEventOptions.bind(this);
-        this.renderTransactionOptions = this.renderTransactionOptions.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.searchUpdated = this.searchUpdated.bind(this);
         this.searchUpdatedTeams = this.searchUpdatedTeams.bind(this);
@@ -32,30 +28,20 @@ class OfficeWorkCreate extends Component {
         this.eventTransactionChoice = this.eventTransactionChoice.bind(this);
         this.optionsResult = this.optionsResult.bind(this);
         this.PlannedTransactionChoice = this.PlannedTransactionChoice.bind(this);
-        this.countInput = this.countInput.bind(this);
-        this.offerInput = this.offerInput.bind(this);
-        this.offerTransactionChoice = this.offerTransactionChoice.bind(this);
-        this.presentationTransactionChoice = this.presentationTransactionChoice.bind(this);
-        this.symbolTransactionChoice = this.symbolTransactionChoice.bind(this);
-        this.countTransactionChoice = this.countTransactionChoice.bind(this);
-        this.provisionTransactionChoice = this.provisionTransactionChoice.bind(this);
         this.state = {
+
             searchTerm: '',
             plannedTransactionChoices: '0',
-            plannedTransactionValue: '0',
             eventTransactionChoice: '0',
-            eventTransactionValue: '0',
             countChoice: '0',
             offerChoice: '0',
-            startDate: moment(),
-            offerValue: '0',
-            presentationValue: '0',
-            countValue: '1',
-            symbolValue: '',
-            provisionValue: '',
-            userValue: '',
-            teamValue: '',
+            startDate: moment()
         };
+    }
+
+    componentWillMount(){
+        this.props.getPoszukiwanieOferta();
+        this.props.getUsersGroupByTeams();
     }
 
     get state () {
@@ -75,23 +61,15 @@ class OfficeWorkCreate extends Component {
     searchUpdated (term) {
         this.setState({ searchTerm: term });
         const formResultUsers = this.props.users.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
-        this.setUserValue(formResultUsers[0].id);
-        this.setTeamValue(formResultUsers[0].team_id);
+        this.props.dispatch(changeFieldValue("office_work", "user", formResultUsers[0].id));
+        this.props.dispatch(changeFieldValue("office_work", "team", formResultUsers[0].team_id));
 
     }
 
-    setUserValue(term){
-        this.setState({ userValue: term });
-    }
-
-    setTeamValue(term){
-        this.setState({ teamValue: term });
-    }
 
     searchUpdatedTeams (term) {
         if(!term.target)
         {
-            console.log(term);
             this.setState({ teamValue: term });
         }
         else
@@ -108,7 +86,6 @@ class OfficeWorkCreate extends Component {
     searchUpdatedChoice (term){
         if(!term.target)
         {
-            console.log(term);
             this.setState({ userValue: term });
         }
         else
@@ -126,45 +103,26 @@ class OfficeWorkCreate extends Component {
 
     PlannedTransactionChoice(term) {
         this.setState({ eventTransactionChoice: '0'});
-        this.setState({ eventTransactionValue: '0'});
         this.setState({ countChoice: '0'});
         this.setState({ offerChoice: '0'});
-        this.setState({ offerValue: '0'});
-        this.setState({ presentationValue: '0'});
+        this.props.dispatch(changeFieldValue("office_work", "event", null));
+        this.props.dispatch(changeFieldValue("office_work", "offer", null));
+        this.props.dispatch(changeFieldValue("office_work", "provision", null));
+        this.props.dispatch(changeFieldValue("office_work", "count", 1));
+        this.props.dispatch(changeFieldValue("office_work", "presentation", null));
         this.setState({ plannedTransactionChoices: term.target.value });
         this.setState({ plannedTransactionValue: term.target.value});
 
     }
 
     eventTransactionChoice(termP) {
-        this.setState({ offerValue: '0'});
-        this.setState({ presentationValue: '0'});
         this.setState({ eventTransactionChoice: termP.target.value });
-        this.setState({ eventTransactionValue: termP.target.value });
         this.setState({ countChoice: termP.target.value });
         this.setState({ offerChoice: termP.target.value });
-        this.setState({ countValue: '1' });
-        this.setState({ provisionValue: '' });
-    }
-
-    offerTransactionChoice(term){
-        this.setState({ offerValue: term.target.value});
-    }
-
-    presentationTransactionChoice(term){
-        this.setState({ presentationValue: term.target.value});
-    }
-
-    symbolTransactionChoice(term){
-        this.setState({ symbolValue: term.target.value});
-    }
-
-    countTransactionChoice(term){
-        this.setState({ countValue: term.target.value});
-    }
-
-    provisionTransactionChoice(term){
-        this.setState({ provisionValue: term.target.value });
+        this.props.dispatch(changeFieldValue("office_work", "offer", null));
+        this.props.dispatch(changeFieldValue("office_work", "provision", null));
+        this.props.dispatch(changeFieldValue("office_work", "count", 1));
+        this.props.dispatch(changeFieldValue("office_work", "presentation", null));
     }
 
     optionsResult(e)
@@ -174,126 +132,16 @@ class OfficeWorkCreate extends Component {
         );
     }
 
-    renderTransactionOptions(result){
-        if(!result){
-            return(<div> </div>);
-        }
-
-        return(
-            <Col xs="3">
-                <FormGroup>
-                    <select className="form-control" name={result.field_name} placeholder="Wyszukaj" size="9" value={this.state.eventTransactionValue} onChange={this.eventTransactionChoice}>
-                        {result.value.map(this.optionsResult)}
-                    </select>
-                </FormGroup>
-            </Col>
-        );
-
-    }
-
-    renderEventOptions(result){
-        if(!result){
-            return(<div> </div>);
-        }
-        if(result.field_name === 'offer'){
-            return(
-                <Col xs="3">
-                    <FormGroup>
-                        <select className="form-control" placeholder="Wyszukaj" size="9" name={result.field_name} value={this.state.offerValue} onChange={this.offerTransactionChoice}>
-                            {result.value.map(this.optionsResult)}
-                        </select>
-                    </FormGroup>
-                </Col>
-            );
-        }
-        else {
-            return(
-                <Col xs="3">
-                    <FormGroup>
-                        <select className="form-control" placeholder="Wyszukaj" size="9" name={result.field_name} value={this.state.presentationValue} onChange={this.presentationTransactionChoice}>
-                            {result.value.map(this.optionsResult)}
-                        </select>
-                    </FormGroup>
-                </Col>
-            );
-        }
-    }
-
-    countInput(result){
-            if(!result){
-                return(<div> </div>);
-            }
-
-
-            return(
-                <Col xs="3">
-                    <FormGroup row>
-                        <Col md="12">
-                            <InputGroup>
-                                <InputGroupAddon>Ilość prezentacji</InputGroupAddon>
-                                <Input type="select" className="form-control" name={result.field_name} value={this.state.countValue} onChange={this.countTransactionChoice}>
-                                    {result.value.map(e => {
-                                        return(
-                                            <option value={e.id}>{e.id}</option>
-                                        );
-                                    })}
-                                </Input>
-                            </InputGroup>
-                        </Col>
-                    </FormGroup>
-                </Col>
-            );
-    }
-
-    offerInput(result){
-        if(!result){
-            return (<div> </div>);
-        }
-        return(
-            <Col xs="3">
-                <FormGroup row>
-                    <Col md="12">
-                        <InputGroup>
-                            <Input type="text" className="form-control" placeholder="Prowizja" name={result.field_name} value={this.state.provisionValue} onChange={this.provisionTransactionChoice}/>
-                            <InputGroupAddon>%</InputGroupAddon>
-                        </InputGroup>
-                    </Col>
-                </FormGroup>
-            </Col>
-        );
-    }
-
-    handleFormSubmit(){
-
-        const user = this.state.userValue;
-        const team = this.state.teamValue;
-        const planned_transaction = this.state.plannedTransactionValue;
-        const event = this.state.eventTransactionValue;
-        const offer = this.state.offerValue;
-        const presentation = this.state.presentationValue;
-        const symbol = this.state.symbolValue;
-        const provision = this.state.provisionValue;
-        const date = this.state.startDate;
-        const count = this.state.countValue;
-
-        this.props.createOfficeWork(
-            user,
-            team,
-            planned_transaction,
-            event,
-            offer,
-            presentation,
-            symbol,
-            provision,
-            date,
-            count
-        );
+    handleFormSubmit(formProps){
+       this.props.dispatch(actions.createOfficeWork(formProps))
     }
 
     render() {
         if(!this.props.users){
             return <div>Loading...</div>
         }
+        console.log(this.props);
+        console.log(this.state);
 
         const formResultUsers = this.props.users.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
         const formResultTeams = this.props.users.teams.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS_TEAMS));
@@ -302,7 +150,29 @@ class OfficeWorkCreate extends Component {
         const formResultCount = this.props.offer_search.offer_search.counting.filter(createFilter(this.state.countChoice, KEYS_TO_FILTERS_COUNT));
         const formResultOffer = this.props.offer_search.offer_search.provision.filter(createFilter(this.state.offerChoice, KEYS_TO_FILTERS_OFFER));
 
-        const {handleSubmit} = this.props;
+        const {
+            handleSubmit,
+            fields:{
+                user,
+                team,
+                plannedTransaction,
+                event,
+                offer,
+                presentation,
+                symbol,
+                provision,
+                date,
+                count
+            }
+        } = this.props;
+        const renderDateTimePicker = ({ input: { onChange, value, className, placeholderText }, showTime }) =>
+            <DatePicker
+                className={className}
+                onChange={onChange}
+                dateFormat="YYYY-MM-DD"
+                value={!value ? placeholderText : new Date(value)}
+                selected={!value ? placeholderText : value}
+            />;
 
         return (
 
@@ -324,7 +194,7 @@ class OfficeWorkCreate extends Component {
                                 <Row>
                                     <Col xs="6">
                                         <FormGroup>
-                                            <Input type="select" name="user" id="user" value={this.state.userValue} onChange={this.searchUpdatedChoice} required>
+                                            <Field component="select" name="user" className="form-control" placeholder="Wyszukaj">
                                                 {formResultUsers.map(e => {
                                                             return(
                                                                 <option value={e.id}>{e.name}</option>
@@ -333,12 +203,12 @@ class OfficeWorkCreate extends Component {
                                                     )
 
                                                 }
-                                            </Input>
+                                            </Field>
                                         </FormGroup>
                                     </Col>
                                     <Col xs="6">
                                         <FormGroup>
-                                            <Input type="select" name="team" id="team" value={this.state.teamValue} onChange={this.searchUpdatedTeams} required>
+                                            <Field component="select" name="team" className="form-control" placeholder="Wyszukaj">
                                                 {formResultTeams.map(e => {
                                                         return(
                                                                 <option value={e.team_id}>{e.team_name}</option>
@@ -346,47 +216,129 @@ class OfficeWorkCreate extends Component {
                                                         }
                                                     )
                                                 }
-                                            </Input>
+                                            </Field>
                                         </FormGroup>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col xs="3">
                                         <FormGroup>
-                                            <select className="form-control" name="plannedTransaction" placeholder="Wyszukaj" size="9" value={this.state.plannedTransactionValue} onChange={this.PlannedTransactionChoice}>
+                                            <Field component="select" className="form-control" name="plannedTransaction" placeholder="Wyszukaj" size="9" onChange={this.PlannedTransactionChoice}>
                                                 <option value="0">Wybierz Rodzaj</option>
                                                 <option value="1">Kupno</option>
                                                 <option value="2">Sprzedaż</option>
                                                 <option value="3">Najem</option>
                                                 <option value="4">Wynajem</option>
-                                            </select>
+                                            </Field>
                                         </FormGroup>
                                     </Col>
-                                    {formResultTransaction.map(this.renderTransactionOptions)}
 
-                                    {formResultEvent.map(this.renderEventOptions)}
+                                    {formResultTransaction.map( result => {
+
+                                        if(!result){
+                                            return(<div> </div>);
+                                        }
+
+                                        return(
+                                            <Col xs="3">
+                                                <FormGroup>
+                                                    <Field component="select" className="form-control" name="event" placeholder="Wyszukaj" size="9" onChange={this.eventTransactionChoice}>
+                                                        {result.value.map(this.optionsResult)}
+                                                    </Field>
+                                                </FormGroup>
+                                            </Col>
+                                        );
+
+                                    })}
+
+                                    {formResultEvent.map(result => {
+
+                                        if(!result){
+                                            return(<div> </div>);
+                                        }
+                                        if(result.field_name === 'offer'){
+                                            return(
+                                                <Col xs="3">
+                                                    <FormGroup>
+                                                        <Field component="select" className="form-control" placeholder="Wyszukaj" size="9" name="offer">
+                                                            {result.value.map(this.optionsResult)}
+                                                        </Field>
+                                                    </FormGroup>
+                                                </Col>
+                                            );
+                                        }
+                                        else {
+                                            return(
+                                                <Col xs="3">
+                                                    <FormGroup>
+                                                        <Field component="select" className="form-control" placeholder="Wyszukaj" size="9" name="presentation">
+                                                            {result.value.map(this.optionsResult)}
+                                                        </Field>
+                                                    </FormGroup>
+                                                </Col>
+                                            );
+                                        }
+                                    })}
                                 </Row>
                                 <Row>
                                     <Col xs="3">
-                                        <DatePicker
-                                            className='form-control'
+                                        <Field
+                                            name="date"
+                                            component={renderDateTimePicker}
+                                            className="form-control"
                                             placeholderText="Podaj datę"
-                                            locale="en-gb"
-                                            dateFormat="YYYY-MM-DD"
-                                            selected={this.state.startDate}
-                                            onChange={this.handleChange}
-                                            name="data"
                                         />
-
                                     </Col>
                                     <Col xs="3">
                                         <FormGroup>
-                                            <Input type="text" className="form-control" name="symbol" placeholder="Symbol" value={this.state.symbolValue} onChange={this.symbolTransactionChoice}/>
+                                            <Field component="input" type="text" className="form-control" placeholder="Symbol" name="symbol" />
                                         </FormGroup>
                                     </Col>
-                                    {formResultCount.map(this.countInput)}
+                                    {formResultCount.map(result => {
 
-                                    {formResultOffer.map(this.offerInput)}
+                                        if(!result){
+                                            return(<div> </div>);
+                                        }
+
+
+                                        return(
+                                            <Col xs="3">
+                                                <FormGroup row>
+                                                    <Col md="12">
+                                                        <InputGroup>
+                                                            <InputGroupAddon>Ilość prezentacji</InputGroupAddon>
+                                                            <Field component="select" className="form-control" placeholder="Wybierz" name="count">
+                                                                {result.value.map(e => {
+                                                                    return(
+                                                                        <option value={e.id}>{e.id}</option>
+                                                                    );
+                                                                })}
+                                                            </Field>
+                                                        </InputGroup>
+                                                    </Col>
+                                                </FormGroup>
+                                            </Col>
+                                        );
+                                    })}
+
+                                    {formResultOffer.map(result => {
+
+                                        if(!result){
+                                            return (<div> </div>);
+                                        }
+                                        return(
+                                            <Col xs="3">
+                                                <FormGroup row>
+                                                    <Col md="12">
+                                                        <InputGroup>
+                                                            <Field component="input" type="text" className="form-control" placeholder="Prowizja" name="provision" />
+                                                            <InputGroupAddon>%</InputGroupAddon>
+                                                        </InputGroup>
+                                                    </Col>
+                                                </FormGroup>
+                                            </Col>
+                                        );
+                                    })}
                                 </Row>
                                 <Col xs="6">
                                     <Button color="primary" className="px-4" action="submit">Zapisz</Button>
@@ -407,13 +359,24 @@ function mapStateToProps(state){
     }
 }
 
-OfficeWorkCreate.contextTypes = {
-    router: function () {
-        return React.PropTypes.object.isRequired;
-    }
-};
-export default reduxForm({
-    form: 'formOfficeWork',
-    fields: ['user', 'team', 'planned_transaction', 'event', 'offer', 'presentation', 'symbol', 'provision', 'date', 'count']
-}, mapStateToProps, actions)(OfficeWorkCreate);
+OfficeWorkCreate = connect(
+    mapStateToProps,
+    actions
+)(OfficeWorkCreate);
 
+export default OfficeWorkCreate = reduxForm({
+    form: 'office_work',
+    fields:
+        [
+            'user',
+            'team',
+            'plannedTransaction',
+            'event',
+            'offer',
+            'presentation',
+            'symbol',
+            'provision',
+            'date',
+            'count'
+        ]
+})(OfficeWorkCreate);

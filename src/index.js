@@ -8,11 +8,8 @@ import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
 // Styles
-// Import Font Awesome Icons Set
 import 'font-awesome/css/font-awesome.min.css';
-  // Import Simple Line Icons Set
 import 'simple-line-icons/css/simple-line-icons.css';
-// Import Main styles for this application
 import '../scss/style.scss'
 
 // Containers
@@ -30,7 +27,6 @@ import {AUTH_USER} from './actions/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
-
 const token = localStorage.getItem('token');
 //If we have a token, consider usert to be signed in.
 

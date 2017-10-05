@@ -287,10 +287,10 @@ function commaToDot(stringNumber) {
     return stringNumber.split(",").join(".");
 }
 
-export function createOfficeWork(
+export function createOfficeWork({
         user,
         team,
-        planned_transaction,
+        plannedTransaction,
         event,
         offer,
         presentation,
@@ -298,18 +298,18 @@ export function createOfficeWork(
         provision,
         date,
         count
-){
+}){
     return function(dispatch){
         axios.post(`${ROOT_URL}/office_work/assistant/create`, {"office_work":{
             "user": parseInt(user),
             "team": parseInt(team),
-            "plannedTransaction": parseInt(planned_transaction),
+            "plannedTransaction": parseInt(plannedTransaction),
             "event": parseInt(event),
             "offer": parseInt(offer),
             "presentation": parseInt(presentation),
             "symbol": symbol,
-            "provision": parseFloat(commaToDot(provision)),
-            "data": date.format('YYYY-MM-DD'),
+            "provision": provision ? parseFloat(commaToDot(provision)) : null,
+            "data": date ? date.format('YYYY-MM-DD') : null,
             "count": parseInt(count)
         }})
             .then(response => {
