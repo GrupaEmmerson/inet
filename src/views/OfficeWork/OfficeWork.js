@@ -31,7 +31,7 @@ import {
 } from "reactstrap";
 import { TablePagination } from 'react-pagination-table';
 
-const KEYS_TO_FILTERS = ['symbol', 'name', 'team_name', 'date', 'id'];
+const KEYS_TO_FILTERS = ['symbol', 'user', 'team_name', 'data', 'id', 'kind', 'event', 'plannedTransaction', 'offer', 'presentation'];
 
 class OfficeWork extends Component {
 
@@ -59,16 +59,19 @@ class OfficeWork extends Component {
         if(!this.props.office_work){
             return <div>Loading Office Work...</div>
         }
-        console.log(this.props.office_work.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS)));
-        const filteredEmails = this.props.office_work.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+        console.log(this.props.office_work.office_work.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS)));
+        const filteredEmails = this.props.office_work.office_work.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
         const Header = [
             "Imię i nazwisko",
             "Zespół",
-            "Rodzaj planowanej transakcji",
+            "Planowana Transakcja",
+            "Rodzaj",
             "Zdarzenie",
             "Umowa",
             "Prezentacja",
+            "Prowizja",
             "Symbol",
+            "Ilość",
             "Data",
             "Edytuj"
         ];
@@ -98,7 +101,7 @@ class OfficeWork extends Component {
                                     className="table-bordered table-striped table-condensed"
                                     headers={ Header }
                                     data={ filteredEmails }
-                                    columns="name.team_name.kind_for_transaction.poszukiwanie.oferta.umowa_o.symbol.date.edit"
+                                    columns="user.team_name.plannedTransaction.kind.event.offer.presentation.provision.symbol.count.data.edit"
                                     nextPageText="Następna"
                                     prePageText="Poprzednia"
                                     perPageItemCount={ 20 }
