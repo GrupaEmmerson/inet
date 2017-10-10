@@ -7,8 +7,10 @@ import SearchInput, {createFilter} from 'react-search-input';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+
 let testWeakMap = new WeakMap();
-const KEYS_TO_FILTERS = ['name', 'team_id', 'id'];
+const KEYS_TO_FILTERS = ['name', 'id'];
+const KEYS_TO_FILTERS_USER = ['id', 'name'];
 const KEYS_TO_FILTERS_TEAMS = ['users.name', 'team_name', 'team_id', 'users.id'];
 const KEYS_TO_FILTERSC_PLANNED = ['planned_id', 'name'];
 const KEYS_TO_FILTERSC_EVENT = ['event_id', 'name'];
@@ -23,13 +25,10 @@ class OfficeWorkCreate extends Component {
         super();
         this.handleChange = this.handleChange.bind(this);
         this.searchUpdated = this.searchUpdated.bind(this);
-        this.searchUpdatedTeams = this.searchUpdatedTeams.bind(this);
-        this.searchUpdatedChoice = this.searchUpdatedChoice.bind(this);
+        this.selectUser = this.selectUser.bind(this);
         this.eventTransactionChoice = this.eventTransactionChoice.bind(this);
-        this.optionsResult = this.optionsResult.bind(this);
         this.PlannedTransactionChoice = this.PlannedTransactionChoice.bind(this);
         this.state = {
-
             searchTerm: '',
             plannedTransactionChoices: '0',
             eventTransactionChoice: '0',
@@ -42,6 +41,12 @@ class OfficeWorkCreate extends Component {
     componentWillMount(){
         this.props.getPoszukiwanieOferta();
         this.props.getUsersGroupByTeams();
+    }
+
+    componentWillUpdate(state){
+        if(state.submitSucceeded && state.created){
+            this.context.router.history.push('/office_work_create');
+        }
     }
 
     get state () {
@@ -66,39 +71,15 @@ class OfficeWorkCreate extends Component {
 
     }
 
+    selectUser(term){
+        let first = this.state.searchTerm;
+        let second = first.concat(' ');
+        let third = second.concat(term.target.value);
+        this.setState({ searchTerm: third});
 
-    searchUpdatedTeams (term) {
-        if(!term.target)
-        {
-            this.setState({ teamValue: term });
-        }
-        else
-        {
-            const str1 = this.state.searchTerm;
-            const str2 = ' ';
-            const str3 = str1.concat(str2);
-            this.setState({ searchTerm: str3.concat(term.target.value) });
-            this.setState({ teamValue: term.target.value });
-
-        }
-    }
-
-    searchUpdatedChoice (term){
-        if(!term.target)
-        {
-            this.setState({ userValue: term });
-        }
-        else
-        {
-            const str1 = this.state.searchTerm;
-            const str2 = ' ';
-            const str3 = str1.concat(str2);
-            const str4 = str3.concat(term.target.value);
-            const str5 = ' ';
-
-            this.setState({ searchTerm: str4.concat(str5) });
-            this.setState({ userValue: term.target.value });
-        }
+        const formResultUsers = this.props.users.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS_USER));
+        this.props.dispatch(changeFieldValue("office_work", "user", formResultUsers[0].id));
+        this.props.dispatch(changeFieldValue("office_work", "team", formResultUsers[0].team_id));
     }
 
     PlannedTransactionChoice(term) {
@@ -125,15 +106,8 @@ class OfficeWorkCreate extends Component {
         this.props.dispatch(changeFieldValue("office_work", "presentation", null));
     }
 
-    optionsResult(e)
-    {
-        return(
-            <option value={e.id}>{e.name}</option>
-        );
-    }
-
     handleFormSubmit(formProps){
-       this.props.dispatch(actions.createOfficeWork(formProps))
+       this.props.dispatch(actions.createOfficeWork(formProps));
     }
 
     render() {
@@ -157,12 +131,14 @@ class OfficeWorkCreate extends Component {
             }
         } = this.props;
 
+
         const formResultUsers = this.props.users.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
         const formResultTeams = this.props.users.teams.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS_TEAMS));
         const formResultTransaction = this.props.offer_search.offer_search.planned_transaction.filter(createFilter(this.state.plannedTransactionChoices, KEYS_TO_FILTERSC_PLANNED));
         const formResultEvent = this.props.offer_search.offer_search.event.filter(createFilter(this.state.eventTransactionChoice, KEYS_TO_FILTERSC_EVENT));
         const formResultCount = this.props.offer_search.offer_search.counting.filter(createFilter(this.state.countChoice, KEYS_TO_FILTERS_COUNT));
         const formResultOffer = this.props.offer_search.offer_search.provision.filter(createFilter(this.state.offerChoice, KEYS_TO_FILTERS_OFFER));
+        console.log(this.state.searchTerm);
 
         const renderDateTimePicker = ({ input: { onChange, value, className, placeholderText }, showTime }) =>
             <DatePicker
@@ -173,8 +149,16 @@ class OfficeWorkCreate extends Component {
                 selected={!value ? placeholderText : value}
             />;
 
-        return (
+        const renderSelect = ({ input, label, type, meta: { touched, error }, children, className }) => (
+                <div>
+                    <select {...input} className={className}>
+                        {children}
+                    </select>
+                    {touched && error && <span>{error}</span>}
+                </div>
+        );
 
+        return (
             <div className="animated fadeIn">
                 <Col xs="12" sm="12">
                     <Card>
@@ -193,7 +177,7 @@ class OfficeWorkCreate extends Component {
                                 <Row>
                                     <Col xs="6">
                                         <FormGroup>
-                                            <Field component="select" name="user" className="form-control" placeholder="Wyszukaj">
+                                            <Field component={renderSelect} name="user" required="required" className="form-control" placeholder="Wyszukaj" onChange={this.selectUser}>
                                                 {formResultUsers.map(e => {
                                                             return(
                                                                 <option value={e.id}>{e.name}</option>
@@ -207,7 +191,8 @@ class OfficeWorkCreate extends Component {
                                     </Col>
                                     <Col xs="6">
                                         <FormGroup>
-                                            <Field component="select" name="team" className="form-control" placeholder="Wyszukaj">
+                                            <Field component={renderSelect} name="team" className="form-control" placeholder="Wyszukaj" required>
+
                                                 {formResultTeams.map(e => {
                                                         return(
                                                                 <option value={e.team_id}>{e.team_name}</option>
@@ -222,7 +207,7 @@ class OfficeWorkCreate extends Component {
                                 <Row>
                                     <Col xs="3">
                                         <FormGroup>
-                                            <Field component="select" className="form-control" name="plannedTransaction" placeholder="Wyszukaj" size="9" onChange={this.PlannedTransactionChoice}>
+                                            <Field component="select" className="form-control" name="plannedTransaction" placeholder="Wyszukaj" size="9" onChange={this.PlannedTransactionChoice} required>
                                                 <option value="0">Wybierz Rodzaj</option>
                                                 <option value="1">Kupno</option>
                                                 <option value="2">Sprzedaż</option>
@@ -241,8 +226,12 @@ class OfficeWorkCreate extends Component {
                                         return(
                                             <Col xs="3">
                                                 <FormGroup>
-                                                    <Field component="select" className="form-control" name="event" placeholder="Wyszukaj" size="9" onChange={this.eventTransactionChoice}>
-                                                        {result.value.map(this.optionsResult)}
+                                                    <Field component="select" className="form-control" name="event" placeholder="Wyszukaj" size="9" onChange={this.eventTransactionChoice} required>
+                                                        {result.value.map(e => {
+                                                            return(
+                                                                <option value={e.id}>{e.name}</option>
+                                                            );
+                                                        })}
                                                     </Field>
                                                 </FormGroup>
                                             </Col>
@@ -260,7 +249,11 @@ class OfficeWorkCreate extends Component {
                                                 <Col xs="3">
                                                     <FormGroup>
                                                         <Field component="select" className="form-control" placeholder="Wyszukaj" size="9" name="offer">
-                                                            {result.value.map(this.optionsResult)}
+                                                            {result.value.map(e => {
+                                                                return(
+                                                                    <option value={e.id}>{e.name}</option>
+                                                                );
+                                                            })}
                                                         </Field>
                                                     </FormGroup>
                                                 </Col>
@@ -271,7 +264,11 @@ class OfficeWorkCreate extends Component {
                                                 <Col xs="3">
                                                     <FormGroup>
                                                         <Field component="select" className="form-control" placeholder="Wyszukaj" size="9" name="presentation">
-                                                            {result.value.map(this.optionsResult)}
+                                                            {result.value.map(e => {
+                                                                return(
+                                                                    <option value={e.id}>{e.name}</option>
+                                                                );
+                                                            })}
                                                         </Field>
                                                     </FormGroup>
                                                 </Col>
@@ -290,7 +287,7 @@ class OfficeWorkCreate extends Component {
                                     </Col>
                                     <Col xs="3">
                                         <FormGroup>
-                                            <Field component="input" type="text" className="form-control" placeholder="Symbol" name="symbol" />
+                                            <Field component="input" type="text" className="form-control" placeholder="Symbol" name="symbol" required/>
                                         </FormGroup>
                                     </Col>
                                     {formResultCount.map(result => {
@@ -306,7 +303,7 @@ class OfficeWorkCreate extends Component {
                                                     <Col md="12">
                                                         <InputGroup>
                                                             <InputGroupAddon>Ilość prezentacji</InputGroupAddon>
-                                                            <Field component="select" className="form-control" placeholder="Wybierz" name="count">
+                                                            <Field component="select" className="form-control" placeholder="Wybierz" name="count" required>
                                                                 {result.value.map(e => {
                                                                     return(
                                                                         <option value={e.id}>{e.id}</option>
@@ -330,7 +327,7 @@ class OfficeWorkCreate extends Component {
                                                 <FormGroup row>
                                                     <Col md="12">
                                                         <InputGroup>
-                                                            <Field component="input" type="text" className="form-control" placeholder="Prowizja" name="provision" />
+                                                            <Field component="input" type="text" className="form-control" placeholder="Prowizja" name="provision" required/>
                                                             <InputGroupAddon>%</InputGroupAddon>
                                                         </InputGroup>
                                                     </Col>
@@ -354,7 +351,8 @@ class OfficeWorkCreate extends Component {
 function mapStateToProps(state){
     return {
         users: state.users.users,
-        offer_search: state.offer_search.offer_search
+        offer_search: state.offer_search.offer_search,
+        created: state.created.created
     }
 }
 OfficeWorkCreate.contextTypes = {

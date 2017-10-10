@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, GET_USERS, GET_OFFICE_WORK, GET_MY_DETAIL,
-    GET_NEWS_LATEST, GET_HELPDESK_CASES, GET_USER_CARD, GET_POSZUKIWANIE_OFERTA } from './types';
+    GET_NEWS_LATEST, GET_HELPDESK_CASES, GET_USER_CARD, GET_POSZUKIWANIE_OFERTA, STATUS_CREATE, STATUS_NOT_CREATE } from './types';
 import {API_URL} from '../Config/';
 const ROOT_URL = API_URL;
 const topEmm = [];
@@ -322,14 +322,13 @@ export function createOfficeWork(
             "count": parseInt(count)
         }})
         .then(response => {
-            if(response.status == `201`){
-
-                this.context.router.history.push("/office_work_create");
-
+            if(response.status === 201){
+                dispatch({type: STATUS_CREATE, payload: true});
             }
         })
         .catch(function(error){
-                dispatch(authError(error.response.data.error));
+            dispatch({type: STATUS_NOT_CREATE, payload: false});
+            dispatch(authError(error.response.data.error));
         });
     }
 }

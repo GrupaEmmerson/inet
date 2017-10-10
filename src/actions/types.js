@@ -11,3 +11,5 @@ export const GET_NEWS_LATEST = 'get_news_latest';
 export const GET_USER_CARD = 'get_users_card';
 export const GET_HELPDESK_CASES = 'get_helpdesk_cases';
 export const GET_POSZUKIWANIE_OFERTA = 'get_offer_search';
+export const STATUS_CREATE = 'status_create';
+export const STATUS_NOT_CREATE = 'status_not_create';
