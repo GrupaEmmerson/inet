@@ -447,10 +447,10 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.getTopOfferAdviser(user_card, 1)}
+                                                { this.getTopOfferAdviser(user_card, 2)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.getTopOfferAdviser(user_card, 2)}
+                                                { this.getTopOfferAdviser(user_card, 1)}
                                             </TabPane>
                                             <TabPane tabId="3">
                                                 { this.getTopOfferAdviser(user_card, 0)}
@@ -489,10 +489,10 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.getTopOfferAdviser(user_card, 4)}
+                                                { this.getTopOfferAdviser(user_card, 5)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.getTopOfferAdviser(user_card, 5)}
+                                                { this.getTopOfferAdviser(user_card, 4)}
                                             </TabPane>
                                             <TabPane tabId="3">
                                                 { this.getTopOfferAdviser(user_card, 3)}
