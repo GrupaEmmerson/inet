@@ -123,9 +123,11 @@ class TopEmmerson extends Component {
 
     render() {
         const {user_card} = this.props;
-        if(!user_card){
-            return(<div>Loading...</div>);
-        }
+
+        // if(!user_card){
+        //     return(<div>Loading...</div>);
+        // }
+
         return (
             <Row style={stylemain}>
                 <Col xs="12" md="12" className="mb-4" style={stylemain}>
@@ -450,10 +452,10 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferAdvicer(user_card, 1)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.getTopOfferAdvicer(user_card, 2)}
+                                                { this.getTopOfferAdvicer(user_card, 0)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdvicer(user_card, 0)}
+                                                { this.getTopOfferAdvicer(user_card, 2)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -489,10 +491,10 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.getTopOfferAdvicer(user_card, 4)}
+                                                { this.getTopOfferAdvicer(user_card, 5)}
                                             </TabPane>
                                             <TabPane tabId="2">
-                                                { this.getTopOfferAdvicer(user_card, 5)}
+                                                { this.getTopOfferAdvicer(user_card, 4)}
                                             </TabPane>
                                             <TabPane tabId="3">
                                                 { this.getTopOfferAdvicer(user_card, 3)}
