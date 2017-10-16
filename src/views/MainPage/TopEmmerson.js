@@ -51,7 +51,7 @@ class TopEmmerson extends Component {
         }
     }
 
-    getTopOfferAdviser (adviser, key){
+    getTopOfferAdvicer (adviser, key){
 
         const advicerBusinessCard = adviser[key].businessCard;
         if(!adviser){
@@ -194,7 +194,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 14)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdviser(user_card, 13)}
+                                                { this.getTopOfferAdvicer(user_card, 13)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -234,7 +234,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 17)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdviser(user_card, 16)}
+                                                { this.getTopOfferAdvicer(user_card, 16)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -277,7 +277,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 20)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdviser(user_card, 19)}
+                                                { this.getTopOfferAdvicer(user_card, 19)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -317,7 +317,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 23)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdviser(user_card, 22)}
+                                                { this.getTopOfferAdvicer(user_card, 22)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -363,7 +363,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 8)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdviser(user_card, 7)}
+                                                { this.getTopOfferAdvicer(user_card, 7)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -405,7 +405,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 11)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdviser(user_card, 10)}
+                                                { this.getTopOfferAdvicer(user_card, 10)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -445,7 +445,7 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.getTopOfferAdviser(user_card, 1)}
+                                                { this.getTopOfferAdvicer(user_card, 1)}
                                             </TabPane>
                                             <TabPane tabId="2">
                                                 { this.getTopOfferAdvicer(user_card, 0)}
