@@ -11,6 +11,7 @@ import OfficeWork from '../../views/OfficeWork/';
 import OfficeWorkCreate from '../../views/OfficeWorkCreate/';
 import WorkersList from '../../views/WorkersList/';
 import Helpdesk from '../../views/HelpdeskFilingCase/';
+import News from '../../views/News'
 
 import RequireAuth from '../../components/auth/require_auth';
 
@@ -30,6 +31,7 @@ class Full extends Component {
                 <Route path="/office_work_create" name="Praca Operacyjna Wprowadzanie" component={RequireAuth(OfficeWorkCreate)}/>
                 <Route path="/workers_list" name="Lista Pracowników" component={RequireAuth(WorkersList)}/>
                 <Route path="/helpdesk" name="Lista Pracowników" component={RequireAuth(Helpdesk)}/>
+                <Route path="/news" name="Nowości" component={RequireAuth(News)}/>
                 <Redirect from="/" to="/login"/>
               </Switch>
             </Container>

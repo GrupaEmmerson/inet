@@ -60,11 +60,11 @@ class WorkersList extends Component{
         this.setState({ searchTerm: term });
     }
     checkPhotoUrl(url){
-        if (url =='0') url='/images/icons/1.png';
+        if (url == '0') url='https://inet.emmerson.pl/images/icons/1.png';
         return url
     }
 
-    getUserJob(x){
+    getUserJob(y, x){
         return(
             <span>
                 <Row>
@@ -73,18 +73,18 @@ class WorkersList extends Component{
                             <Col xs="12" lg="6">
                                 <Row>
                                     <Col xs="5">Stanowisko:</Col><Col xs="7">{x.jobTitle}</Col>
-                                    <Col xs="5">Firma:</Col><Col xs="7">{x.companyName}</Col>
+                                    <Col xs="5">Firma:</Col><Col xs="7">{x.company}</Col>
                                     <Col xs="5">Dział:</Col><Col xs="7">-</Col>
-                                    <Col xs="5">Oddział:</Col><Col xs="7">{x.branchName}</Col>
-                                    <Col xs="5">Zespół:</Col><Col xs="7">{x.teamName}</Col>
+                                    <Col xs="5">Oddział:</Col><Col xs="7">-</Col>
+                                    <Col xs="5">Zespół:</Col><Col xs="7">{x.team}</Col>
                                 </Row>
                             </Col>
                             <Col xs="12" lg="6">
                                 <Row>
-                                    {/*<Col xs="5">Tel. komórkowy:</Col><Col xs="7">{users.mobilePhoneNumber}</Col>*/}
-                                    {/*<Col xs="5">Tel. wewnętrzny:</Col><Col xs="7">{users.internalPhoneNumber}</Col>*/}
+                                    <Col xs="5">Tel. komórkowy:</Col><Col xs="7">{y.mobilePhoneNumber}</Col>
+                                    <Col xs="5">Tel. wewnętrzny:</Col><Col xs="7">{y.internalPhoneNumber}</Col>
                                     <Col xs="5">E-mail:</Col><Col xs="7">{x.email}</Col>
-                                    {/*<Col xs="5">Tel. stacjonarny:</Col><Col xs="7">{users.phoneNumber} </Col>*/}
+                                    <Col xs="5">Tel. stacjonarny:</Col><Col xs="7">{y.phoneNumber} </Col>
                                 </Row>
                             </Col>
                         </Row>
@@ -99,8 +99,7 @@ class WorkersList extends Component{
         if(!this.props.users){
             return <div>Loading...</div>
         }
-        console.log(this.props.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS)));
-        const filteredUsers = this.props.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+        const filteredUsers = this.props.users.users.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
         const filteredUsersSmall = filteredUsers.slice(0,20);
         return (
             <div className="animated fadeIn">
@@ -125,9 +124,9 @@ class WorkersList extends Component{
                                             </CardHeader>
                                             <CardBlock className="card-body">
                                                 <Row>
-                                                    <Col xs="12" sm="2"><img src={! users  ?  'https://inet.emmerson.pl/images/icons/1.png' : users.photoUrl ? 'https://inet.emmerson.pl/'+ this.checkPhotoUrl(users.photoUrl) :  'https://inet.emmerson.pl/images/icons/1.png'} style={stylePhoto} alt=""/></Col>
+                                                    <Col xs="12" sm="2"><img src={! users.photoUrl  ?  'https://inet.emmerson.pl/images/icons/1.png' : users.photoUrl ? this.checkPhotoUrl(users.photoUrl) :  'https://inet.emmerson.pl/images/icons/1.png'} style={stylePhoto} alt=""/></Col>
                                                     <Col xs="12" sm="10">
-                                                        { users.profiles ? users.profiles.map(this.getUserJob) : ''}
+                                                        {users.profile.map(this.getUserJob.bind(this, users))}
                                                     </Col>
                                                 </Row>
                                             </CardBlock>

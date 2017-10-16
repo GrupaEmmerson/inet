@@ -3,13 +3,13 @@ import { Row, Col, TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap
 import classnames from "classnames";
 import PropTypes from 'prop-types';
 
-const stylemain = {textAlign: 'center', fontFamily: 'Verdana, Arial,  sans-serif'};
-const stylesecond = {textAlign: 'left', float: 'left', lineHeight: '1.15'};
+const styleMain = {textAlign: 'center', fontFamily: 'Verdana, Arial,  sans-serif'};
+const styleSecond = {textAlign: 'left', float: 'left', lineHeight: '1.15'};
 const styleBlackText = {color: 'black'};
 const stylePhoto = {height: '146px', float: 'right'};
 const styleRedText = {color: 'red'};
 const styleTopTitle = {fontSize: '23'};
-const styleTopSecendary = {fontSize: '13'};
+const styleTopSecondary = {fontSize: '13'};
 const propTypes = {
     name: PropTypes.string,
     team: PropTypes.string,
@@ -51,23 +51,23 @@ class TopEmmerson extends Component {
         }
     }
 
-    getTopOfferAdvicer (advicer, key){
+    getTopOfferAdviser (adviser, key){
 
-        const advicerBusinessCard = advicer[key].businessCard;
-        if(!advicer){
+        const advicerBusinessCard = adviser[key].businessCard;
+        if(!adviser){
             return(<div>Loading...</div>);
         }
         return(
             <span>
                 <Row>
-                <Col xs="11" style={stylesecond}>
+                <Col xs="11" style={styleSecond}>
                     <h1><br/></h1>
                     <table>
                         <tbody>
                         <tr><td ><span style={styleTopTitle}><b>{advicerBusinessCard.name} </b></span></td></tr>
-                        <tr><td><span style={styleTopSecendary}><b>ZESPÓŁ {advicerBusinessCard.profiles[0].team} </b></span></td></tr>
-                        <tr><td><span style={styleTopSecendary}><b>-DZIAŁ ? </b></span></td></tr>
-                        <tr><td><span style={styleTopSecendary}><b>STANOWISKO {advicerBusinessCard.profiles[0].jobTitle} </b></span></td></tr>
+                        <tr><td><span style={styleTopSecondary}><b>ZESPÓŁ {advicerBusinessCard.profiles[0].team} </b></span></td></tr>
+                        <tr><td><span style={styleTopSecondary}><b>-DZIAŁ ? </b></span></td></tr>
+                        <tr><td><span style={styleTopSecondary}><b>STANOWISKO {advicerBusinessCard.profiles[0].jobTitle} </b></span></td></tr>
                         <tr><td> <br/></td></tr>
                         <tr><td> {advicerBusinessCard.profiles[0].company} <br/>
                             {advicerBusinessCard.profiles[0].branchAddress}, {advicerBusinessCard.profiles[0].branchZipCode} {advicerBusinessCard.profiles[0].branchCity}  <br/>
@@ -86,36 +86,36 @@ class TopEmmerson extends Component {
         );
     }
 
-    getTopOfferTeam (advicer, key){
+    getTopOfferTeam (adviser, key){
 
-        const advicerBusinessCard = advicer[key].businessCard;
-        if(!advicer){
+        const adviserBusinessCard = adviser[key].businessCard;
+        if(!adviser){
             return(<div>Loading...</div>);
         }
         return(
             <span>
-                <Row>
-                <Col xs="11" style={stylesecond}>
-                    <h1><br/></h1>
-                    <table>
-                        <tbody>
-                        <tr><td ><span style={styleTopTitle}><b>{advicerBusinessCard.name} </b></span></td></tr>
-                        <tr><td><span style={styleTopSecendary}><b>ZESPÓŁ {advicerBusinessCard.profiles[0].team} </b></span></td></tr>
-                        <tr><td><span style={styleTopSecendary}><b>-DZIAŁ ? </b></span></td></tr>
-                        <tr><td><span style={styleTopSecendary}><b>STANOWISKO {advicerBusinessCard.profiles[0].jobTitle} </b></span></td></tr>
-                        <tr><td> <br/></td></tr>
-                        <tr><td> {advicerBusinessCard.profiles[0].company} <br/>
-                            {advicerBusinessCard.profiles[0].branchAddress}, {advicerBusinessCard.profiles[0].branchZipCode} {advicerBusinessCard.profiles[0].branchCity}<br/>
-                            tel. kom. {advicerBusinessCard.mobile} <br/>
-                            tel. {advicerBusinessCard.phone} <br/>
-                            e-mail: {advicerBusinessCard.profiles[0].email} <br/>
-                        <span style={styleRedText}><b>{advicerBusinessCard.profiles[0].companyUrl}</b></span></td></tr>
-                        </tbody>
-                    </table>
-                </Col>
-                <Col xs="1">
-                    <img src={! advicerBusinessCard.photo  ?  'https://inet.emmerson.pl/images/icons/1.png' : advicerBusinessCard.photo ? 'https://inet.emmerson.pl/'+ advicerBusinessCard.photo :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} />
-                </Col>
+                <Row className="flex-row-reverse">
+                    <Col>
+                        <img src={! adviserBusinessCard.photo  ?  'https://inet.emmerson.pl/images/icons/1.png' : adviserBusinessCard.photo ? 'https://inet.emmerson.pl/'+ adviserBusinessCard.photo :  'https://inet.emmerson.pl/images/icons/1.png'} alt="Brak"  style={stylePhoto} />
+                    </Col>
+                    <Col  style={styleSecond}>
+                        <h1><br/></h1>
+                        <table>
+                            <tbody>
+                            <tr><td ><span style={styleTopTitle}><b>{adviserBusinessCard.name} </b></span></td></tr>
+                            <tr><td><span style={styleTopSecondary}><b>ZESPÓŁ {adviserBusinessCard.profiles[0].team} </b></span></td></tr>
+                            <tr><td><span style={styleTopSecondary}><b>-DZIAŁ ? </b></span></td></tr>
+                            <tr><td><span style={styleTopSecondary}><b>STANOWISKO {adviserBusinessCard.profiles[0].jobTitle} </b></span></td></tr>
+                            <tr><td> <br/></td></tr>
+                            <tr><td> {adviserBusinessCard.profiles[0].company} <br/>
+                                {adviserBusinessCard.profiles[0].branchAddress}, {adviserBusinessCard.profiles[0].branchZipCode} {adviserBusinessCard.profiles[0].branchCity}<br/>
+                                tel. kom. {adviserBusinessCard.mobile} <br/>
+                                tel. {adviserBusinessCard.phone} <br/>
+                                e-mail: {adviserBusinessCard.profiles[0].email} <br/>
+                            <span style={styleRedText}><b>{adviserBusinessCard.profiles[0].companyUrl}</b></span></td></tr>
+                            </tbody>
+                        </table>
+                    </Col>
                 </Row>
             </span>
         );
@@ -124,13 +124,9 @@ class TopEmmerson extends Component {
     render() {
         const {user_card} = this.props;
 
-        // if(!user_card){
-        //     return(<div>Loading...</div>);
-        // }
-
         return (
-            <Row style={stylemain}>
-                <Col xs="12" md="12" className="mb-4" style={stylemain}>
+            <Row style={styleMain}>
+                <Col xs="12" md="12" className="mb-4" style={styleMain}>
                     <Nav tabs>
                         <NavItem>
                             <NavLink
@@ -198,7 +194,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 14)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdvicer(user_card, 13)}
+                                                { this.getTopOfferAdviser(user_card, 13)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -238,7 +234,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 17)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdvicer(user_card, 16)}
+                                                { this.getTopOfferAdviser(user_card, 16)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -281,7 +277,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 20)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdvicer(user_card, 19)}
+                                                { this.getTopOfferAdviser(user_card, 19)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -321,7 +317,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 23)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdvicer(user_card, 22)}
+                                                { this.getTopOfferAdviser(user_card, 22)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -367,7 +363,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 8)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdvicer(user_card, 7)}
+                                                { this.getTopOfferAdviser(user_card, 7)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -409,7 +405,7 @@ class TopEmmerson extends Component {
                                                 { this.getTopOfferTeam(user_card, 11)}
                                             </TabPane>
                                             <TabPane tabId="3">
-                                                { this.getTopOfferAdvicer(user_card, 10)}
+                                                { this.getTopOfferAdviser(user_card, 10)}
                                             </TabPane>
                                         </TabContent>
                                     </Col>
@@ -449,7 +445,7 @@ class TopEmmerson extends Component {
                                         </Nav>
                                         <TabContent activeTab={this.state.activeTab1} className="border-danger" style={styleBlackText}>
                                             <TabPane tabId="1">
-                                                { this.getTopOfferAdvicer(user_card, 1)}
+                                                { this.getTopOfferAdviser(user_card, 1)}
                                             </TabPane>
                                             <TabPane tabId="2">
                                                 { this.getTopOfferAdvicer(user_card, 0)}
