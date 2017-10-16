@@ -45,7 +45,7 @@ class MainPage extends Component{
     renderTopEmmerson(e){
         return(
             <div>
-                { e === 24 ? <TopEmmerson user_card={ this.props.user_card } /> : <div>Loading...</div>}
+                { <TopEmmerson user_card={ e } /> }
             </div>
         );
     }
@@ -63,7 +63,7 @@ class MainPage extends Component{
                     <Col xs="12" style={styleMain} className="h1">
                         <b>Top Emmerson</b>
                     </Col>
-                    { this.renderTopEmmerson(this.props.user_card ? this.props.user_card.length : 23)}
+                    { this.renderTopEmmerson(this.props.user_card )}
                     <Col xs="12" className="h2" style={styleMain}>
                         <b>Nowości</b>
                     </Col>

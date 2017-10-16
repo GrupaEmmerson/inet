@@ -54,7 +54,7 @@ class TopEmmerson extends Component {
     getTopOfferAdvicer (adviser, key){
 
         const advicerBusinessCard = adviser[key].businessCard;
-        if(!adviser){
+        if(!advicerBusinessCard){
             return(<div>Loading...</div>);
         }
         return(
@@ -89,7 +89,7 @@ class TopEmmerson extends Component {
     getTopOfferTeam (adviser, key){
 
         const adviserBusinessCard = adviser[key].businessCard;
-        if(!adviser){
+        if(!adviserBusinessCard){
             return(<div>Loading...</div>);
         }
         return(
